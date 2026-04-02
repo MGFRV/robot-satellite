@@ -1,0 +1,23 @@
+{
+  "title": "Name A05B-2518-C202SGL",
+  "slug": "a05b-2518-c202sgl",
+  "article": "A05B-2518-C202SGL",
+  "price": null,
+  "category": "Запчасти для роботов",
+  "brand": "Name",
+  "description": "Name A05B-2518-C202SGL. Запчасть для промышленного оборудования. Полностью протестирован.",
+  "specs": {
+    "Производитель": "Name",
+    "Артикул": "A05B-2518-C202SGL",
+    "Тип": "Запчасть",
+    "Состояние": "Новый",
+    "Наличие": "Под заказ",
+    "Вес": "1.5 Kg"
+  },
+  "images": [
+    "https://storage.yandexcloud.net/rbstorage/products/name/a05b-2518-c202sgl/1.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/name/a05b-2518-c202sgl/2.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/name/a05b-2518-c202sgl/3.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/name/a05b-2518-c202sgl/4.webp"
+  ]
+}
