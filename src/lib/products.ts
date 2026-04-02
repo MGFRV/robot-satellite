@@ -41,7 +41,8 @@ export function getAllProducts(): Product[] {
       const raw = fs.readFileSync(filePath, 'utf8');
       return normalizeProduct(JSON.parse(raw) as Product);
     })
-    .sort((a, b) => a.title.localeCompare(b.title, 'ru-RU'));
+    .filter((product) => product.title)
+    .sort((a, b) => (a.title ?? '').localeCompare(b.title ?? '', 'ru-RU'));
 }
 
 export function getProductBySlug(slug: string): Product | null {
