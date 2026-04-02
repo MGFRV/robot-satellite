@@ -1,18 +1,15 @@
-import { ProductCard } from '@/components/ProductCard';
-import { getProducts } from '@/lib/products';
+import { CatalogClient } from '@/components/CatalogClient';
+import { getAllProducts, getCategories } from '@/lib/products';
 
 export default function CatalogPage() {
-  const products = getProducts();
+  const products = getAllProducts();
+  const categories = getCategories();
 
   return (
     <section className="space-y-6">
       <h1 className="text-3xl font-bold tracking-tight text-slate-900">Каталог</h1>
-      <p className="text-slate-700">Выберите подходящий товар из нашего ассортимента.</p>
-      <div className="grid gap-4 md:grid-cols-2">
-        {products.map((product) => (
-          <ProductCard key={product.slug} product={product} />
-        ))}
-      </div>
+      <p className="text-slate-700">Выберите категорию и подходящий товар из ассортимента.</p>
+      <CatalogClient products={products} categories={categories} />
     </section>
   );
 }
