@@ -1,24 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import type { Product } from '@/lib/products';
+import { PRODUCT_IMAGE_PLACEHOLDER } from '@/lib/assets';
 import { formatProductPrice } from '@/lib/product-format';
+import type { Product } from '@/lib/products';
 
 type ProductCardProps = {
   product: Product;
 };
 
 export function ProductCard({ product }: ProductCardProps) {
+  const previewImage = product.images[0] ?? PRODUCT_IMAGE_PLACEHOLDER;
+
   return (
     <article className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:shadow-md">
-      <Image
-        src={product.images[0]}
-        alt={product.title}
-        width={640}
-        height={420}
-        unoptimized
-        className="h-52 w-full object-cover"
-      />
+      <Image src={previewImage} alt={product.title} width={640} height={420} className="h-52 w-full object-cover" />
       <div className="space-y-3 p-4">
         <div>
           <p className="text-xs uppercase tracking-wide text-slate-500">Артикул: {product.article}</p>

@@ -4,6 +4,8 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import { compileMDX } from 'next-mdx-remote/rsc';
 
+import { BLOG_IMAGE_PLACEHOLDER, withS3BaseUrl } from '@/lib/assets';
+
 export type BlogPostMeta = {
   slug: string;
   title: string;
@@ -42,7 +44,10 @@ export function getAllPosts(): BlogPostMeta[] {
         date: String(data.date),
         excerpt: String(data.excerpt),
         tags: Array.isArray(data.tags) ? data.tags.map((tag) => String(tag)) : [],
-        coverImage: String(data.coverImage),
+        coverImage: withS3BaseUrl(
+          typeof data.coverImage === 'string' ? data.coverImage : undefined,
+          '/blog/placeholder.webp',
+        ),
       };
     })
     .sort((a, b) => b.date.localeCompare(a.date, 'ru-RU'));
@@ -76,7 +81,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     date: frontmatter.date,
     excerpt: frontmatter.excerpt,
     tags: frontmatter.tags ?? [],
-    coverImage: frontmatter.coverImage,
+    coverImage: withS3BaseUrl(frontmatter.coverImage, '/blog/placeholder.webp') || BLOG_IMAGE_PLACEHOLDER,
     content,
   };
 }
