@@ -1,9 +1,10 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { ProductGallery } from '@/components/ProductGallery';
-import { getAllProducts, getProductBySlug } from '@/lib/products';
 import { formatProductPrice } from '@/lib/product-format';
+import { getAllProducts, getProductBySlug } from '@/lib/products';
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -11,6 +12,28 @@ type ProductPageProps = {
 
 export function generateStaticParams() {
   return getAllProducts().map((product) => ({ slug: product.slug }));
+}
+
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const product = getProductBySlug(slug);
+
+  if (!product) {
+    return {
+      title: 'Товар не найден',
+      description: 'Запрошенный товар не найден в каталоге.',
+    };
+  }
+
+  return {
+    title: product.title,
+    description: product.description,
+    openGraph: {
+      title: product.title,
+      description: product.description,
+      images: [{ url: product.images[0] }],
+    },
+  };
 }
 
 export const dynamicParams = false;

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
@@ -9,6 +10,30 @@ type BlogPostPageProps = {
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: 'Статья не найдена',
+      description: 'Запрошенная статья не найдена в блоге.',
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      images: [{ url: post.coverImage }],
+      type: 'article',
+      publishedTime: post.date,
+    },
+  };
 }
 
 export const dynamicParams = false;
@@ -44,9 +69,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         className="h-72 w-full rounded-lg border border-slate-200 object-cover"
       />
 
-      <div className="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-a:text-blue-700">
-        {post.content}
-      </div>
+      <div className="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-a:text-blue-700">{post.content}</div>
     </article>
   );
 }

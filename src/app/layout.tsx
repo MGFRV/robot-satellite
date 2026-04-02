@@ -4,9 +4,25 @@ import './globals.css';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 
+const siteName = '[Название компании]';
+const siteDescription = 'Поставки комплектующих и оборудования для промышленных роботов.';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://example.com';
+
 export const metadata: Metadata = {
-  title: '[Название компании]',
-  description: 'Сайт компании с каталогом товаров и блогом.',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  openGraph: {
+    type: 'website',
+    locale: 'ru_RU',
+    url: siteUrl,
+    siteName,
+    title: siteName,
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({
