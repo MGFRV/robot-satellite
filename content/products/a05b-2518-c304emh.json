@@ -1,13 +1,13 @@
 {
-  "title": "A05B-2518-C304EMH",
+  "title": "FANUC A05B-2518-C304EMH",
   "slug": "a05b-2518-c304emh",
   "article": "A05B-2518-C304EMH",
   "price": null,
   "category": "Запчасти для роботов",
-  "brand": "Name",
-  "description": "Name A05B-2518-C304EMH. Запчасть для промышленного оборудования. Полностью протестирован.",
+  "brand": "FANUC",
+  "description": "FANUC A05B-2518-C304EMH. Запчасть для промышленного оборудования. Полностью протестирован.",
   "specs": {
-    "Производитель": "Name",
+    "Производитель": "FANUC",
     "Артикул": "A05B-2518-C304EMH",
     "Тип": "Запчасть",
     "Состояние": "Новый",
@@ -15,7 +15,7 @@
     "Вес": "1.5 Kg"
   },
   "images": [
-    "https://storage.yandexcloud.net/rbstorage/products/name/a05b-2518-c304emh/1.webp",
-    "https://storage.yandexcloud.net/rbstorage/products/name/a05b-2518-c304emh/2.webp"
+    "https://storage.yandexcloud.net/rbstorage/products/fanuc/a05b-2518-c304emh/1.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/fanuc/a05b-2518-c304emh/2.webp"
   ]
 }
