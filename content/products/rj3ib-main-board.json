@@ -12,5 +12,7 @@
     "Состояние": "Б/У, проверено",
     "Гарантия": "3 месяца"
   },
-  "images": []
+  "images": [
+    "https://storage.yandexcloud.net/rbstorage/2.jpg"
+  ]
 }
