@@ -14,8 +14,8 @@ export type BlogPostMeta = {
   coverImage: string;
 };
 
-export type BlogPostSource = BlogPostMeta & {
-  source: string;
+export type BlogPost = BlogPostMeta & {
+  content: string;
 };
 
 type BlogPostEntry = BlogPostMeta & {
@@ -63,16 +63,6 @@ const translitMap: Record<string, string> = {
   я: 'ya',
 };
 
-function slugify(input: string): string {
-  return input
-    .toLowerCase()
-    .split('')
-    .map((char) => translitMap[char] ?? char)
-    .join('')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-}
-
 function getBlogFiles(dir: string): string[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
 
@@ -92,22 +82,27 @@ function getBlogFiles(dir: string): string[] {
   });
 }
 
+function slugify(input: string): string {
+  return input
+    .toLowerCase()
+    .split('')
+    .map((char) => translitMap[char] ?? char)
+    .join('')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 function getPostEntries(): BlogPostEntry[] {
   const files = getBlogFiles(blogDirectory);
 
-  return files
+  const entries = files
     .map((filePath) => {
       const source = fs.readFileSync(filePath, 'utf8');
       const { data } = matter(source);
 
       const relativePath = path.relative(blogDirectory, filePath).replace(/\\/g, '/');
       const fileSlug = relativePath.replace(/\.(mdx|md)$/i, '');
-
-      const frontmatterSlug =
-        typeof data.slug === 'string' && data.slug.trim().length > 0
-          ? data.slug.trim()
-          : '';
-
+      const frontmatterSlug = typeof data.slug === 'string' ? data.slug.trim() : '';
       const title = String(data.title);
       const titleSlug = slugify(title);
       const slug = frontmatterSlug || fileSlug;
@@ -116,9 +111,7 @@ function getPostEntries(): BlogPostEntry[] {
         filePath,
         fileSlug,
         slug,
-        aliases: Array.from(
-          new Set([slug, fileSlug, frontmatterSlug, titleSlug].filter(Boolean)),
-        ),
+        aliases: Array.from(new Set([slug, fileSlug, frontmatterSlug, titleSlug].filter(Boolean))),
         title,
         date: String(data.date),
         excerpt: String(data.excerpt),
@@ -130,6 +123,22 @@ function getPostEntries(): BlogPostEntry[] {
       };
     })
     .sort((a, b) => b.date.localeCompare(a.date, 'ru-RU'));
+
+  const slugToFile = new Map<string, string>();
+
+  for (const entry of entries) {
+    const duplicateFilePath = slugToFile.get(entry.slug);
+
+    if (duplicateFilePath) {
+      throw new Error(
+        `Duplicate blog slug "${entry.slug}" found in files: ${duplicateFilePath} and ${entry.filePath}`,
+      );
+    }
+
+    slugToFile.set(entry.slug, entry.filePath);
+  }
+
+  return entries;
 }
 
 export function formatBlogDate(date: string): string {
@@ -151,16 +160,16 @@ export function getAllPosts(): BlogPostMeta[] {
   }));
 }
 
-export async function getPostBySlug(slug: string): Promise<BlogPostSource | null> {
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   const normalizedSlug = slug.toLowerCase();
-
-  const entry = getPostEntries().find((post) =>
-    post.aliases.some((alias) => alias.toLowerCase() === normalizedSlug),
-  );
+  const entry = getPostEntries().find((post) => post.aliases.some((alias) => alias.toLowerCase() === normalizedSlug));
 
   if (!entry) {
     return null;
   }
+
+  const source = fs.readFileSync(entry.filePath, 'utf8');
+  const { content } = matter(source);
 
   return {
     slug: entry.slug,
@@ -169,6 +178,6 @@ export async function getPostBySlug(slug: string): Promise<BlogPostSource | null
     excerpt: entry.excerpt,
     tags: entry.tags,
     coverImage: entry.coverImage,
-    source: fs.readFileSync(entry.filePath, 'utf8'),
+    content,
   };
 }
