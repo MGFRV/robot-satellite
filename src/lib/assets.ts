@@ -1,4 +1,4 @@
-const s3BaseUrl = process.env.NEXT_PUBLIC_S3_BASE_URL ?? 'https://storage.yandexcloud.net/ваш-бакет';
+const s3BaseUrl = process.env.NEXT_PUBLIC_S3_BASE_URL ?? 'https://storage.yandexcloud.net/rbstorage';
 
 function joinS3Path(pathname: string): string {
   const normalizedPath = pathname.startsWith('/') ? pathname : `/${pathname}`;
