@@ -11,6 +11,7 @@ build/
 # misc
 .DS_Store
 *.pem
+scrape-and-upload.js
 
 # debug
 npm-debug.log*
