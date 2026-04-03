@@ -2,9 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import matter from 'gray-matter';
-import { compileMDX } from 'next-mdx-remote/rsc';
 
-import { BLOG_IMAGE_PLACEHOLDER, withS3BaseUrl } from '@/lib/assets';
+import { withS3BaseUrl } from '@/lib/assets';
 
 export type BlogPostMeta = {
   slug: string;
@@ -15,19 +14,14 @@ export type BlogPostMeta = {
   coverImage: string;
 };
 
-export type BlogPost = BlogPostMeta & {
-  content: React.ReactNode;
+export type BlogPostSource = BlogPostMeta & {
+  source: string;
 };
 
-type BlogPostIndexEntry = {
+type BlogPostEntry = BlogPostMeta & {
+  filePath: string;
   fileSlug: string;
-  slug: string;
   aliases: string[];
-  title: string;
-  date: string;
-  excerpt: string;
-  tags: string[];
-  coverImage: string;
 };
 
 const blogDirectory = path.join(process.cwd(), 'content', 'blog');
@@ -69,6 +63,15 @@ const translitMap: Record<string, string> = {
   я: 'ya',
 };
 
+function slugify(input: string): string {
+  return input
+    .toLowerCase()
+    .split('')
+    .map((char) => translitMap[char] ?? char)
+    .join('')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
 
 function getBlogFiles(dir: string): string[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -89,35 +92,33 @@ function getBlogFiles(dir: string): string[] {
   });
 }
 
-function slugify(input: string): string {
-  return input
-    .toLowerCase()
-    .split('')
-    .map((char) => translitMap[char] ?? char)
-    .join('')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-}
-
-function getBlogIndex(): BlogPostIndexEntry[] {
+function getPostEntries(): BlogPostEntry[] {
   const files = getBlogFiles(blogDirectory);
 
   return files
-    .map((fullPath) => {
-      const source = fs.readFileSync(fullPath, 'utf8');
+    .map((filePath) => {
+      const source = fs.readFileSync(filePath, 'utf8');
       const { data } = matter(source);
 
-      const relativePath = path.relative(blogDirectory, fullPath);
-      const fileSlug = relativePath.replace(/\.(md|mdx)$/i, '').replace(/\\/g, '/');
-      const frontmatterSlug = typeof data.slug === 'string' ? data.slug : '';
+      const relativePath = path.relative(blogDirectory, filePath).replace(/\\/g, '/');
+      const fileSlug = relativePath.replace(/\.(mdx|md)$/i, '');
+
+      const frontmatterSlug =
+        typeof data.slug === 'string' && data.slug.trim().length > 0
+          ? data.slug.trim()
+          : '';
+
       const title = String(data.title);
       const titleSlug = slugify(title);
       const slug = frontmatterSlug || fileSlug;
 
       return {
+        filePath,
         fileSlug,
         slug,
-        aliases: Array.from(new Set([slug, fileSlug, frontmatterSlug, titleSlug].filter(Boolean))),
+        aliases: Array.from(
+          new Set([slug, fileSlug, frontmatterSlug, titleSlug].filter(Boolean)),
+        ),
         title,
         date: String(data.date),
         excerpt: String(data.excerpt),
@@ -140,56 +141,34 @@ export function formatBlogDate(date: string): string {
 }
 
 export function getAllPosts(): BlogPostMeta[] {
-  return getBlogIndex().map(({ slug, title, date, excerpt, tags, coverImage }) => ({
-    slug,
-    title,
-    date,
-    excerpt,
-    tags,
-    coverImage,
+  return getPostEntries().map((post) => ({
+    slug: post.slug,
+    title: post.title,
+    date: post.date,
+    excerpt: post.excerpt,
+    tags: post.tags,
+    coverImage: post.coverImage,
   }));
 }
 
-export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+export async function getPostBySlug(slug: string): Promise<BlogPostSource | null> {
   const normalizedSlug = slug.toLowerCase();
-  const entry = getBlogIndex().find((post) => post.aliases.some((alias) => alias.toLowerCase() === normalizedSlug));
+
+  const entry = getPostEntries().find((post) =>
+    post.aliases.some((alias) => alias.toLowerCase() === normalizedSlug),
+  );
 
   if (!entry) {
     return null;
   }
 
-  const fullPath = getBlogFiles(blogDirectory).find((filePath) => {
-    const relativePath = path.relative(blogDirectory, filePath).replace(/\\/g, '/');
-    const normalized = relativePath.replace(/\.(md|mdx)$/i, '');
-    return normalized === entry.fileSlug;
-  });
-
-  if (!fullPath) {
-    return null;
-  }
-  const source = fs.readFileSync(fullPath, 'utf8');
-
-  const { content, frontmatter } = await compileMDX<{
-    title: string;
-    date: string;
-    excerpt: string;
-    tags: string[];
-    coverImage: string;
-    slug?: string;
-  }>({
-    source,
-    options: {
-      parseFrontmatter: true,
-    },
-  });
-
   return {
     slug: entry.slug,
-    title: frontmatter.title,
-    date: frontmatter.date,
-    excerpt: frontmatter.excerpt,
-    tags: frontmatter.tags ?? [],
-    coverImage: withS3BaseUrl(frontmatter.coverImage, '/blog/placeholder.webp') || BLOG_IMAGE_PLACEHOLDER,
-    content,
+    title: entry.title,
+    date: entry.date,
+    excerpt: entry.excerpt,
+    tags: entry.tags,
+    coverImage: entry.coverImage,
+    source: fs.readFileSync(entry.filePath, 'utf8'),
   };
 }

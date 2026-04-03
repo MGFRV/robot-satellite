@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { MDXRemote } from 'next-mdx-remote/rsc';
+import { compileMDX } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
 
 import { formatBlogDate, getAllPosts, getPostBySlug } from '@/lib/blog';
@@ -47,6 +47,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const { content } = await compileMDX({
+    source: post.source,
+    options: {
+      parseFrontmatter: true,
+    },
+  });
+
   return (
     <article className="space-y-6">
       <header className="space-y-3">
@@ -70,9 +77,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         className="h-72 w-full rounded-lg border border-slate-200 object-cover"
       />
 
-      <div className="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-a:text-blue-700">
-        <MDXRemote source={post.content} />
-      </div>
+      <div className="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-a:text-blue-700">{content}</div>
     </article>
   );
 }
