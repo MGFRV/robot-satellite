@@ -1,27 +1,24 @@
 {
-  "title": "FANUC A05B-2490-C172 — Пульт управления",
+  "title": "FANUC A05B-2490-C172",
   "slug": "a05b-2490-c172",
   "article": "A05B-2490-C172",
-  "reference": "",
   "price": null,
-  "category": "Пульты управления",
+  "category": "Запчасти для роботов",
   "brand": "FANUC",
-  "weight": "",
-  "countryOfOrigin": "",
-  "description": "Описание уточняется. Компонент FANUC A05B-2490-C172 относится к категории «Пульты управления» и применяется в системах управления промышленными роботами. Совместимость: R-30iB. Исполнение без дополнительного суффикса версии.",
+  "description": "FANUC A05B-2490-C172. Запчасть для промышленного оборудования. Полностью протестирован.",
   "specs": {
     "Производитель": "FANUC",
     "Артикул": "A05B-2490-C172",
-    "Категория": "Пульты управления",
-    "Совместимость": "R-30iB",
-    "Тип": "Teach Pendant (iPendant)",
-    "Reference": "Уточняется",
-    "Вес": "Уточняется",
-    "Страна производства": "Уточняется",
-    "Состояние": "Новый / Восстановленный",
-    "Наличие": "Под заказ"
+    "Тип": "Запчасть",
+    "Состояние": "Новый",
+    "Наличие": "Под заказ",
+    "Вес": "1.5 Kg"
   },
   "images": [
-    "https://storage.yandexcloud.net/rbstorage/products/fanuc/a05b-2490-c172/1.jpg"
+    "https://storage.yandexcloud.net/rbstorage/products/fanuc/a05b-2490-c172/1.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/fanuc/a05b-2490-c172/2.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/fanuc/a05b-2490-c172/3.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/fanuc/a05b-2490-c172/4.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/fanuc/a05b-2490-c172/5.webp"
   ]
 }

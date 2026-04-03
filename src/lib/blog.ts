@@ -20,10 +20,58 @@ export type BlogPostSource = BlogPostMeta & {
 
 type BlogPostEntry = BlogPostMeta & {
   filePath: string;
+  fileSlug: string;
+  aliases: string[];
 };
 
 const blogDirectory = path.join(process.cwd(), 'content', 'blog');
 const supportedBlogExtensions = new Set(['.mdx', '.md']);
+
+const translitMap: Record<string, string> = {
+  а: 'a',
+  б: 'b',
+  в: 'v',
+  г: 'g',
+  д: 'd',
+  е: 'e',
+  ё: 'e',
+  ж: 'zh',
+  з: 'z',
+  и: 'i',
+  й: 'y',
+  к: 'k',
+  л: 'l',
+  м: 'm',
+  н: 'n',
+  о: 'o',
+  п: 'p',
+  р: 'r',
+  с: 's',
+  т: 't',
+  у: 'u',
+  ф: 'f',
+  х: 'h',
+  ц: 'c',
+  ч: 'ch',
+  ш: 'sh',
+  щ: 'sch',
+  ъ: '',
+  ы: 'y',
+  ь: '',
+  э: 'e',
+  ю: 'yu',
+  я: 'ya',
+};
+
+function slugify(input: string): string {
+  return input
+    .toLowerCase()
+    .split('')
+    .map((char) => translitMap[char] ?? char)
+    .join('')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
 
 function getBlogFiles(dir: string): string[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -55,10 +103,23 @@ function getPostEntries(): BlogPostEntry[] {
       const relativePath = path.relative(blogDirectory, filePath).replace(/\\/g, '/');
       const fileSlug = relativePath.replace(/\.(mdx|md)$/i, '');
 
+      const frontmatterSlug =
+        typeof data.slug === 'string' && data.slug.trim().length > 0
+          ? data.slug.trim()
+          : '';
+
+      const title = String(data.title);
+      const titleSlug = slugify(title);
+      const slug = frontmatterSlug || fileSlug;
+
       return {
         filePath,
-        slug: typeof data.slug === 'string' && data.slug.trim().length > 0 ? data.slug : fileSlug,
-        title: String(data.title),
+        fileSlug,
+        slug,
+        aliases: Array.from(
+          new Set([slug, fileSlug, frontmatterSlug, titleSlug].filter(Boolean)),
+        ),
+        title,
         date: String(data.date),
         excerpt: String(data.excerpt),
         tags: Array.isArray(data.tags) ? data.tags.map((tag) => String(tag)) : [],
@@ -91,14 +152,23 @@ export function getAllPosts(): BlogPostMeta[] {
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPostSource | null> {
-  const entry = getPostEntries().find((post) => post.slug === slug);
+  const normalizedSlug = slug.toLowerCase();
+
+  const entry = getPostEntries().find((post) =>
+    post.aliases.some((alias) => alias.toLowerCase() === normalizedSlug),
+  );
 
   if (!entry) {
     return null;
   }
 
   return {
-    ...entry,
+    slug: entry.slug,
+    title: entry.title,
+    date: entry.date,
+    excerpt: entry.excerpt,
+    tags: entry.tags,
+    coverImage: entry.coverImage,
     source: fs.readFileSync(entry.filePath, 'utf8'),
   };
 }
