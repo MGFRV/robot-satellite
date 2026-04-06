@@ -1,14 +1,32 @@
+import { compile, run } from '@mdx-js/mdx';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
 import rehypeSlug from 'rehype-slug';
+import * as runtime from 'react/jsx-runtime';
 import remarkGfm from 'remark-gfm';
 
 import { formatDate, getAllSlugs, getPostBySlug, getRelatedPosts } from '@/lib/blog';
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+async function renderMDX(source: string) {
+  const code = String(
+    await compile(source, {
+      outputFormat: 'function-body',
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [rehypeSlug],
+    }),
+  );
+
+  const { default: MDXContent } = await run(code, {
+    ...runtime,
+    baseUrl: new URL(`file://${process.cwd()}/`),
+  });
+
+  return MDXContent;
 }
 
 export async function generateStaticParams() {
@@ -44,6 +62,7 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
+  const MDXContent = await renderMDX(post.content);
   const related = getRelatedPosts(slug, post.tags, 3);
 
   const jsonLd = {
@@ -103,15 +122,7 @@ export default async function BlogPostPage({ params }: Props) {
           prose-blockquote:rounded-r-lg prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50
           prose-img:rounded-lg"
         >
-          <MDXRemote
-            source={post.content}
-            options={{
-              mdxOptions: {
-                remarkPlugins: [remarkGfm],
-                rehypePlugins: [rehypeSlug],
-              },
-            }}
-          />
+          <MDXContent />
         </div>
 
         {related.length > 0 && (
