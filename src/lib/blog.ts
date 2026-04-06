@@ -31,7 +31,10 @@ function readAllPostData(): BlogPost[] {
       date: String(data.date ?? ''),
       excerpt: String(data.excerpt ?? ''),
       tags: Array.isArray(data.tags) ? data.tags.map((tag) => String(tag)) : [],
-      coverImage: typeof data.coverImage === 'string' ? data.coverImage : undefined,
+      coverImage:
+        typeof data.coverImage === 'string' && data.coverImage.trim().length > 0
+          ? data.coverImage
+          : 'https://storage.yandexcloud.net/rbstorage/products/blog/placeholder.webp',
       content,
     } satisfies BlogPost;
   });
