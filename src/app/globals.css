@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+}
+
+a {
+  @apply transition-colors;
+}
+
+/* MDX content styles */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+}
+
+.prose blockquote {
+  padding: 12px 16px;
+}
+
+.prose h2 {
+  margin-top: 2em;
+  padding-bottom: 0.3em;
+}
+
+.prose img {
+  border-radius: 8px;
+}

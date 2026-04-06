@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Название сайта</title>
+    <link>https://ваш-домен.ru</link>
+    <description>Блог</description>
+    <language>ru</language>
+    <atom:link href="https://ваш-домен.ru/rss.xml" rel="self" type="application/rss+xml"/>
+    
+  <item>
+    <title><![CDATA[Как выбрать контроллер для промышленного робота]]></title>
+    <link>https://ваш-домен.ru/blog/kak-vybrat-kontroller</link>
+    <description><![CDATA[Разбираемся в типах контроллеров и на что обращать внимание при покупке б/у оборудования.]]></description>
+    <pubDate>Sat, 15 Mar 2025 00:00:00 GMT</pubDate>
+    <guid>https://ваш-домен.ru/blog/kak-vybrat-kontroller</guid>
+  </item>
+  <item>
+    <title><![CDATA[Обслуживание сервоусилителей: базовый чек‑лист]]></title>
+    <link>https://ваш-домен.ru/blog/obsluzhivanie-servoprivodov</link>
+    <description><![CDATA[Короткий чек-лист для оценки состояния сервоусилителя перед запуском в производственной линии.]]></description>
+    <pubDate>Sun, 02 Feb 2025 00:00:00 GMT</pubDate>
+    <guid>https://ваш-домен.ru/blog/obsluzhivanie-servoprivodov</guid>
+  </item>
+  <item>
+    <title><![CDATA[Тестовая статья]]></title>
+    <link>https://ваш-домен.ru/blog/test-post</link>
+    <description><![CDATA[Тест]]></description>
+    <pubDate>Wed, 01 Jan 2025 00:00:00 GMT</pubDate>
+    <guid>https://ваш-домен.ru/blog/test-post</guid>
+  </item>
+  </channel>
+</rss>
