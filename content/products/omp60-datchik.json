@@ -4,20 +4,20 @@
   "article": "A-4038-0001",
   "price": null,
   "category": "Запчасти для роботов",
-  "brand": "",
-  "description": " A-4038-0001. Запчасть для промышленного оборудования. Полностью протестирован.",
+  "brand": "Renishaw",
+  "description": "Для средних и крупных станков. Оптическая передача сигнала. Повторяемость 1,0 мкм. Максимальная длина щупа 150 мм. ООО «Эффективное производство» - официальный партнер компании RENISHAW в России",
   "specs": {
-    "Производитель": "",
+    "Производитель": "Renishaw",
     "Артикул": "A-4038-0001",
     "Тип": "Запчасть",
     "Состояние": "Уточняйте",
     "Наличие": "Под заказ"
   },
   "images": [
-    "https://storage.yandexcloud.net/rbstorage/products/other/omp60-datchik/1.webp",
-    "https://storage.yandexcloud.net/rbstorage/products/other/omp60-datchik/2.webp",
-    "https://storage.yandexcloud.net/rbstorage/products/other/omp60-datchik/3.webp",
-    "https://storage.yandexcloud.net/rbstorage/products/other/omp60-datchik/4.webp",
-    "https://storage.yandexcloud.net/rbstorage/products/other/omp60-datchik/5.webp"
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/omp60-datchik/1.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/omp60-datchik/2.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/omp60-datchik/3.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/omp60-datchik/4.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/omp60-datchik/5.webp"
   ]
 }

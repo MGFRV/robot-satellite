@@ -4,20 +4,20 @@
   "article": "A-2008-0396",
   "price": null,
   "category": "Запчасти для роботов",
-  "brand": "",
-  "description": " A-2008-0396. Запчасть для промышленного оборудования. Полностью протестирован.",
+  "brand": "Renishaw",
+  "description": "Для малых и крупных станков. Проводная передача сигнала. Минимальный размер инструмента Ø 1 мм. Повторяемость 1,0 мкм. ООО «Эффективное производство» - официальный партнер компании RENISHAW в России",
   "specs": {
-    "Производитель": "",
+    "Производитель": "Renishaw",
     "Артикул": "A-2008-0396",
     "Тип": "Запчасть",
     "Состояние": "Уточняйте",
     "Наличие": "Под заказ"
   },
   "images": [
-    "https://storage.yandexcloud.net/rbstorage/products/other/ts27r-datchik/1.webp",
-    "https://storage.yandexcloud.net/rbstorage/products/other/ts27r-datchik/2.webp",
-    "https://storage.yandexcloud.net/rbstorage/products/other/ts27r-datchik/3.webp",
-    "https://storage.yandexcloud.net/rbstorage/products/other/ts27r-datchik/4.webp",
-    "https://storage.yandexcloud.net/rbstorage/products/other/ts27r-datchik/5.webp"
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/ts27r-datchik/1.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/ts27r-datchik/2.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/ts27r-datchik/3.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/ts27r-datchik/4.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/ts27r-datchik/5.webp"
   ]
 }

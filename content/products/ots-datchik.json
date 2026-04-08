@@ -4,20 +4,20 @@
   "article": "A-5514-2001",
   "price": null,
   "category": "Запчасти для роботов",
-  "brand": "",
-  "description": " A-5514-2001. Запчасть для промышленного оборудования. Полностью протестирован.",
+  "brand": "Renishaw",
+  "description": "Для малых и средних станков. Оптическая передача сигнала. Минимальный размер инструмента Ø 1 мм. Повторяемость 1,0 мкм. ООО «Эффективное производство» - официальный партнер компании RENISHAW в России",
   "specs": {
-    "Производитель": "",
+    "Производитель": "Renishaw",
     "Артикул": "A-5514-2001",
     "Тип": "Запчасть",
     "Состояние": "Уточняйте",
     "Наличие": "Под заказ"
   },
   "images": [
-    "https://storage.yandexcloud.net/rbstorage/products/other/ots-datchik/1.webp",
-    "https://storage.yandexcloud.net/rbstorage/products/other/ots-datchik/2.webp",
-    "https://storage.yandexcloud.net/rbstorage/products/other/ots-datchik/3.webp",
-    "https://storage.yandexcloud.net/rbstorage/products/other/ots-datchik/4.webp",
-    "https://storage.yandexcloud.net/rbstorage/products/other/ots-datchik/5.webp"
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/ots-datchik/1.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/ots-datchik/2.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/ots-datchik/3.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/ots-datchik/4.webp",
+    "https://storage.yandexcloud.net/rbstorage/products/renishaw/ots-datchik/5.webp"
   ]
 }
