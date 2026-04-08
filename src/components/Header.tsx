@@ -5,8 +5,6 @@ import { useState } from 'react';
 
 import { SearchBar } from '@/components/SearchBar';
 
-import { SearchBar } from '@/components/SearchBar';
-
 const navItems = [
   { href: '/catalog', label: 'Каталог' },
   { href: '/blog', label: 'Блог' },
