@@ -30,7 +30,7 @@ export default function HomePage() {
               href="/podbor"
               className="rounded-md border border-slate-500 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800"
             >
-              Помочь с подбором
+              Помочь подобрать деталь
             </Link>
           </div>
         </div>

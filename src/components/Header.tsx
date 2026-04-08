@@ -8,7 +8,6 @@ import { SearchBar } from '@/components/SearchBar';
 const navItems = [
   { href: '/catalog', label: 'Каталог' },
   { href: '/blog', label: 'Блог' },
-  { href: '/catalog', label: 'Поиск' },
   { href: '/podbor', label: 'Помочь с подбором' },
   { href: '/contacts', label: 'Контакты' },
 ];
