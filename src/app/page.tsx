@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import { ProductCard } from '@/components/ProductCard';
 import { RFQForm } from '@/components/RFQForm';
+import { SearchBar } from '@/components/SearchBar';
 import { TrustBlock } from '@/components/TrustBlock';
 import { getAllProducts, getCategories } from '@/lib/products';
 
@@ -39,6 +40,7 @@ export default function HomePage() {
         <div className="space-y-2">
           <h2 className="text-base font-semibold text-slate-900">Поиск по артикулу</h2>
           <p className="text-sm text-slate-600">Введите артикул в поиске в шапке сайта, чтобы быстро найти товар.</p>
+          <SearchBar />
         </div>
         <div className="space-y-2">
           <h2 className="text-base font-semibold text-slate-900">Каталог по категориям</h2>
@@ -49,17 +51,23 @@ export default function HomePage() {
         <div className="space-y-2">
           <h2 className="text-base font-semibold text-slate-900">Не знаете артикул?</h2>
           <Link href="/podbor" className="text-sm font-medium text-orange-600 hover:text-orange-700">
-            Отправить на подбор →
+            Помочь с подбором →
           </Link>
         </div>
       </section>
 
-      <section className="space-y-5 rounded-xl border border-slate-200 bg-white p-6">
+      <section className="space-y-5 rounded-xl border border-orange-200 bg-orange-50 p-6">
         <h2 className="text-2xl font-semibold text-slate-900">Как мы работаем</h2>
         <ol className="grid gap-4 md:grid-cols-3">
-          <li className="rounded-lg bg-slate-50 p-4 text-sm text-slate-700">📩 Отправьте артикул или фото маркировки</li>
-          <li className="rounded-lg bg-slate-50 p-4 text-sm text-slate-700">🧩 Мы подтвердим совместимость и наличие</li>
-          <li className="rounded-lg bg-slate-50 p-4 text-sm text-slate-700">🚚 Доставим в любой город России и СНГ</li>
+          <li className="rounded-lg border border-orange-100 bg-white p-4 text-sm text-slate-700">
+            Отправьте артикул или фото маркировки
+          </li>
+          <li className="rounded-lg border border-orange-100 bg-white p-4 text-sm text-slate-700">
+            Мы подтвердим совместимость и наличие
+          </li>
+          <li className="rounded-lg border border-orange-100 bg-white p-4 text-sm text-slate-700">
+            Доставим в любой город России и СНГ
+          </li>
         </ol>
       </section>
 
@@ -126,7 +134,7 @@ export default function HomePage() {
         <p className="mt-2 text-sm text-slate-700">Отправьте артикул или фото маркировки — быстро подберём вариант и сроки.</p>
         <div className="mt-4 flex flex-wrap gap-3">
           <Link href="/podbor" className="rounded-md bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600">
-            Отправить запрос
+            Помочь с подбором
           </Link>
           <Link
             href="https://wa.me/70000000000"
