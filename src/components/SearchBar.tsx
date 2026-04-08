@@ -263,7 +263,8 @@ export function SearchBar() {
           {showNoResults ? (
             <div className="space-y-3 px-4 py-4 text-sm">
               <p className="font-medium text-slate-900">По запросу &quot;{query.trim()}&quot; ничего не найдено</p>
-              <p className="text-slate-600">Попробуйте ввести артикул или часть названия</p>
+              <p className="text-slate-600">Попробуйте ввести артикул или часть названия.</p>
+              <p className="text-slate-600">Не нашли? Отправьте маркировку — поможем подобрать.</p>
               <Link
                 href="/podbor"
                 onClick={() => {
