@@ -5,11 +5,9 @@ import { useState } from 'react';
 
 import { SearchBar } from '@/components/SearchBar';
 
-const navItems = [
+const primaryNavItems = [
   { href: '/catalog', label: 'Каталог' },
   { href: '/blog', label: 'Блог' },
-  { href: '/podbor', label: 'Помочь с подбором' },
-  { href: '/contacts', label: 'Контакты' },
 ];
 
 export function Header() {
@@ -24,8 +22,8 @@ export function Header() {
 
         <nav className="hidden lg:block">
           <ul className="flex items-center gap-4 text-sm font-medium text-slate-700">
-            {navItems.map((item) => (
-              <li key={`${item.href}-${item.label}`}>
+            {primaryNavItems.map((item) => (
+              <li key={item.href}>
                 <Link href={item.href} className="rounded-md px-2 py-1 hover:bg-orange-50 hover:text-slate-950">
                   {item.label}
                 </Link>
@@ -37,6 +35,17 @@ export function Header() {
         <div className="ml-auto hidden w-full max-w-xl md:block" id="header-search">
           <SearchBar />
         </div>
+
+        <Link
+          href="/podbor"
+          className="hidden rounded-md bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600 md:inline-flex"
+        >
+          Помочь с подбором
+        </Link>
+
+        <Link href="/contacts" className="hidden text-sm font-medium text-slate-700 hover:text-slate-950 md:inline-flex">
+          Контакты
+        </Link>
 
         <button
           type="button"
@@ -56,8 +65,8 @@ export function Header() {
         <div className="border-t border-slate-200 bg-white lg:hidden">
           <nav className="mx-auto w-full max-w-6xl px-4 py-3">
             <ul className="space-y-2 text-sm font-medium text-slate-700">
-              {navItems.map((item) => (
-                <li key={`${item.href}-${item.label}`}>
+              {primaryNavItems.map((item) => (
+                <li key={item.href}>
                   <Link
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -67,6 +76,24 @@ export function Header() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/podbor"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block rounded-md bg-orange-500 px-2 py-2 text-white"
+                >
+                  Помочь с подбором
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contacts"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block rounded-md px-2 py-2 hover:bg-orange-50"
+                >
+                  Контакты
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>
