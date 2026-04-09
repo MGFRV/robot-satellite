@@ -6,7 +6,7 @@ import { Header } from '@/components/Header';
 import { StickyContact } from '@/components/StickyContact';
 import { ScrollTopButton } from '@/components/ScrollTopButton';
 
-const siteName = 'Renishaw Parts B2B';
+const siteName = 'RenishawParts - Надежный поставщик Renishaw в РФ и СНГ';
 const siteDescription = 'Щупы, стилусы, датчики и измерительные компоненты Renishaw для станков с ЧПУ.';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://example.com';
 

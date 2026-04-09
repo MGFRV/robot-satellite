@@ -123,8 +123,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
           title="Запросить цену и наличие"
         />
       </section>
-
-      </section>
     </article>
   );
 }

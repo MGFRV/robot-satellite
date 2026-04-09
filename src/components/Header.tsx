@@ -18,7 +18,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white shadow-sm">
       <div className="mx-auto flex w-full max-w-6xl items-center gap-3 px-4 py-3">
         <Link href="/" className="shrink-0 text-lg font-bold text-slate-900">
-          Renishaw Parts B2B
+          RenishawParts
         </Link>
 
         <nav className="hidden lg:block">

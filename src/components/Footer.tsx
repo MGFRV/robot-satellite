@@ -51,7 +51,7 @@ export function Footer() {
 
       <div className="border-t border-slate-200 bg-slate-50 py-5">
         <div className="mx-auto w-full max-w-6xl space-y-2 px-4 text-xs text-slate-600">
-          <p>© {new Date().getFullYear()} Renishaw Parts B2B. Все права защищены.</p>
+          <p>© {new Date().getFullYear()} RenishawParts - Ваш надежный поставщик Renishaw в РФ и СНГ. Все права защищены.</p>
         </div>
       </div>
     </footer>
