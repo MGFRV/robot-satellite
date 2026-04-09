@@ -62,16 +62,16 @@ export function AddToCartButton({ slug, title, article, className }: AddToCartBu
             return;
           }
 
-          const result = addItemToInquiryCart({ slug, title, article }, quantity);
+          const result = addItemToInquiryCart({ slug, title, article });
           if (result.added) {
             setAlreadyAdded(true);
-            setToast('Добавлено в запрос');
+            setToast('Добавлено в корзину');
             window.setTimeout(() => setToast(''), 2000);
           }
         }}
         className={`${baseClassName} ${alreadyAdded ? 'border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-50' : ''}`}
       >
-        {alreadyAdded ? 'Уже в запросе ✓' : '+ В запрос'}
+        {alreadyAdded ? '✓' : '+'}
       </button>
 
       {toast ? <span className="absolute -top-9 left-0 rounded bg-slate-900 px-2 py-1 text-xs text-white">{toast}</span> : null}
