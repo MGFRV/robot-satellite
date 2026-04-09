@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import {
   clearInquiryCart,
@@ -14,10 +14,26 @@ import {
 const WEB3FORM_ACCESS_KEY = 'efb5634c-52e7-4950-9f5c-5ad0b50d1bcf';
 
 export default function CartPage() {
-  const [items, setItems] = useState<InquiryCartItem[]>(() => getInquiryCart());
+  const [items, setItems] = useState<InquiryCartItem[]>([]);
+  const [isHydrated, setIsHydrated] = useState(false);
   const [formState, setFormState] = useState({ name: '', company: '', email: '', phone: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const sync = () => setItems(getInquiryCart());
+
+    sync();
+    setIsHydrated(true);
+
+    window.addEventListener('inquiry-cart-updated', sync);
+    window.addEventListener('storage', sync);
+
+    return () => {
+      window.removeEventListener('inquiry-cart-updated', sync);
+      window.removeEventListener('storage', sync);
+    };
+  }, []);
 
   const cartPayload = useMemo(
     () =>
@@ -77,14 +93,18 @@ export default function CartPage() {
     <section className="space-y-8">
       <h1 className="text-3xl font-bold text-slate-900">Ваша корзина товаров</h1>
 
-      {items.length === 0 ? (
+      {!isHydrated ? <div className="rounded-xl border border-slate-200 bg-white p-6 text-slate-600">Загрузка списка...</div> : null}
+
+      {isHydrated && items.length === 0 ? (
         <div className="rounded-xl border border-slate-200 bg-white p-6">
           <p className="text-slate-700">Список пуст. Перейдите в каталог, чтобы выбрать детали.</p>
           <Link href="/catalog" className="mt-3 inline-flex text-sm font-semibold text-orange-600 hover:text-orange-700">
             Перейти в каталог
           </Link>
         </div>
-      ) : (
+      ) : null}
+
+      {isHydrated && items.length > 0 ? (
         <>
           <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
             <table className="w-full text-sm">
@@ -204,7 +224,7 @@ export default function CartPage() {
             </button>
           </form>
         </>
-      )}
+      ) : null}
     </section>
   );
 }

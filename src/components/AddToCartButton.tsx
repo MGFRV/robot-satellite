@@ -62,7 +62,7 @@ export function AddToCartButton({ slug, title, article, className }: AddToCartBu
             return;
           }
 
-          const result = addItemToInquiryCart({ slug, title, article });
+          const result = addItemToInquiryCart({ slug, title, article }, quantity);
           if (result.added) {
             setAlreadyAdded(true);
             setToast('Добавлено в корзину');
