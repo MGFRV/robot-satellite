@@ -44,17 +44,13 @@ export function Footer() {
             Email: <Link href="mailto:info@example.ru">info@example.ru</Link>
           </p>
           <p>
-            WhatsApp: <Link href="https://wa.me/70000000000">+7 (000) 000-00-00</Link>
+            WhatsApp / Telegram: <Link href="https://wa.me/70000000000">+7 (000) 000-00-00</Link>
           </p>
         </section>
       </div>
 
       <div className="border-t border-slate-200 bg-slate-50 py-5">
         <div className="mx-auto w-full max-w-6xl space-y-2 px-4 text-xs text-slate-600">
-          <p>
-            Мы не являемся официальным дистрибьютором Renishaw. Все торговые марки принадлежат их
-            правообладателям.
-          </p>
           <p>© {new Date().getFullYear()} Renishaw Parts B2B. Все права защищены.</p>
         </div>
       </div>
