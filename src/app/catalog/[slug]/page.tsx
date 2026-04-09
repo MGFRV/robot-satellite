@@ -83,14 +83,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
             />
           </div>
           <p className="text-sm text-slate-600">Ответим в течение 2 часов</p>
+          <p className="text-sm font-medium text-slate-500">Цена по запросу</p>
           <Link href="/podbor" className="inline-flex text-sm font-medium text-slate-800 hover:text-slate-950">
             Не уверены в совместимости? Поможем подобрать
           </Link>
           
         </div>
       </section>
-
-      <TrustBlock />
 
       <section className="space-y-3">
         <h2 className="text-2xl font-semibold text-slate-900">Характеристики</h2>
@@ -113,14 +112,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <p className="text-slate-700">{product.description}</p>
       </section>
 
-      <section className="space-y-3 rounded-xl border border-slate-200 bg-slate-50 p-5">
-        <h2 className="text-xl font-semibold text-slate-900">Перед заказом</h2>
-        <ul className="list-disc space-y-2 pl-5 text-sm text-slate-700">
-          <li>Проверьте совместимость со станком/контроллером</li>
-          <li>Уточните версию/ревизию детали</li>
-          <li>Отправьте фото маркировки — подтвердим, что деталь подходит</li>
-        </ul>
-      </section>
+      <TrustBlock compact />
+
 
       <section id="rfq-form">
         <RFQForm
