@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 
 import { AddToCartButton } from '@/components/AddToCartButton';
 import { ProductCard } from '@/components/ProductCard';
+import { ProductPrimaryAction } from '@/components/ProductPrimaryAction';
 import { ProductGallery } from '@/components/ProductGallery';
 import { RFQForm } from '@/components/RFQForm';
 import { TrustBlock } from '@/components/TrustBlock';
@@ -73,12 +74,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </dl>
 
           <div className="flex flex-wrap gap-2">
-            <a
-              href="#rfq-form"
-              className="inline-flex rounded-md bg-orange-500 px-5 py-3 text-sm font-semibold text-white hover:bg-orange-600"
-            >
-              Запросить цену и наличие
-            </a>
+            <ProductPrimaryAction slug={product.slug} />
             <AddToCartButton
               slug={product.slug}
               title={product.title}

@@ -48,9 +48,6 @@ export function Header() {
           Помочь с подбором
         </Link>
 
-        <Link href="/contacts" className="hidden text-sm font-medium text-slate-700 hover:text-slate-950 md:inline-flex">
-          Контакты
-        </Link>
 
         <button
           type="button"
@@ -97,15 +94,6 @@ export function Header() {
                   className="block rounded-md px-2 py-2 hover:bg-orange-50"
                 >
                   Список запроса
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contacts"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block rounded-md px-2 py-2 hover:bg-orange-50"
-                >
-                  Контакты
                 </Link>
               </li>
             </ul>

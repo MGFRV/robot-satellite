@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { INQUIRY_CART_EVENT, addItemToInquiryCart, getInquiryCart } from '@/lib/inquiry-cart';
+import { INQUIRY_CART_EVENT, addItemToInquiryCart, getInquiryCart, removeInquiryItem } from '@/lib/inquiry-cart';
 
 type AddToCartButtonProps = {
   slug: string;
@@ -18,8 +18,12 @@ export function AddToCartButton({ slug, title, article, className }: AddToCartBu
 
   useEffect(() => {
     const sync = () => {
-      const inCart = getInquiryCart().some((item) => item.slug === slug);
-      setAlreadyAdded(inCart);
+      const cartItems = getInquiryCart();
+      const cartItem = cartItems.find((item) => item.slug === slug);
+      setAlreadyAdded(Boolean(cartItem));
+      if (cartItem) {
+        setQuantity(cartItem.quantity);
+      }
     };
 
     sync();
@@ -33,10 +37,11 @@ export function AddToCartButton({ slug, title, article, className }: AddToCartBu
   }, [slug]);
 
   const baseClassName =
-    className ?? 'inline-flex rounded-md border border-slate-300 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100';
+    className ??
+    'inline-flex h-10 items-center justify-center rounded-md border border-slate-300 px-3 text-sm font-medium text-slate-800 hover:bg-slate-100';
 
   return (
-    <div className="relative flex items-center gap-2">
+    <div className="relative grid grid-cols-[64px,1fr] gap-2">
       <input
         type="number"
         min={1}
@@ -49,7 +54,7 @@ export function AddToCartButton({ slug, title, article, className }: AddToCartBu
           const next = Number(event.target.value) || 1;
           setQuantity(Math.max(1, next));
         }}
-        className="w-14 rounded-md border border-slate-300 px-2 py-2 text-sm"
+        className="h-10 rounded-md border border-slate-300 px-2 text-sm"
       />
 
       <button
@@ -59,6 +64,10 @@ export function AddToCartButton({ slug, title, article, className }: AddToCartBu
           event.stopPropagation();
 
           if (alreadyAdded) {
+            removeInquiryItem(slug);
+            setAlreadyAdded(false);
+            setToast('Удалено из корзины');
+            window.setTimeout(() => setToast(''), 2000);
             return;
           }
 
