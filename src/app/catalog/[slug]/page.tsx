@@ -124,17 +124,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
         />
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-slate-900">Похожие товары</h2>
-        {relatedProducts.length > 0 ? (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {relatedProducts.map((item) => (
-              <ProductCard key={item.slug} product={item} />
-            ))}
-          </div>
-        ) : (
-          <p className="text-sm text-slate-600">Пока нет похожих товаров в этой категории.</p>
-        )}
       </section>
     </article>
   );
