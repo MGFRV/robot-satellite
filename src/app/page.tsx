@@ -20,7 +20,7 @@ export default function HomePage() {
             Поставка оригинальных измерительных компонентов для станков с ЧПУ. Помощь в подборе по маркировке.
           </p>
           <p className="text-sm text-slate-200">
-            Мы независимый поставщик и не являемся официальным дистрибьютором Renishaw.
+            Подберем и доставим оригинальное оборудование и запчасти Renishaw в РФ
           </p>
           <div className="flex flex-wrap gap-3">
             <a href="#rfq-form" className="rounded-md bg-orange-500 px-5 py-3 text-sm font-semibold hover:bg-orange-600">
@@ -30,7 +30,7 @@ export default function HomePage() {
               href="/podbor"
               className="rounded-md border border-slate-500 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800"
             >
-              Помочь с подбором
+              Помочь подобрать деталь
             </Link>
           </div>
         </div>
@@ -39,7 +39,7 @@ export default function HomePage() {
       <section className="grid gap-4 rounded-xl border border-slate-200 bg-white p-5 md:grid-cols-3">
         <div className="space-y-2">
           <h2 className="text-base font-semibold text-slate-900">Поиск по артикулу</h2>
-          <p className="text-sm text-slate-600">Введите артикул в поиске в шапке сайта, чтобы быстро найти товар.</p>
+          <p className="text-sm text-slate-600">Введите артикул в поиске чтобы быстро найти товар.</p>
           <SearchBar />
         </div>
         <div className="space-y-2">
@@ -88,8 +88,6 @@ export default function HomePage() {
           </p>
         </div>
       </section>
-
-      <TrustBlock />
 
       <section className="space-y-4">
         <div className="flex items-center justify-between">

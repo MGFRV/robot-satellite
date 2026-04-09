@@ -66,7 +66,7 @@ export function AddToCartButton({ slug, title, article, className }: AddToCartBu
           if (alreadyAdded) {
             removeInquiryItem(slug);
             setAlreadyAdded(false);
-            setToast('Удалено из запроса');
+            setToast('Удалено из корзины');
             window.setTimeout(() => setToast(''), 2000);
             return;
           }
@@ -74,13 +74,13 @@ export function AddToCartButton({ slug, title, article, className }: AddToCartBu
           const result = addItemToInquiryCart({ slug, title, article }, quantity);
           if (result.added) {
             setAlreadyAdded(true);
-            setToast('Добавлено в запрос');
+            setToast('Добавлено в корзину');
             window.setTimeout(() => setToast(''), 2000);
           }
         }}
         className={`${baseClassName} ${alreadyAdded ? 'border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-50' : ''}`}
       >
-        {alreadyAdded ? 'В запросе ✓' : '+'}
+        {alreadyAdded ? '✓' : '+'}
       </button>
 
       {toast ? <span className="absolute -top-9 left-0 rounded bg-slate-900 px-2 py-1 text-xs text-white">{toast}</span> : null}
