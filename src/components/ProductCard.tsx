@@ -34,7 +34,7 @@ export function ProductCard({ product }: ProductCardProps) {
       >
         <Image src={safeImage} alt={product.title} width={640} height={420} className="h-52 w-full object-cover" />
 
-        <div className="flex flex-1 flex-col space-y-3 p-4">
+        <div className="flex flex-1 flex-col gap-3 p-4">
           <div>
             <p className="text-xs uppercase tracking-wide text-slate-500">Артикул: {product.article}</p>
             <h2

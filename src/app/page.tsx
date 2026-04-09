@@ -2,7 +2,6 @@ import Link from 'next/link';
 
 import { ProductCard } from '@/components/ProductCard';
 import { RFQForm } from '@/components/RFQForm';
-import { SearchBar } from '@/components/SearchBar';
 import { getAllProducts, getCategories } from '@/lib/products';
 
 export default function HomePage() {
@@ -35,58 +34,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="grid gap-4 rounded-xl border border-slate-200 bg-white p-5 md:grid-cols-3">
-        <div className="space-y-2">
-          <h2 className="text-base font-semibold text-slate-900">Поиск по артикулу</h2>
-          <p className="text-sm text-slate-600">Введите артикул в поиске чтобы быстро найти товар.</p>
-          <SearchBar />
-        </div>
-        <div className="space-y-2">
-          <h2 className="text-base font-semibold text-slate-900">Каталог по категориям</h2>
-          <Link href="/catalog" className="text-sm font-medium text-orange-600 hover:text-orange-700">
-            Открыть каталог →
-          </Link>
-        </div>
-        <div className="space-y-2">
-          <h2 className="text-base font-semibold text-slate-900">Не знаете артикул?</h2>
-          <Link href="/podbor" className="text-sm font-medium text-orange-600 hover:text-orange-700">
-            Помочь с подбором →
-          </Link>
-        </div>
-      </section>
+<section className="grid gap-4 sm:grid-cols-2">
 
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-orange-500">Почему нам доверяют</h2>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <p className="rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-700">
-            Оригинальные комплектующие и щупы Renishaw 
-          </p>
-          <p className="rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-700">
-            30 лет на рынке поставки измерительного оборудования
-          </p>
-          <p className="rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-700">
-            Техническая поддержка ваших заказов
-          </p>
-          <p className="rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-700">
-            Более 500 позиций в каталоге и привоз под заказ
-          </p>
-        </div>
-      </section>
+  <div className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-5">
+    <h2 className="text-base font-semibold text-slate-900">Почему нам доверяют</h2>
+    <ul className="flex-1 space-y-2">
+      <li className="text-sm text-slate-700">— Независимый поставщик оригинальных компонентов</li>
+      <li className="text-sm text-slate-700">— Проверка совместимости перед отправкой</li>
+      <li className="text-sm text-slate-700">— Помощь в подборе по фото и маркировке</li>
+      <li className="text-sm text-slate-700">— Более 500 актуальных позиций Renishaw</li>
+    </ul>
+    <Link href="/catalog" className="text-sm font-semibold text-orange-600 hover:text-orange-700">
+      Открыть каталог →
+    </Link>
+  </div>
 
-      <section className="space-y-5 rounded-xl border border-orange-200 bg-orange-50 p-6">
-        <h2 className="text-2xl font-semibold text-slate-900">Как мы работаем</h2>
-        <ol className="grid gap-4 md:grid-cols-3">
-          <li className="rounded-lg border border-orange-100 bg-white p-4 text-sm text-slate-700">
-            Отправьте артикул или фото маркировки
-          </li>
-          <li className="rounded-lg border border-orange-100 bg-white p-4 text-sm text-slate-700">
-            Мы подтвердим совместимость и наличие
-          </li>
-          <li className="rounded-lg border border-orange-100 bg-white p-4 text-sm text-slate-700">
-            Доставим в любой город России и СНГ
-          </li>
-        </ol>
-      </section>
+  <div className="flex flex-col gap-4 rounded-xl border border-orange-200 bg-orange-50 p-5">
+    <h2 className="text-base font-semibold text-slate-900">Как мы работаем</h2>
+    <ol className="flex-1 space-y-2">
+      <li className="text-sm text-slate-700"><span className="font-semibold">1.</span> Отправьте артикул или фото маркировки</li>
+      <li className="text-sm text-slate-700"><span className="font-semibold">2.</span> Мы подтвердим совместимость и наличие</li>
+      <li className="text-sm text-slate-700"><span className="font-semibold">3.</span> Доставим в любой город России и СНГ</li>
+    </ol>
+    <Link href="/podbor" className="text-sm font-semibold text-orange-600 hover:text-orange-700">
+      Помочь с подбором →
+    </Link>
+  </div>
+
+</section>
 
       <section className="space-y-4">
         <div className="flex items-center justify-between">
