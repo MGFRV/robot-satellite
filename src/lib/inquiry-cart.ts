@@ -28,7 +28,9 @@ export function getInquiryCart(): InquiryCartItem[] {
       return [];
     }
 
-    return parsed;
+    return parsed
+      .filter((item) => item && typeof item.slug === 'string' && typeof item.title === 'string' && typeof item.article === 'string')
+      .map((item) => ({ ...item, quantity: Math.max(1, Number(item.quantity) || 1) }));
   } catch {
     return [];
   }

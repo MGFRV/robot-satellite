@@ -33,21 +33,20 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="hidden md:block">
-          <CartButton />
-        </div>
-
         <div className="ml-auto hidden w-full max-w-xl md:block" id="header-search">
           <SearchBar />
         </div>
 
         <Link
           href="/podbor"
-          className="hidden rounded-md bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600 md:inline-flex"
+          className="hidden whitespace-nowrap rounded-md bg-orange-500 px-4 py-2 text-sm font-bold text-white hover:bg-orange-600 md:inline-flex"
         >
           Помочь с подбором
         </Link>
 
+        <div className="hidden md:block">
+          <CartButton />
+        </div>
 
         <button
           type="button"
@@ -82,7 +81,7 @@ export function Header() {
                 <Link
                   href="/podbor"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block rounded-md bg-orange-500 px-2 py-2 text-white"
+                  className="block rounded-md bg-orange-500 px-2 py-2 font-bold text-white"
                 >
                   Помочь с подбором
                 </Link>

@@ -129,7 +129,7 @@ export default function CartPage() {
                       <input
                         type="number"
                         min={1}
-                        value={item.quantity}
+                        value={item.quantity ?? 1}
                         onChange={(event) => {
                           const nextQuantity = Number(event.target.value) || 1;
                           setItems(updateInquiryItemQuantity(item.slug, nextQuantity));

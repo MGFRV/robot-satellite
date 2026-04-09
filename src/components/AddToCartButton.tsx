@@ -38,10 +38,10 @@ export function AddToCartButton({ slug, title, article, className }: AddToCartBu
 
   const baseClassName =
     className ??
-    'inline-flex h-10 items-center justify-center rounded-md border border-slate-300 px-3 text-sm font-medium text-slate-800 hover:bg-slate-100';
+    'inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md border border-slate-300 px-3 text-sm font-medium text-slate-800 hover:bg-slate-100';
 
   return (
-    <div className="relative grid grid-cols-[64px,1fr] gap-2">
+    <div className="relative grid grid-cols-[42px,1fr] gap-2">
       <input
         type="number"
         min={1}
@@ -54,7 +54,7 @@ export function AddToCartButton({ slug, title, article, className }: AddToCartBu
           const next = Number(event.target.value) || 1;
           setQuantity(Math.max(1, next));
         }}
-        className="h-10 rounded-md border border-slate-300 px-2 text-sm"
+        className="h-10 rounded-md border border-slate-300 px-1 text-center text-sm"
       />
 
       <button
