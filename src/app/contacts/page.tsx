@@ -1,12 +1,14 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 
 type ContactFormState = {
   name: string;
   contact: string;
   message: string;
 };
+
+const WEB3FORM_ACCESS_KEY = 'efb5634c-52e7-4950-9f5c-5ad0b50d1bcf';
 
 const initialFormState: ContactFormState = {
   name: '',
@@ -16,14 +18,40 @@ const initialFormState: ContactFormState = {
 
 export default function ContactsPage() {
   const [formState, setFormState] = useState<ContactFormState>(initialFormState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState('');
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    // TODO: подключить отправку формы (например, через API route или внешний сервис)
-    console.log('Заявка из формы контактов', formState);
+    setIsSubmitting(true);
+    setStatus('');
 
-    setFormState(initialFormState);
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORM_ACCESS_KEY,
+          subject: 'Запрос цены с сайта',
+          from_name: 'Сайт Renishaw',
+          ...formState,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Ошибка отправки');
+      }
+
+      setStatus('success');
+      setFormState(initialFormState);
+    } catch {
+      setStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -43,12 +71,12 @@ export default function ContactsPage() {
           <p className="mt-2 text-slate-900">info@example.ru</p>
         </article>
         <article className="rounded-lg border border-slate-200 bg-white p-4">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Адрес</h2>
-          <p className="mt-2 text-slate-900">Москва, ул. Примерная, 1</p>
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">WhatsApp</h2>
+          <p className="mt-2 text-slate-900">+7 (000) 000-00-00</p>
         </article>
         <article className="rounded-lg border border-slate-200 bg-white p-4">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Мессенджеры</h2>
-          <p className="mt-2 text-slate-900">Telegram / WhatsApp / WeChat</p>
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Telegram</h2>
+          <p className="mt-2 text-slate-900">@example</p>
         </article>
       </div>
 
@@ -62,7 +90,7 @@ export default function ContactsPage() {
             required
             value={formState.name}
             onChange={(event) => setFormState((prev) => ({ ...prev, name: event.target.value }))}
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 outline-none ring-slate-300 focus:ring"
+            className="w-full rounded-md border border-slate-300 px-3 py-2"
             placeholder="Ваше имя"
           />
         </label>
@@ -74,7 +102,7 @@ export default function ContactsPage() {
             required
             value={formState.contact}
             onChange={(event) => setFormState((prev) => ({ ...prev, contact: event.target.value }))}
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 outline-none ring-slate-300 focus:ring"
+            className="w-full rounded-md border border-slate-300 px-3 py-2"
             placeholder="example@mail.ru / +7..."
           />
         </label>
@@ -86,16 +114,24 @@ export default function ContactsPage() {
             rows={5}
             value={formState.message}
             onChange={(event) => setFormState((prev) => ({ ...prev, message: event.target.value }))}
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 outline-none ring-slate-300 focus:ring"
+            className="w-full rounded-md border border-slate-300 px-3 py-2"
             placeholder="Опишите ваш запрос"
           />
         </label>
 
+        {status === 'success' ? (
+          <p className="text-sm text-emerald-700">Заявка отправлена. Мы скоро свяжемся с вами.</p>
+        ) : null}
+        {status === 'error' ? (
+          <p className="text-sm text-rose-600">Ошибка отправки. Напишите нам напрямую: info@example.ru</p>
+        ) : null}
+
         <button
           type="submit"
-          className="inline-flex rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700"
+          disabled={isSubmitting}
+          className="inline-flex rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600"
         >
-          Отправить
+          {isSubmitting ? 'Отправляем...' : 'Отправить'}
         </button>
       </form>
     </section>

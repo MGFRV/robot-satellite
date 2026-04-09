@@ -8,44 +8,30 @@
     <atom:link href="https://ваш-домен.ru/rss.xml" rel="self" type="application/rss+xml"/>
     
   <item>
-    <title><![CDATA[Первый запуск новой линейки]]></title>
-    <link>https://ваш-домен.ru/blog/pervyj-zapusk</link>
-    <description><![CDATA[Рассказываем, как прошёл запуск и что изменилось в продуктах.]]></description>
-    <pubDate>Fri, 20 Mar 2026 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/pervyj-zapusk</guid>
-  </item>
-  <item>
-    <title><![CDATA[Как выбрать модель под вашу задачу]]></title>
-    <link>https://ваш-домен.ru/blog/kak-vybrat-model</link>
-    <description><![CDATA[Краткий гид по выбору оборудования для разных сценариев эксплуатации.]]></description>
-    <pubDate>Tue, 10 Mar 2026 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/kak-vybrat-model</guid>
-  </item>
-  <item>
     <title><![CDATA[Как выбрать контроллер для промышленного робота]]></title>
     <link>https://ваш-домен.ru/blog/kak-vybrat-kontroller-dlya-robota</link>
-    <description><![CDATA[Разбираемся в типах контроллеров FANUC, ABB и KUKA — на что обращать внимание при покупке нового или восстановленного блока управления.]]></description>
+    <description><![CDATA[Разбираемся в типах контроллеров FANUC, ABB и KUKA - на что обращать внимание при покупке нового или восстановленного блока управления.]]></description>
     <pubDate>Mon, 01 Dec 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/kak-vybrat-kontroller-dlya-robota</guid>
   </item>
   <item>
     <title><![CDATA[Замена тичпенданта ABB: пошаговая инструкция]]></title>
     <link>https://ваш-домен.ru/blog/zamena-tichpendanta-abb-instruktsiya</link>
-    <description><![CDATA[Подробное руководство по замене пульта управления FlexPendant на контроллерах ABB IRC5 — от диагностики до калибровки.]]></description>
+    <description><![CDATA[Подробное руководство по замене пульта управления FlexPendant на контроллерах ABB IRC5 - от диагностики до калибровки.]]></description>
     <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/zamena-tichpendanta-abb-instruktsiya</guid>
   </item>
   <item>
     <title><![CDATA[Диагностика сервоприводов KUKA: основные неисправности и решения]]></title>
     <link>https://ваш-домен.ru/blog/diagnostika-servoprivodov-kuka</link>
-    <description><![CDATA[Обзор типичных проблем с сервоприводами KUKA KSP и KPP — как распознать неисправность, расшифровать код ошибки и принять решение о ремонте или замене.]]></description>
+    <description><![CDATA[Обзор типичных проблем с сервоприводами KUKA KSP и KPP - как распознать неисправность, расшифровать код ошибки и принять решение о ремонте или замене.]]></description>
     <pubDate>Tue, 25 Nov 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/diagnostika-servoprivodov-kuka</guid>
   </item>
   <item>
     <title><![CDATA[Новые vs восстановленные запчасти для роботов: что выбрать]]></title>
     <link>https://ваш-домен.ru/blog/novye-vs-vosstanovlennye-zapchasti</link>
-    <description><![CDATA[Сравнение новых, восстановленных и б/у запчастей для промышленных роботов — плюсы, минусы и когда какой вариант оптимален.]]></description>
+    <description><![CDATA[Сравнение новых, восстановленных и б/у запчастей для промышленных роботов - плюсы, минусы и когда какой вариант оптимален.]]></description>
     <pubDate>Sat, 22 Nov 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/novye-vs-vosstanovlennye-zapchasti</guid>
   </item>
@@ -59,42 +45,42 @@
   <item>
     <title><![CDATA[Как продлить срок службы промышленного робота]]></title>
     <link>https://ваш-домен.ru/blog/kak-prodlit-srok-sluzhby-robota</link>
-    <description><![CDATA[Практические рекомендации по обслуживанию промышленных роботов FANUC, ABB и KUKA — от ежедневных проверок до капитального ремонта.]]></description>
+    <description><![CDATA[Практические рекомендации по обслуживанию промышленных роботов FANUC, ABB и KUKA - от ежедневных проверок до капитального ремонта.]]></description>
     <pubDate>Sat, 15 Nov 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/kak-prodlit-srok-sluzhby-robota</guid>
   </item>
   <item>
     <title><![CDATA[Обзор контроллеров FANUC серии R-30iB: архитектура и компоненты]]></title>
     <link>https://ваш-домен.ru/blog/obzor-kontrollerov-fanuc-r30ib</link>
-    <description><![CDATA[Детальный обзор платформы FANUC R-30iB — структура контроллера, ключевые модули, варианты конфигурации и вопросы совместимости.]]></description>
+    <description><![CDATA[Детальный обзор платформы FANUC R-30iB - структура контроллера, ключевые модули, варианты конфигурации и вопросы совместимости.]]></description>
     <pubDate>Wed, 12 Nov 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/obzor-kontrollerov-fanuc-r30ib</guid>
   </item>
   <item>
     <title><![CDATA[Сервомоторы ABB для промышленных роботов: виды и совместимость]]></title>
     <link>https://ваш-домен.ru/blog/servomotory-abb-vidy-sovmestimost</link>
-    <description><![CDATA[Обзор сервомоторов ABB серий 3HAC — типы, характеристики, как определить нужный мотор по артикулу и модели робота.]]></description>
+    <description><![CDATA[Обзор сервомоторов ABB серий 3HAC - типы, характеристики, как определить нужный мотор по артикулу и модели робота.]]></description>
     <pubDate>Sat, 08 Nov 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/servomotory-abb-vidy-sovmestimost</guid>
   </item>
   <item>
     <title><![CDATA[Кабели для промышленных роботов: как выбрать и не ошибиться]]></title>
     <link>https://ваш-домен.ru/blog/kabeli-dlya-promyshlennyh-robotov</link>
-    <description><![CDATA[Типы кабелей для роботов FANUC, ABB и KUKA — силовые, энкодерные, коммуникационные. Как определить нужный кабель и когда его менять.]]></description>
+    <description><![CDATA[Типы кабелей для роботов FANUC, ABB и KUKA - силовые, энкодерные, коммуникационные. Как определить нужный кабель и когда его менять.]]></description>
     <pubDate>Wed, 05 Nov 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/kabeli-dlya-promyshlennyh-robotov</guid>
   </item>
   <item>
     <title><![CDATA[Редукторы RV для промышленных роботов: принцип работы и замена]]></title>
     <link>https://ваш-домен.ru/blog/reduktory-rv-dlya-robotov</link>
-    <description><![CDATA[Всё о циклоидных редукторах RV в промышленных роботах — как работают, почему выходят из строя и как заменить без потери точности.]]></description>
+    <description><![CDATA[Всё о циклоидных редукторах RV в промышленных роботах - как работают, почему выходят из строя и как заменить без потери точности.]]></description>
     <pubDate>Sat, 01 Nov 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/reduktory-rv-dlya-robotov</guid>
   </item>
   <item>
     <title><![CDATA[Сравнение iPendant FANUC разных поколений: от R-30iA до R-30iB Plus]]></title>
     <link>https://ваш-домен.ru/blog/sravnenie-ipendant-fanuc-pokoleniya</link>
-    <description><![CDATA[Чем отличаются пульты управления FANUC серий A05B-2255 и A05B-2518 — дисплей, функции, совместимость и какой выбрать для замены.]]></description>
+    <description><![CDATA[Чем отличаются пульты управления FANUC серий A05B-2255 и A05B-2518 - дисплей, функции, совместимость и какой выбрать для замены.]]></description>
     <pubDate>Tue, 28 Oct 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/sravnenie-ipendant-fanuc-pokoleniya</guid>
   </item>
@@ -108,7 +94,7 @@
   <item>
     <title><![CDATA[Регламент технического обслуживания роботов KUKA]]></title>
     <link>https://ваш-домен.ru/blog/reglament-obsluzhivaniya-kuka</link>
-    <description><![CDATA[Полный график планового обслуживания роботов KUKA — от ежедневных проверок до замены редукторов. Что, когда и зачем проверять.]]></description>
+    <description><![CDATA[Полный график планового обслуживания роботов KUKA - от ежедневных проверок до замены редукторов. Что, когда и зачем проверять.]]></description>
     <pubDate>Wed, 22 Oct 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/reglament-obsluzhivaniya-kuka</guid>
   </item>
@@ -122,42 +108,42 @@
   <item>
     <title><![CDATA[Энкодеры для сервомоторов промышленных роботов]]></title>
     <link>https://ваш-домен.ru/blog/enkodery-dlya-servomotorov-robotov</link>
-    <description><![CDATA[Типы энкодеров в роботах FANUC, ABB и KUKA — абсолютные и инкрементальные, принцип работы, диагностика и замена.]]></description>
+    <description><![CDATA[Типы энкодеров в роботах FANUC, ABB и KUKA - абсолютные и инкрементальные, принцип работы, диагностика и замена.]]></description>
     <pubDate>Wed, 15 Oct 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/enkodery-dlya-servomotorov-robotov</guid>
   </item>
   <item>
     <title><![CDATA[Хранение запчастей для промышленных роботов: правила и ошибки]]></title>
     <link>https://ваш-домен.ru/blog/hranenie-zapchastey-dlya-robotov</link>
-    <description><![CDATA[Как правильно хранить электронные платы, моторы, кабели и редукторы — температура, влажность, антистатика и сроки годности.]]></description>
+    <description><![CDATA[Как правильно хранить электронные платы, моторы, кабели и редукторы - температура, влажность, антистатика и сроки годности.]]></description>
     <pubDate>Sun, 12 Oct 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/hranenie-zapchastey-dlya-robotov</guid>
   </item>
   <item>
     <title><![CDATA[Роботизация производства: с чего начать]]></title>
     <link>https://ваш-домен.ru/blog/robotizatsiya-proizvodstva-s-chego-nachat</link>
-    <description><![CDATA[Практическое руководство для предприятий, планирующих внедрение промышленных роботов — от оценки задач до запуска первой ячейки.]]></description>
+    <description><![CDATA[Практическое руководство для предприятий, планирующих внедрение промышленных роботов - от оценки задач до запуска первой ячейки.]]></description>
     <pubDate>Wed, 08 Oct 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/robotizatsiya-proizvodstva-s-chego-nachat</guid>
   </item>
   <item>
     <title><![CDATA[Частые причины выхода из строя сервоусилителей FANUC]]></title>
     <link>https://ваш-домен.ru/blog/prichiny-vyhoda-servousilitelej-fanuc</link>
-    <description><![CDATA[Почему горят сервоусилители FANUC серии A06B — перегрев, скачки напряжения, износ компонентов. Как предотвратить и что делать при отказе.]]></description>
+    <description><![CDATA[Почему горят сервоусилители FANUC серии A06B - перегрев, скачки напряжения, износ компонентов. Как предотвратить и что делать при отказе.]]></description>
     <pubDate>Sun, 05 Oct 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/prichiny-vyhoda-servousilitelej-fanuc</guid>
   </item>
   <item>
     <title><![CDATA[ABB IRC5: архитектура контроллера и ключевые компоненты]]></title>
     <link>https://ваш-домен.ru/blog/abb-irc5-arhitektura-komponenty</link>
-    <description><![CDATA[Детальный обзор контроллера ABB IRC5 — модульная архитектура, основные платы, системы безопасности и вопросы обслуживания.]]></description>
+    <description><![CDATA[Детальный обзор контроллера ABB IRC5 - модульная архитектура, основные платы, системы безопасности и вопросы обслуживания.]]></description>
     <pubDate>Wed, 01 Oct 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/abb-irc5-arhitektura-komponenty</guid>
   </item>
   <item>
     <title><![CDATA[Профилактика и замена кабельных жгутов (dress pack) промышленных роботов]]></title>
     <link>https://ваш-домен.ru/blog/profilaktika-kabelnyh-zhgutov-dress-pack</link>
-    <description><![CDATA[Почему dress pack — расходный компонент, как продлить его ресурс и когда менять. Практические советы для FANUC, ABB и KUKA.]]></description>
+    <description><![CDATA[Почему dress pack - расходный компонент, как продлить его ресурс и когда менять. Практические советы для FANUC, ABB и KUKA.]]></description>
     <pubDate>Sun, 28 Sep 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/profilaktika-kabelnyh-zhgutov-dress-pack</guid>
   </item>
@@ -174,13 +160,6 @@
     <description><![CDATA[Короткий чек-лист для оценки состояния сервоусилителя перед запуском в производственной линии.]]></description>
     <pubDate>Sun, 02 Feb 2025 00:00:00 GMT</pubDate>
     <guid>https://ваш-домен.ru/blog/obsluzhivanie-servoprivodov</guid>
-  </item>
-  <item>
-    <title><![CDATA[Тестовая статья]]></title>
-    <link>https://ваш-домен.ru/blog/test-post</link>
-    <description><![CDATA[Тест]]></description>
-    <pubDate>Wed, 01 Jan 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/test-post</guid>
   </item>
   </channel>
 </rss>
