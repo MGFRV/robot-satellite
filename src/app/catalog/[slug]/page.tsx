@@ -2,8 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import { AddToCartButton } from '@/components/AddToCartButton';
+import { ProductCard } from '@/components/ProductCard';
+import { ProductPrimaryAction } from '@/components/ProductPrimaryAction';
 import { ProductGallery } from '@/components/ProductGallery';
-import { formatProductPrice } from '@/lib/product-format';
+import { RFQForm } from '@/components/RFQForm';
+import { TrustBlock } from '@/components/TrustBlock';
 import { getAllProducts, getProductBySlug } from '@/lib/products';
 
 type ProductPageProps = {
@@ -26,13 +30,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   }
 
   return {
-    title: product.title,
+    title: `${product.title} | ${product.article}`,
     description: product.description,
-    openGraph: {
-      title: product.title,
-      description: product.description,
-      images: [{ url: product.images[0] }],
-    },
   };
 }
 
@@ -46,30 +45,57 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
+  const productState = product.specs['Состояние'] ?? product.specs['Condition'] ?? 'Уточняйте у менеджера';
+  const relatedProducts = getAllProducts()
+    .filter((item) => item.category === product.category && item.slug !== product.slug)
+    .slice(0, 4);
+
   return (
-    <article className="space-y-8">
-      <div className="grid gap-8 lg:grid-cols-2">
+    <article className="space-y-10">
+      <section className="grid gap-8 rounded-2xl border border-slate-200 bg-white p-6 lg:grid-cols-2">
         <ProductGallery title={product.title} images={product.images} />
 
-        <section className="space-y-4">
-          <p className="text-sm text-slate-500">Артикул: {product.article}</p>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">{product.title}</h1>
-          <p className="text-2xl font-semibold text-slate-900">{formatProductPrice(product.price)}</p>
-          <p className="text-slate-700">{product.description}</p>
+        <div className="space-y-4">
+          <p className="text-sm font-medium text-slate-500">Бренд: Renishaw</p>
+          <h1 className="text-3xl font-bold text-slate-900">{product.title}</h1>
+          <dl className="space-y-2 text-sm text-slate-700">
+            <div className="flex gap-2">
+              <dt className="font-semibold">Артикул/SKU:</dt>
+              <dd>{product.article}</dd>
+            </div>
+            <div className="flex gap-2">
+              <dt className="font-semibold">Категория:</dt>
+              <dd>{product.category}</dd>
+            </div>
+            <div className="flex gap-2">
+              <dt className="font-semibold">Состояние:</dt>
+              <dd>{productState}</dd>
+            </div>
+          </dl>
 
-          <Link
-            href="/contacts"
-            className="inline-flex rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700"
-          >
-            {product.price === null ? 'Запросить цену' : 'Связаться'}
+          <div className="flex flex-wrap gap-2">
+            <ProductPrimaryAction slug={product.slug} />
+            <AddToCartButton
+              slug={product.slug}
+              title={product.title}
+              article={product.article}
+              className="inline-flex rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-100"
+            />
+          </div>
+          <p className="text-sm text-slate-600">Ответим в течение 2 часов</p>
+          <Link href="/podbor" className="inline-flex text-sm font-medium text-slate-800 hover:text-slate-950">
+            Не уверены в совместимости? Поможем подобрать
           </Link>
-        </section>
-      </div>
+          
+        </div>
+      </section>
+
+      <TrustBlock />
 
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold text-slate-900">Характеристики</h2>
-        <div className="overflow-hidden rounded-lg border border-slate-200">
-          <table className="w-full border-collapse bg-white text-sm">
+        <h2 className="text-2xl font-semibold text-slate-900">Характеристики</h2>
+        <div className="overflow-hidden rounded-lg border border-slate-200 bg-white">
+          <table className="w-full text-sm">
             <tbody>
               {Object.entries(product.specs).map(([key, value]) => (
                 <tr key={key} className="border-b border-slate-200 last:border-0">
@@ -80,6 +106,42 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section className="space-y-3 rounded-xl border border-slate-200 bg-white p-5">
+        <h2 className="text-2xl font-semibold text-slate-900">Описание</h2>
+        <p className="text-slate-700">{product.description}</p>
+      </section>
+
+      <section className="space-y-3 rounded-xl border border-slate-200 bg-slate-50 p-5">
+        <h2 className="text-xl font-semibold text-slate-900">Перед заказом</h2>
+        <ul className="list-disc space-y-2 pl-5 text-sm text-slate-700">
+          <li>Проверьте совместимость со станком/контроллером</li>
+          <li>Уточните версию/ревизию детали</li>
+          <li>Отправьте фото маркировки — подтвердим, что деталь подходит</li>
+        </ul>
+      </section>
+
+      <section id="rfq-form">
+        <RFQForm
+          productName={product.title}
+          productSku={product.article}
+          subject={`Запрос цены: ${product.article} ${product.title}`}
+          title="Запросить цену и наличие"
+        />
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-2xl font-semibold text-slate-900">Похожие товары</h2>
+        {relatedProducts.length > 0 ? (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {relatedProducts.map((item) => (
+              <ProductCard key={item.slug} product={item} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-sm text-slate-600">Пока нет похожих товаров в этой категории.</p>
+        )}
       </section>
     </article>
   );
