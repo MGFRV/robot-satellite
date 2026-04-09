@@ -90,8 +90,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
       </section>
 
-      <TrustBlock />
-
       <section className="space-y-3">
         <h2 className="text-2xl font-semibold text-slate-900">Характеристики</h2>
         <div className="overflow-hidden rounded-lg border border-slate-200 bg-white">
@@ -113,6 +111,18 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <p className="text-slate-700">{product.description}</p>
       </section>
 
+      <section className="space-y-4">
+        <h2 className="text-2xl font-semibold text-slate-900">Похожие товары</h2>
+        {relatedProducts.length > 0 ? (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {relatedProducts.map((item) => (
+              <ProductCard key={item.slug} product={item} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-sm text-slate-600">Пока нет похожих товаров в этой категории.</p>
+        )}
+
       <section className="space-y-3 rounded-xl border border-slate-200 bg-slate-50 p-5">
         <h2 className="text-xl font-semibold text-slate-900">Перед заказом</h2>
         <ul className="list-disc space-y-2 pl-5 text-sm text-slate-700">
@@ -131,17 +141,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
         />
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-slate-900">Похожие товары</h2>
-        {relatedProducts.length > 0 ? (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {relatedProducts.map((item) => (
-              <ProductCard key={item.slug} product={item} />
-            ))}
-          </div>
-        ) : (
-          <p className="text-sm text-slate-600">Пока нет похожих товаров в этой категории.</p>
-        )}
       </section>
     </article>
   );

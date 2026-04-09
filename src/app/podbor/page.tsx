@@ -92,8 +92,6 @@ export default function PodborPage() {
         </ul>
       </div>
 
-      <TrustBlock />
-
       <div id="rfq-form" className="rounded-xl border border-slate-200 bg-white p-5">
         {isSuccess ? (
           <div className="space-y-3 rounded-lg bg-emerald-50 p-4">

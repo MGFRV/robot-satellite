@@ -72,19 +72,19 @@ export default function HomePage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-slate-900">Почему нам доверяют</h2>
+        <h2 className="text-2xl font-semibold text-orange-500">Почему нам доверяют</h2>
         <div className="grid gap-3 sm:grid-cols-2">
           <p className="rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-700">
-            Независимый поставщик оригинальных компонентов
+            Оригинальные комплектующие и щупы Renishaw 
           </p>
           <p className="rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-700">
-            Проверка совместимости перед отправкой
+            30 лет на рынке поставки измерительного оборудования
           </p>
           <p className="rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-700">
-            Помощь в подборе по фото и маркировке
+            Техническая поддержка ваших заказов
           </p>
           <p className="rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-700">
-            Более 500 позиций Renishaw
+            Более 500 позиций в каталоге и привоз под заказ
           </p>
         </div>
       </section>
