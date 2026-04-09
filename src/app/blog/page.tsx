@@ -1,7 +1,9 @@
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { formatDate, getAllPosts } from '@/lib/blog';
+import { BLOG_IMAGE_PLACEHOLDER } from '@/lib/assets';
 
 export const metadata: Metadata = {
   title: 'Блог',
@@ -21,15 +23,14 @@ export default function BlogPage() {
             href={`/blog/${post.slug}`}
             className="group block overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition hover:shadow-md"
           >
-            {post.coverImage && (
-              <div className="relative aspect-video overflow-hidden">
-                <img
-                  src={post.coverImage}
-                  alt={post.title}
-                  className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-                />
-              </div>
-            )}
+            <div className="relative aspect-video overflow-hidden">
+              <Image
+                src={BLOG_IMAGE_PLACEHOLDER}
+                alt={post.title}
+                fill
+                className="object-cover transition duration-300 group-hover:scale-105"
+              />
+            </div>
             <div className="p-5">
               <div className="mb-2 flex flex-wrap gap-2">
                 {post.tags.slice(0, 3).map((tag) => (
