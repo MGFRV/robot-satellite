@@ -91,7 +91,7 @@ export default function CartPage() {
 
   return (
     <section className="space-y-8">
-      <h1 className="text-3xl font-bold text-slate-900">Список деталей для запроса</h1>
+      <h1 className="text-3xl font-bold text-slate-900">Ваша корзина товаров</h1>
 
       {!isHydrated ? <div className="rounded-xl border border-slate-200 bg-white p-6 text-slate-600">Загрузка списка...</div> : null}
 
