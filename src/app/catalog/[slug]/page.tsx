@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import { AddToCartButton } from '@/components/AddToCartButton';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductGallery } from '@/components/ProductGallery';
 import { RFQForm } from '@/components/RFQForm';
@@ -71,19 +72,25 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </div>
           </dl>
 
-          <a
-            href="#rfq-form"
-            className="inline-flex rounded-md bg-orange-500 px-5 py-3 text-sm font-semibold text-white hover:bg-orange-600"
-          >
-            Запросить цену и наличие
-          </a>
+          <div className="flex flex-wrap gap-2">
+            <a
+              href="#rfq-form"
+              className="inline-flex rounded-md bg-orange-500 px-5 py-3 text-sm font-semibold text-white hover:bg-orange-600"
+            >
+              Запросить цену и наличие
+            </a>
+            <AddToCartButton
+              slug={product.slug}
+              title={product.title}
+              article={product.article}
+              className="inline-flex rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-100"
+            />
+          </div>
           <p className="text-sm text-slate-600">Ответим в течение 2 часов</p>
           <Link href="/podbor" className="inline-flex text-sm font-medium text-slate-800 hover:text-slate-950">
             Не уверены в совместимости? Поможем подобрать
           </Link>
-          <p className="text-sm font-medium text-slate-700">
-            {product.price === null ? 'Запросить цену и сроки' : 'Цена и сроки уточняются по запросу'}
-          </p>
+          
         </div>
       </section>
 

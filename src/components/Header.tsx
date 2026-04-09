@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
+import { CartButton } from '@/components/CartButton';
 import { SearchBar } from '@/components/SearchBar';
 
 const primaryNavItems = [
@@ -31,6 +32,10 @@ export function Header() {
             ))}
           </ul>
         </nav>
+
+        <div className="hidden md:block">
+          <CartButton />
+        </div>
 
         <div className="ml-auto hidden w-full max-w-xl md:block" id="header-search">
           <SearchBar />
@@ -83,6 +88,15 @@ export function Header() {
                   className="block rounded-md bg-orange-500 px-2 py-2 text-white"
                 >
                   Помочь с подбором
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/cart"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block rounded-md px-2 py-2 hover:bg-orange-50"
+                >
+                  Список запроса
                 </Link>
               </li>
               <li>
