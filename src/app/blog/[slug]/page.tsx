@@ -1,11 +1,13 @@
 import { compile, run } from '@mdx-js/mdx';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import rehypeSlug from 'rehype-slug';
 import * as runtime from 'react/jsx-runtime';
 import remarkGfm from 'remark-gfm';
 
+import { BLOG_IMAGE_PLACEHOLDER } from '@/lib/assets';
 import { formatDate, getAllSlugs, getPostBySlug, getRelatedPosts } from '@/lib/blog';
 
 interface Props {
@@ -49,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.excerpt,
       type: 'article',
       publishedTime: post.date,
-      images: post.coverImage ? [post.coverImage] : [],
+      images: [BLOG_IMAGE_PLACEHOLDER],
     },
   };
 }
@@ -71,7 +73,7 @@ export default async function BlogPostPage({ params }: Props) {
     headline: post.title,
     datePublished: post.date,
     description: post.excerpt,
-    image: post.coverImage || undefined,
+    image: BLOG_IMAGE_PLACEHOLDER,
   };
 
   return (
@@ -91,11 +93,9 @@ export default async function BlogPostPage({ params }: Props) {
           <span className="text-gray-600">{post.title}</span>
         </nav>
 
-        {post.coverImage && (
-          <div className="relative mb-8 aspect-video overflow-hidden rounded-xl">
-            <img src={post.coverImage} alt={post.title} className="h-full w-full object-cover" />
-          </div>
-        )}
+        <div className="relative mb-8 aspect-video overflow-hidden rounded-xl">
+          <Image src={BLOG_IMAGE_PLACEHOLDER} alt={post.title} fill className="object-cover" />
+        </div>
 
         <h1 className="mb-4 text-3xl font-bold md:text-4xl">{post.title}</h1>
 
