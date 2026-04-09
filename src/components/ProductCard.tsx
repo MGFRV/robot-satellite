@@ -9,7 +9,6 @@ import { RFQForm } from '@/components/RFQForm';
 import { PRODUCT_IMAGE_PLACEHOLDER } from '@/lib/assets';
 import { formatProductPrice } from '@/lib/product-format';
 import type { Product } from '@/lib/products';
-import { RFQForm } from '@/components/RFQForm';
 
 type ProductCardProps = {
   product: Product;
