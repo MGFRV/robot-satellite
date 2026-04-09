@@ -43,7 +43,10 @@ export function setInquiryCart(items: InquiryCartItem[]): void {
   window.dispatchEvent(new CustomEvent(INQUIRY_CART_EVENT));
 }
 
-export function addItemToInquiryCart(item: Omit<InquiryCartItem, 'quantity'>): { added: boolean; items: InquiryCartItem[] } {
+export function addItemToInquiryCart(
+  item: Omit<InquiryCartItem, 'quantity'>,
+  quantity: number,
+): { added: boolean; items: InquiryCartItem[] } {
   const items = getInquiryCart();
   const existing = items.find((entry) => entry.slug === item.slug);
 
@@ -51,7 +54,8 @@ export function addItemToInquiryCart(item: Omit<InquiryCartItem, 'quantity'>): {
     return { added: false, items };
   }
 
-  const updated = [...items, { ...item, quantity: 1 }];
+  const normalizedQuantity = Math.max(1, quantity);
+  const updated = [...items, { ...item, quantity: normalizedQuantity }];
   setInquiryCart(updated);
   return { added: true, items: updated };
 }

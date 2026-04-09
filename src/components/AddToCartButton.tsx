@@ -14,6 +14,7 @@ type AddToCartButtonProps = {
 export function AddToCartButton({ slug, title, article, className }: AddToCartButtonProps) {
   const [alreadyAdded, setAlreadyAdded] = useState(false);
   const [toast, setToast] = useState('');
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const sync = () => {
@@ -35,7 +36,22 @@ export function AddToCartButton({ slug, title, article, className }: AddToCartBu
     className ?? 'inline-flex rounded-md border border-slate-300 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100';
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center gap-2">
+      <input
+        type="number"
+        min={1}
+        value={quantity}
+        onClick={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+        }}
+        onChange={(event) => {
+          const next = Number(event.target.value) || 1;
+          setQuantity(Math.max(1, next));
+        }}
+        className="w-14 rounded-md border border-slate-300 px-2 py-2 text-sm"
+      />
+
       <button
         type="button"
         onClick={(event) => {

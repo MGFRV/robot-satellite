@@ -19,6 +19,32 @@ export type Product = {
 
 const productsDirectory = path.join(process.cwd(), 'content', 'products');
 
+function remapCategoryByTitle(product: Product): string {
+  if (product.category !== 'Запчасти для роботов') {
+    return product.category;
+  }
+
+  const title = product.title ?? '';
+
+  if (/щуп/i.test(title)) {
+    return 'Измерительные щупы';
+  }
+
+  if (/датчик/i.test(title)) {
+    return 'Датчики';
+  }
+
+  if (/Болт/.test(title)) {
+    return 'Запчасти и комплектующие';
+  }
+
+  if (/Комплект/.test(title)) {
+    return 'Комплекты';
+  }
+
+  return 'Запчасти и комплектующие';
+}
+
 function normalizeProduct(product: Product): Product {
   const normalizedImages = Array.isArray(product.images)
     ? product.images
@@ -28,6 +54,7 @@ function normalizeProduct(product: Product): Product {
 
   return {
     ...product,
+    category: remapCategoryByTitle(product),
     images: normalizedImages.length > 0 ? normalizedImages : [PRODUCT_IMAGE_PLACEHOLDER],
   };
 }

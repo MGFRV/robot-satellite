@@ -93,7 +93,7 @@ export default function CartPage() {
                   <th className="px-4 py-3">Артикул</th>
                   <th className="px-4 py-3">Название</th>
                   <th className="px-4 py-3">Количество</th>
-                  <th className="px-4 py-3">Удалить</th>
+                  <th className="px-4 py-3 text-center">Удалить</th>
                 </tr>
               </thead>
               <tbody>
@@ -117,11 +117,11 @@ export default function CartPage() {
                         className="w-20 rounded-md border border-slate-300 px-2 py-1"
                       />
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 text-center">
                       <button
                         type="button"
                         onClick={() => setItems(removeInquiryItem(item.slug))}
-                        className="rounded border border-slate-300 px-2 py-1 text-slate-700 hover:bg-slate-100"
+                        className="inline-flex h-7 w-7 items-center justify-center rounded text-slate-700 hover:bg-slate-100"
                       >
                         X
                       </button>

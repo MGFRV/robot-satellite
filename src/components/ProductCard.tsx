@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { AddToCartButton } from '@/components/AddToCartButton';
@@ -17,36 +17,48 @@ type ProductCardProps = {
 export function ProductCard({ product }: ProductCardProps) {
   const previewImage = product.images[0] ?? PRODUCT_IMAGE_PLACEHOLDER;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <>
-      <article className="group relative overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-        <Link href={`/catalog/${product.slug}`} className="absolute inset-0 z-0 cursor-pointer" aria-label={product.title} />
+      <article
+        role="link"
+        tabIndex={0}
+        onClick={() => router.push(`/catalog/${product.slug}`)}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            router.push(`/catalog/${product.slug}`);
+          }
+        }}
+        className="group cursor-pointer overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+      >
+        <Image src={previewImage} alt={product.title} width={640} height={420} className="h-52 w-full object-cover" />
+        <div className="space-y-3 p-4">
+          <div>
+            <p className="text-xs uppercase tracking-wide text-slate-500">Артикул: {product.article}</p>
+            <h2
+              className="mt-1 text-lg font-semibold text-slate-900 group-hover:text-slate-700"
+              style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
+            >
+              {product.title}
+            </h2>
+          </div>
+          <p className="text-sm text-slate-600">{product.category}</p>
+          {typeof product.price === 'number' ? <p className="text-base font-semibold text-slate-900">{formatProductPrice(product.price)}</p> : null}
 
-        <div className="relative z-10">
-          <Image src={previewImage} alt={product.title} width={640} height={420} className="h-52 w-full object-cover" />
-          <div className="space-y-3 p-4">
-            <div>
-              <p className="text-xs uppercase tracking-wide text-slate-500">Артикул: {product.article}</p>
-              <h2 className="mt-1 text-lg font-semibold text-slate-900 group-hover:text-slate-700">{product.title}</h2>
-            </div>
-            <p className="text-sm text-slate-600">{product.category}</p>
-            {typeof product.price === 'number' ? <p className="text-base font-semibold text-slate-900">{formatProductPrice(product.price)}</p> : null}
-
-            <div className="flex flex-wrap gap-2">
-              <button
-                type="button"
-                onClick={(event) => {
-                  event.preventDefault();
-                  event.stopPropagation();
-                  setIsModalOpen(true);
-                }}
-                className="inline-flex rounded-md bg-orange-500 px-3 py-2 text-sm font-medium text-white hover:bg-orange-600"
-              >
-                Запросить цену
-              </button>
-              <AddToCartButton slug={product.slug} title={product.title} article={product.article} />
-            </div>
+          <div className="flex items-center gap-2 overflow-x-auto pb-1">
+            <button
+              type="button"
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                setIsModalOpen(true);
+              }}
+              className="inline-flex shrink-0 rounded-md bg-orange-500 px-3 py-2 text-sm font-medium text-white hover:bg-orange-600"
+            >
+              Запросить цену
+            </button>
+            <AddToCartButton slug={product.slug} title={product.title} article={product.article} />
           </div>
         </div>
       </article>
