@@ -107,12 +107,18 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
       </section>
 
-      <section className="space-y-3 rounded-xl border border-slate-200 bg-white p-5">
-        <h2 className="text-2xl font-semibold text-slate-900">Описание</h2>
-        <p className="text-slate-700">{product.description}</p>
+      <section className="space-y-4">
+        <h2 className="text-2xl font-semibold text-slate-900">Похожие товары</h2>
+        {relatedProducts.length > 0 ? (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {relatedProducts.map((item) => (
+              <ProductCard key={item.slug} product={item} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-sm text-slate-600">Пока нет похожих товаров в этой категории.</p>
+        )}
       </section>
-
-      <TrustBlock compact />
 
 
       <section id="rfq-form">
