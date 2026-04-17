@@ -7,7 +7,6 @@ import { ProductCard } from '@/components/ProductCard';
 import { ProductPrimaryAction } from '@/components/ProductPrimaryAction';
 import { ProductGallery } from '@/components/ProductGallery';
 import { RFQForm } from '@/components/RFQForm';
-import { TrustBlock } from '@/components/TrustBlock';
 import { getAllProducts, getProductBySlug } from '@/lib/products';
 
 type ProductPageProps = {

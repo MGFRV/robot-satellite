@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 
-import { TrustBlock } from '@/components/TrustBlock';
-
 type PodborState = {
   name: string;
   company: string;
@@ -14,7 +12,7 @@ type PodborState = {
   message: string;
 };
 
-const WEB3FORM_ACCESS_KEY = 'efb5634c-52e7-4950-9f5c-5ad0b50d1bcf';
+const WEB3FORM_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
 
 const initialState: PodborState = {
   name: '',
@@ -37,6 +35,11 @@ export default function PodborPage() {
 
     if (!formState.name || !formState.email || !formState.phone) {
       setErrorMessage('Заполните обязательные поля: имя, email и телефон/WhatsApp.');
+      return;
+    }
+
+    if (!WEB3FORM_ACCESS_KEY) {
+      setErrorMessage('Форма временно недоступна. Напишите нам напрямую: info@example.ru');
       return;
     }
 
