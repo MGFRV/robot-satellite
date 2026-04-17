@@ -21,7 +21,7 @@ type RFQFormState = {
 
 type RFQFormErrors = Partial<Record<keyof RFQFormState, string>>;
 
-const WEB3FORM_ACCESS_KEY = 'efb5634c-52e7-4950-9f5c-5ad0b50d1bcf';
+const WEB3FORM_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
 
 const initialState: RFQFormState = {
   name: '',
@@ -87,6 +87,11 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
       return;
     }
 
+    if (!WEB3FORM_ACCESS_KEY) {
+      setErrorMessage('Форма временно недоступна. Напишите нам напрямую: info@example.ru');
+      return;
+    }
+
     const payload = {
       access_key: WEB3FORM_ACCESS_KEY,
       subject: resolvedSubject,
@@ -100,8 +105,6 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
       productSku,
       pageUrl: resolvedUrl,
     };
-
-    console.log('RFQ form payload', payload);
 
     setIsSubmitting(true);
     setErrorMessage('');
