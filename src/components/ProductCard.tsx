@@ -18,6 +18,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const safeImage = product.images[0] ?? PRODUCT_IMAGE_PLACEHOLDER;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
+  const topSpecs = Object.entries(product.specs ?? {}).filter(([, value]) => String(value).trim().length > 0).slice(0, 2);
 
   return (
     <>
@@ -46,6 +47,16 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
 
           <p className="text-sm text-slate-600">{product.category}</p>
+
+          {topSpecs.length > 0 ? (
+            <ul className="space-y-1 text-xs text-slate-600">
+              {topSpecs.map(([key, value]) => (
+                <li key={key} className="truncate">
+                  <span className="font-medium text-slate-700">{key}:</span> {value}
+                </li>
+              ))}
+            </ul>
+          ) : null}
           {typeof product.price === 'number' ? <p className="text-base font-semibold text-slate-900">{formatProductPrice(product.price)}</p> : null}
 
           <div className="mt-auto grid grid-cols-[1fr,1fr] items-end gap-2">
