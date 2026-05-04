@@ -48,6 +48,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const relatedProducts = getAllProducts()
     .filter((item) => item.category === product.category && item.slug !== product.slug)
     .slice(0, 4);
+  const useCases = [
+    'Контроль измерений и привязка инструмента на станках с ЧПУ',
+    'Снижение брака за счёт точной калибровки и повторяемости',
+    'Плановая замена изношенных компонентов в сервисном цикле',
+  ];
 
   return (
     <article className="space-y-10">
@@ -104,6 +109,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section className="space-y-3 rounded-xl border border-slate-200 bg-white p-5">
+        <h2 className="text-2xl font-semibold text-slate-900">Применение</h2>
+        <ul className="list-disc space-y-2 pl-5 text-sm text-slate-700">
+          {useCases.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
       </section>
 
       <section className="space-y-4">

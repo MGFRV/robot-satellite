@@ -34,6 +34,23 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 md:p-8">
+        <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+          <div className="space-y-2">
+            <h2 className="text-2xl font-semibold text-emerald-950">В наличии и под заказ</h2>
+            <p className="text-sm text-emerald-900">
+              Отправим КП и сроки поставки в течение 10–30 минут в рабочее время. Поддерживаем поставку по РФ и СНГ.
+            </p>
+          </div>
+          <a
+            href="#rfq-form"
+            className="inline-flex h-11 items-center justify-center rounded-md bg-emerald-700 px-5 text-sm font-semibold text-white hover:bg-emerald-800"
+          >
+            Получить КП быстро
+          </a>
+        </div>
+      </section>
+
 <section className="grid gap-4 sm:grid-cols-2">
 
   <div className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-5">
@@ -99,6 +116,28 @@ export default function HomePage() {
 
       <section id="rfq-form" className="space-y-4">
         <RFQForm title="Запросить цену" subject="Запрос цены с сайта" />
+      </section>
+
+      <section className="space-y-4 rounded-xl border border-slate-200 bg-white p-5">
+        <h2 className="text-2xl font-semibold text-slate-900">FAQ по заказу</h2>
+        <div className="space-y-3">
+          <details className="rounded-lg border border-slate-200 p-4" open>
+            <summary className="cursor-pointer text-sm font-semibold text-slate-900">Как быстро вы отвечаете на запрос?</summary>
+            <p className="mt-2 text-sm text-slate-700">Обычно отправляем КП и сроки в течение 10–30 минут в рабочее время.</p>
+          </details>
+          <details className="rounded-lg border border-slate-200 p-4">
+            <summary className="cursor-pointer text-sm font-semibold text-slate-900">Как проверить совместимость детали?</summary>
+            <p className="mt-2 text-sm text-slate-700">Пришлите артикул, фото маркировки или данные станка — проверим совместимость перед отгрузкой.</p>
+          </details>
+          <details className="rounded-lg border border-slate-200 p-4">
+            <summary className="cursor-pointer text-sm font-semibold text-slate-900">Какие документы предоставляете?</summary>
+            <p className="mt-2 text-sm text-slate-700">Подготовим полный комплект закрывающих документов для юрлиц и ИП.</p>
+          </details>
+          <details className="rounded-lg border border-slate-200 p-4">
+            <summary className="cursor-pointer text-sm font-semibold text-slate-900">Есть ли доставка по регионам?</summary>
+            <p className="mt-2 text-sm text-slate-700">Да, отправляем в любые регионы России и страны СНГ через надежные транспортные компании.</p>
+          </details>
+        </div>
       </section>
 
     </div>
