@@ -7,8 +7,8 @@ import { Header } from '@/components/Header';
 import { StickyContact } from '@/components/StickyContact';
 import { ScrollTopButton } from '@/components/ScrollTopButton';
 
-const siteName = 'ЩУПЫ.РУ';
-const siteDescription = 'ЩУПЫ.РУ — поставка щупов, стилусов, датчиков и комплектующих для ЧПУ.';
+const siteName = 'ЩУПЫ.РУ — поставка щупов Renishaw, стилусов, датчиков и комплектующих для ЧПУ.';
+const siteDescription = 'ЩУПЫ.РУ — поставка щупов Renishaw, стилусов, датчиков и комплектующих для ЧПУ.';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://schupy.ru';
 
 export const metadata: Metadata = {
