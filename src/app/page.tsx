@@ -125,15 +125,19 @@ export default function HomePage() {
       <section className="space-y-5 px-4 pb-12 sm:px-8">
         <div className="flex items-baseline justify-between">
           <h2 className="text-2xl font-extrabold tracking-[-0.02em] text-[#111110]">Популярные категории</h2>
-          <Link href="/catalog" className="text-xs font-medium text-[#D95215] hover:opacity-80">
+          <Link href="/catalog" className="text-sm font-semibold text-[#D95215] hover:opacity-80">
             Все категории →
           </Link>
         </div>
-        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {topCategories.map(([category, count]) => (
-            <Link key={category} href={`/catalog?category=${encodeURIComponent(category)}`} className="rounded-lg border border-black/10 bg-white p-4 hover:border-black/20">
-              <p className="text-xs font-semibold text-[#111110]">{category}</p>
-              <p className="mt-1 text-[11px] text-black/40">{formatPositions(count)}</p>
+            <Link
+              key={category}
+              href={`/catalog?category=${encodeURIComponent(category)}`}
+              className="min-h-[104px] rounded-xl border border-black/10 bg-white p-5 transition hover:border-black/20 hover:shadow-sm"
+            >
+              <p className="text-base font-semibold leading-snug text-[#111110] sm:text-lg">{category}</p>
+              <p className="mt-2 text-sm text-black/50 sm:text-base">{formatPositions(count)}</p>
             </Link>
           ))}
         </div>
