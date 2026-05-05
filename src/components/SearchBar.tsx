@@ -34,14 +34,6 @@ function MagnifierIcon({ className }: { className?: string }) {
   );
 }
 
-function CloseIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
-      <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
-    </svg>
-  );
-}
-
 export function SearchBar() {
   const router = useRouter();
   const pathname = usePathname();
@@ -50,14 +42,12 @@ export function SearchBar() {
   const [results, setResults] = useState<SearchApiResult[]>([]);
   const [total, setTotal] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const [isMobileExpanded, setIsMobileExpanded] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setIsOpen(false);
-    setIsMobileExpanded(false);
     setActiveIndex(-1);
   }, [pathname]);
 
@@ -109,8 +99,6 @@ export function SearchBar() {
   }, []);
 
   const showNoResults = query.trim().length >= 2 && isOpen && results.length === 0;
-  const mobileInputVisibleClass = isMobileExpanded ? 'flex' : 'hidden';
-
   const allResultsHref = useMemo(() => `/catalog?search=${encodeURIComponent(query.trim())}`, [query]);
 
   function submitSearch(searchQuery: string) {
@@ -120,7 +108,6 @@ export function SearchBar() {
     }
 
     setIsOpen(false);
-    setIsMobileExpanded(false);
     setActiveIndex(-1);
     router.push(`/catalog?search=${encodeURIComponent(trimmed)}`);
   }
@@ -164,7 +151,6 @@ export function SearchBar() {
       if (activeIndex >= 0 && activeIndex < results.length) {
         const selected = results[activeIndex];
         setIsOpen(false);
-        setIsMobileExpanded(false);
         setActiveIndex(-1);
         router.push(`/catalog/${selected.slug}`);
         return;
@@ -176,16 +162,7 @@ export function SearchBar() {
 
   return (
     <div ref={wrapperRef} className="relative w-full max-w-xl">
-      <button
-        type="button"
-        onClick={() => setIsMobileExpanded((prev) => !prev)}
-        className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-700 md:hidden"
-        aria-label="Открыть поиск"
-      >
-        <MagnifierIcon className="h-5 w-5" />
-      </button>
-
-      <div className={`mt-2 items-center gap-2 md:mt-0 md:flex ${mobileInputVisibleClass}`}>
+      <div className="flex items-center gap-2">
         <div className="relative w-full">
           <MagnifierIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
           <input
@@ -203,17 +180,6 @@ export function SearchBar() {
           />
         </div>
 
-        <button
-          type="button"
-          onClick={() => {
-            setIsMobileExpanded(false);
-            setIsOpen(false);
-          }}
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-700 md:hidden"
-          aria-label="Закрыть поиск"
-        >
-          <CloseIcon className="h-5 w-5" />
-        </button>
       </div>
 
       {isOpen ? (
@@ -228,7 +194,6 @@ export function SearchBar() {
                       onClick={() => {
                         setIsOpen(false);
                         setActiveIndex(-1);
-                        setIsMobileExpanded(false);
                       }}
                       className={`block px-4 py-3 text-sm ${
                         activeIndex === index ? 'bg-slate-100' : 'hover:bg-slate-100'
@@ -248,7 +213,6 @@ export function SearchBar() {
                   href={allResultsHref}
                   onClick={() => {
                     setIsOpen(false);
-                    setIsMobileExpanded(false);
                     setActiveIndex(-1);
                   }}
                   className="text-sm font-medium text-slate-800 hover:text-slate-950"
@@ -269,7 +233,6 @@ export function SearchBar() {
                 href="/podbor"
                 onClick={() => {
                   setIsOpen(false);
-                  setIsMobileExpanded(false);
                   setActiveIndex(-1);
                 }}
                 className="inline-block font-medium text-slate-800 hover:text-slate-950"
