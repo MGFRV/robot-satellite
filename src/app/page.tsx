@@ -157,7 +157,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="rfq-form" className="space-y-4">
+      <section id="rfq-form" className="space-y-4 scroll-mt-24">
         <RFQForm title="Запросить цену" subject="Запрос цены с сайта" />
       </section>
 
