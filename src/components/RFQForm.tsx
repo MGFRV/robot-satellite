@@ -21,7 +21,6 @@ type RFQFormState = {
 
 type RFQFormErrors = Partial<Record<keyof RFQFormState, string>>;
 
-const WEB3FORM_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? '5e837837-b769-4e1a-bb18-2d3fbe7a3a9b';
 const WEB3FORM_TIMEOUT_MS = 45000;
 
 const initialState: RFQFormState = {
@@ -88,13 +87,8 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
       return;
     }
 
-    if (!WEB3FORM_ACCESS_KEY) {
-      setErrorMessage('Форма временно недоступна. Напишите нам напрямую: zakaz@schupy.ru');
-      return;
-    }
 
     const payload = {
-      access_key: WEB3FORM_ACCESS_KEY,
       subject: resolvedSubject,
       from_name: 'Сайт ЩУПЫ.РУ',
       name: formState.name,
@@ -114,7 +108,7 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
     const timeout = setTimeout(() => controller.abort(), WEB3FORM_TIMEOUT_MS);
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
