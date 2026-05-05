@@ -35,6 +35,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
+      <head>
+        <meta name="mailru-domain" content="iJPg6eSwtLxzE8Kl" />
+      </head>
       <body className="flex min-h-screen flex-col">
         <Header />
         <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 pb-24 md:pb-10">{children}</main>
