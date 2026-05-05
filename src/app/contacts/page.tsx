@@ -8,7 +8,6 @@ type ContactFormState = {
   message: string;
 };
 
-const WEB3FORM_ACCESS_KEY = 'efb5634c-52e7-4950-9f5c-5ad0b50d1bcf';
 
 const initialFormState: ContactFormState = {
   name: '',
@@ -28,14 +27,13 @@ export default function ContactsPage() {
     setStatus('');
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: WEB3FORM_ACCESS_KEY,
-          subject: 'Запрос цены с сайта',
+              subject: 'Запрос цены с сайта',
           from_name: 'Сайт Renishaw',
           ...formState,
         }),

@@ -12,7 +12,6 @@ type PodborState = {
   message: string;
 };
 
-const WEB3FORM_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
 
 const initialState: PodborState = {
   name: '',
@@ -38,23 +37,18 @@ export default function PodborPage() {
       return;
     }
 
-    if (!WEB3FORM_ACCESS_KEY) {
-      setErrorMessage('Форма временно недоступна. Напишите нам напрямую: zakaz@schupy.ru');
-      return;
-    }
 
     setIsSubmitting(true);
     setErrorMessage('');
 
     const payload = {
-      access_key: WEB3FORM_ACCESS_KEY,
       subject: 'Помочь подобрать деталь',
       from_name: 'Сайт ЩУПЫ.РУ',
       ...formState,
     };
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

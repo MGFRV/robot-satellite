@@ -11,7 +11,6 @@ import {
   updateInquiryItemQuantity,
 } from '@/lib/inquiry-cart';
 
-const WEB3FORM_ACCESS_KEY = 'efb5634c-52e7-4950-9f5c-5ad0b50d1bcf';
 
 function formatPositionsAccusative(count: number): string {
   const last = count % 10;
@@ -65,12 +64,11 @@ export default function CartPage() {
     setStatus('idle');
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: WEB3FORM_ACCESS_KEY,
-          subject: `Запрос цены на ${formatPositionsAccusative(items.length)}`,
+              subject: `Запрос цены на ${formatPositionsAccusative(items.length)}`,
           from_name: 'Сайт Renishaw',
           name: formState.name,
           company: formState.company,
