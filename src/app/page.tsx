@@ -20,13 +20,6 @@ const processSteps = [
   },
 ];
 
-const trustChips = [
-  'Независимый поставщик оригинальных компонентов',
-  'Проверка совместимости перед отправкой',
-  'Подбор по фото и маркировке',
-  'Широкий ассортимент компонентов Renishaw',
-];
-
 function formatPositions(count: number): string {
   const last = count % 10;
   const lastTwo = count % 100;
@@ -49,7 +42,7 @@ export default function HomePage() {
     .slice(0, 8);
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-10 md:space-y-12">
       <section className="overflow-hidden rounded-2xl bg-[#0E0E0C] text-[#F2EFE9]">
         <div className="relative grid min-h-[320px] md:grid-cols-[minmax(320px,1fr)_minmax(420px,1.2fr)]">
           <svg className="absolute inset-0 h-full w-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg" aria-hidden>
@@ -61,22 +54,26 @@ export default function HomePage() {
             <rect width="100%" height="100%" fill="url(#heroGrid)" />
           </svg>
 
-          <div className="relative z-10 flex max-w-md flex-col justify-center px-8 py-12">
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#D95215]">Оригинальные компоненты Renishaw</p>
-            <h1 className="mb-4 text-[38px] font-extrabold leading-[1.06] tracking-[-0.03em]">Щупы, стилусы и датчики</h1>
-            <p className="mb-7 max-w-[280px] text-[13px] leading-[1.65] text-[#F2EFE9]/45">
+          <div className="relative z-10 flex max-w-md flex-col justify-center px-5 py-10 sm:px-8 sm:py-12">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#D95215] sm:text-[13px]">Оригинальные компоненты Renishaw</p>
+            <h1 className="mb-4 text-[42px] font-extrabold leading-[1.06] tracking-[-0.03em] sm:text-[48px]">
+              Щупы, стилусы
+              <br />
+              и датчики
+            </h1>
+            <p className="mb-7 max-w-[320px] text-base leading-[1.65] text-[#F2EFE9]/75 sm:text-lg">
               Поставка измерительных компонентов для станков с ЧПУ. Подбор по артикулу или фото маркировки.
             </p>
-            <a href="#rfq-form" className="inline-flex w-fit items-center gap-2 rounded-md bg-[#D95215] px-5 py-2.5 text-[13px] font-semibold text-white hover:opacity-95">
+            <a href="#rfq-form" className="inline-flex w-fit items-center gap-2 rounded-md bg-[#D95215] px-5 py-3 text-sm font-semibold text-white hover:opacity-95 sm:text-base">
               Запросить цену <span aria-hidden>→</span>
             </a>
-            <Link href="/podbor" className="mt-2.5 text-[11px] text-[#F2EFE9]/30 underline underline-offset-4">
-              или помогите подобрать деталь
+            <Link href="/podbor" className="mt-2.5 text-sm text-[#F2EFE9]/70 underline underline-offset-4">
+              или помочь с подбором компонентов
             </Link>
           </div>
 
           <div className="relative z-10 flex h-full items-center justify-center p-4 md:justify-end md:p-5">
-            <div className="relative h-full min-h-[220px] w-full max-w-[640px] overflow-hidden rounded-[28px] aspect-[4/2.35]">
+            <div className="relative aspect-[4/2.35] h-full min-h-[180px] w-full max-w-[640px] overflow-hidden rounded-[28px] sm:min-h-[220px]">
               <Image
                 src="/hero-image.png"
                 alt="Компоненты Renishaw"
@@ -90,56 +87,57 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-black/10 bg-[#F2EFE9] px-8 py-4">
-        <div className="flex flex-wrap items-center gap-4">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#D95215]" />
-          <p className="flex-1 text-xs text-[#111110]">
-            В наличии и под заказ <span className="text-black/45">— КП и сроки поставки в течение 10–30 минут в рабочее время. Поддерживаем поставку по РФ и СНГ.</span>
-          </p>
-          <a href="#rfq-form" className="whitespace-nowrap rounded-md border border-black/20 px-3.5 py-1.5 text-xs font-medium text-[#111110] hover:bg-black/5">
-            Получить КП быстро
-          </a>
+      <section className="border-y border-black/10 bg-[#F2EFE9] px-4 py-4 sm:px-8">
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex min-w-0 items-center gap-2">
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#D95215]" />
+              <p className="truncate text-sm font-medium text-[#111110] sm:text-base">В наличии и под заказ</p>
+            </div>
+            <a
+              href="#rfq-form"
+              className="whitespace-nowrap rounded-md bg-[#D95215] px-3.5 py-1.5 text-xs font-semibold text-white hover:opacity-95"
+            >
+              Получить КП быстро
+            </a>
+          </div>
+          <p className="text-sm text-black/60 sm:text-base">КП и сроки поставки в течение 10–30 минут в рабочее время. Поддерживаем поставку по РФ и СНГ.</p>
         </div>
       </section>
 
-      <section className="grid gap-10 bg-[#F2EFE9] px-8 py-12 md:grid-cols-[180px_1fr]">
+      <section className="grid gap-10 bg-[#F2EFE9] px-4 py-12 sm:px-8 md:grid-cols-[180px_1fr]">
         <div>
-          <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#D95215]">Процесс</p>
-          <h2 className="text-2xl font-extrabold tracking-[-0.025em] text-[#111110]">Как мы работаем</h2>
+          <h2 className="text-3xl font-extrabold tracking-[-0.025em] text-[#111110]">Как мы работаем</h2>
         </div>
         <div>
           {processSteps.map((step, index) => (
             <div key={step.title} className="mb-6 flex items-start gap-4 border-b border-black/10 pb-6 last:mb-0 last:border-b-0 last:pb-0">
               <div className="w-14 shrink-0 text-5xl font-extrabold leading-none tracking-[-0.04em] text-black/10">{String(index + 1).padStart(2, '0')}</div>
               <div>
-                <h3 className="text-sm font-semibold text-[#111110]">{step.title}</h3>
-                <p className="mt-1 text-xs leading-relaxed text-black/50">{step.description}</p>
+                <h3 className="text-base font-semibold text-[#111110] sm:text-lg">{step.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-black/60 sm:text-base">{step.description}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="flex flex-wrap gap-1.5 px-8 pb-10">
-        {trustChips.map((chip) => (
-          <span key={chip} className="rounded-full border border-black/10 bg-black/5 px-3 py-1 text-[11px] text-black/55">
-            {chip}
-          </span>
-        ))}
-      </section>
-
-      <section className="space-y-5 px-8 pb-12">
+      <section className="space-y-5 px-4 pb-12 sm:px-8">
         <div className="flex items-baseline justify-between">
-          <h2 className="text-lg font-extrabold tracking-[-0.02em] text-[#111110]">Популярные категории</h2>
-          <Link href="/catalog" className="text-xs font-medium text-[#D95215] hover:opacity-80">
+          <h2 className="text-2xl font-extrabold tracking-[-0.02em] text-[#111110]">Популярные категории</h2>
+          <Link href="/catalog" className="text-sm font-semibold text-[#D95215] hover:opacity-80">
             Все категории →
           </Link>
         </div>
-        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {topCategories.map(([category, count]) => (
-            <Link key={category} href={`/catalog?category=${encodeURIComponent(category)}`} className="rounded-lg border border-black/10 bg-white p-4 hover:border-black/20">
-              <p className="text-xs font-semibold text-[#111110]">{category}</p>
-              <p className="mt-1 text-[11px] text-black/40">{formatPositions(count)}</p>
+            <Link
+              key={category}
+              href={`/catalog?category=${encodeURIComponent(category)}`}
+              className="min-h-[104px] rounded-xl border border-black/10 bg-white p-5 transition hover:border-black/20 hover:shadow-sm"
+            >
+              <p className="text-base font-semibold leading-snug text-[#111110] sm:text-lg">{category}</p>
+              <p className="mt-2 text-sm text-black/50 sm:text-base">{formatPositions(count)}</p>
             </Link>
           ))}
         </div>
