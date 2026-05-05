@@ -58,25 +58,25 @@ export default function ContactsPage() {
     <section className="space-y-8">
       <header className="space-y-2">
         <h1 className="text-3xl font-bold tracking-tight text-slate-900">Контакты</h1>
-        <p className="text-slate-700">Свяжитесь с нами удобным для вас способом.</p>
+        <p className="text-slate-700">Свяжитесь с ЩУПЫ.РУ удобным для вас способом.</p>
       </header>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <article className="rounded-lg border border-slate-200 bg-white p-4">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Телефон</h2>
-          <p className="mt-2 text-slate-900">+7 (000) 000-00-00</p>
+          <p className="mt-2 text-slate-900">+7 961 137-59-74</p>
         </article>
         <article className="rounded-lg border border-slate-200 bg-white p-4">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Email</h2>
-          <p className="mt-2 text-slate-900">info@example.ru</p>
+          <p className="mt-2 text-slate-900">zakaz@schupy.ru</p>
         </article>
         <article className="rounded-lg border border-slate-200 bg-white p-4">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">WhatsApp</h2>
-          <p className="mt-2 text-slate-900">+7 (000) 000-00-00</p>
+          <p className="mt-2 text-slate-900">+7 961 137-59-74</p>
         </article>
         <article className="rounded-lg border border-slate-200 bg-white p-4">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Telegram</h2>
-          <p className="mt-2 text-slate-900">@example</p>
+          <p className="mt-2 text-slate-900">@schupy_ru</p>
         </article>
       </div>
 
@@ -123,7 +123,7 @@ export default function ContactsPage() {
           <p className="text-sm text-emerald-700">Заявка отправлена. Мы скоро свяжемся с вами.</p>
         ) : null}
         {status === 'error' ? (
-          <p className="text-sm text-rose-600">Ошибка отправки. Напишите нам напрямую: info@example.ru</p>
+          <p className="text-sm text-rose-600">Ошибка отправки. Напишите нам напрямую: zakaz@schupy.ru или звоните +7 961 137-59-74</p>
         ) : null}
 
         <button
