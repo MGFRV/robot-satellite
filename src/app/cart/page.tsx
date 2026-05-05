@@ -218,7 +218,7 @@ export default function CartPage() {
 
             {status === 'success' ? <p className="text-sm text-emerald-700">Запрос отправлен успешно. Список очищен.</p> : null}
             {status === 'error' ? (
-              <p className="text-sm text-rose-600">Ошибка отправки. Напишите нам напрямую: info@example.ru</p>
+              <p className="text-sm text-rose-600">Ошибка отправки. Напишите нам напрямую: zakaz@schupy.ru</p>
             ) : null}
 
             <button

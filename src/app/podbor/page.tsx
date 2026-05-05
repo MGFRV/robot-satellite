@@ -39,7 +39,7 @@ export default function PodborPage() {
     }
 
     if (!WEB3FORM_ACCESS_KEY) {
-      setErrorMessage('Форма временно недоступна. Напишите нам напрямую: info@example.ru');
+      setErrorMessage('Форма временно недоступна. Напишите нам напрямую: zakaz@schupy.ru');
       return;
     }
 
@@ -49,7 +49,7 @@ export default function PodborPage() {
     const payload = {
       access_key: WEB3FORM_ACCESS_KEY,
       subject: 'Помочь подобрать деталь',
-      from_name: 'Сайт Renishaw',
+      from_name: 'Сайт ЩУПЫ.РУ',
       ...formState,
     };
 
@@ -69,7 +69,7 @@ export default function PodborPage() {
       setIsSuccess(true);
       setFormState(initialState);
     } catch {
-      setErrorMessage('Ошибка отправки. Напишите нам напрямую: info@example.ru');
+      setErrorMessage('Ошибка отправки. Напишите нам напрямую: zakaz@schupy.ru');
     } finally {
       setIsSubmitting(false);
     }
