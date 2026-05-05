@@ -83,7 +83,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               slug={product.slug}
               title={product.title}
               article={product.article}
-              className="inline-flex h-11 rounded-md border border-slate-300 bg-transparent px-5 text-sm font-semibold text-slate-800 hover:text-slate-950"
+              className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-md border border-slate-300 bg-transparent px-5 text-sm font-semibold text-slate-800 hover:text-slate-950"
             />
           </div>
           <p className="text-sm text-slate-600">Ответим в течении 30-60 минут</p>
