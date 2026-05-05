@@ -7,12 +7,14 @@ import { searchProducts } from '@/lib/search';
 type CatalogPageProps = {
   searchParams?: Promise<{
     search?: string;
+    category?: string;
   }>;
 };
 
 export default async function CatalogPage({ searchParams }: CatalogPageProps) {
   const params = (await searchParams) ?? {};
   const searchQuery = params.search?.trim() ?? '';
+  const categoryQuery = params.category?.trim() ?? '';
 
   const products = getAllProducts();
   const categories = getCategories();
@@ -54,7 +56,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
           </Link>
         </div>
       ) : (
-        <CatalogClient products={visibleProducts} categories={categories} />
+        <CatalogClient products={visibleProducts} categories={categories} initialCategory={categoryQuery} />
       )}
     </section>
   );

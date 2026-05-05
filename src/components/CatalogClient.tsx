@@ -8,10 +8,12 @@ import { ProductCard } from '@/components/ProductCard';
 type CatalogClientProps = {
   products: Product[];
   categories: string[];
+  initialCategory?: string;
 };
 
-export function CatalogClient({ products, categories }: CatalogClientProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>('Все');
+export function CatalogClient({ products, categories, initialCategory }: CatalogClientProps) {
+  const resolvedInitialCategory = initialCategory && categories.includes(initialCategory) ? initialCategory : 'Все';
+  const [selectedCategory, setSelectedCategory] = useState<string>(resolvedInitialCategory);
 
   const filteredProducts = useMemo(() => {
     if (selectedCategory === 'Все') {

@@ -13,6 +13,15 @@ import {
 
 const WEB3FORM_ACCESS_KEY = 'efb5634c-52e7-4950-9f5c-5ad0b50d1bcf';
 
+function formatPositionsAccusative(count: number): string {
+  const last = count % 10;
+  const lastTwo = count % 100;
+
+  if (last === 1 && lastTwo !== 11) return `${count} позицию`;
+  if (last >= 2 && last <= 4 && (lastTwo < 12 || lastTwo > 14)) return `${count} позиции`;
+  return `${count} позиций`;
+}
+
 export default function CartPage() {
   const [items, setItems] = useState<InquiryCartItem[]>([]);
   const [isHydrated, setIsHydrated] = useState(false);
@@ -61,7 +70,7 @@ export default function CartPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           access_key: WEB3FORM_ACCESS_KEY,
-          subject: `Запрос цены на ${items.length} позиций`,
+          subject: `Запрос цены на ${formatPositionsAccusative(items.length)}`,
           from_name: 'Сайт Renishaw',
           name: formState.name,
           company: formState.company,
@@ -166,11 +175,11 @@ export default function CartPage() {
           </button>
 
           <p className="text-sm text-slate-600">
-            Заполните контакты — мы пришлём цены и сроки в течение 2 часов.
+            Заполните контакты — мы пришлём цены и сроки в течение 30-60 минут
           </p>
 
           <form onSubmit={submitInquiry} className="space-y-4 rounded-xl border border-slate-200 bg-white p-6">
-            <h2 className="text-xl font-semibold text-slate-900">Отправить запрос на {items.length} позиций</h2>
+            <h2 className="text-xl font-semibold text-slate-900">Отправить запрос на {formatPositionsAccusative(items.length)}</h2>
 
             <div className="grid gap-4 md:grid-cols-2">
               <input
