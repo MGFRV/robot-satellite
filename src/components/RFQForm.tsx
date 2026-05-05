@@ -22,6 +22,7 @@ type RFQFormState = {
 type RFQFormErrors = Partial<Record<keyof RFQFormState, string>>;
 
 const WEB3FORM_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? '5e837837-b769-4e1a-bb18-2d3fbe7a3a9b';
+const WEB3FORM_TIMEOUT_MS = 45000;
 
 const initialState: RFQFormState = {
   name: '',
@@ -109,6 +110,9 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
     setIsSubmitting(true);
     setErrorMessage('');
 
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), WEB3FORM_TIMEOUT_MS);
+
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -116,17 +120,26 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),
+        signal: controller.signal,
+        keepalive: true,
       });
 
-      if (!response.ok) {
+      const data = (await response.json().catch(() => null)) as { success?: boolean } | null;
+
+      if (!response.ok || !data?.success) {
         throw new Error('Не удалось отправить форму');
       }
 
       setIsSuccess(true);
       setFormState(initialState);
-    } catch {
-      setErrorMessage('Ошибка отправки. Напишите нам напрямую: zakaz@schupy.ru');
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        setErrorMessage('Медленное соединение: отправка заняла слишком много времени. Попробуйте ещё раз или напишите нам: zakaz@schupy.ru');
+      } else {
+        setErrorMessage('Ошибка отправки. Напишите нам напрямую: zakaz@schupy.ru');
+      }
     } finally {
+      clearTimeout(timeout);
       setIsSubmitting(false);
     }
   }
