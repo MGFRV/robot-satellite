@@ -84,7 +84,7 @@ export default function HomePage() {
         <div className="flex flex-wrap items-center gap-4">
           <span className="h-1.5 w-1.5 rounded-full bg-[#D95215]" />
           <p className="flex-1 text-xs text-[#111110]">
-            В наличии и под заказ <span className="text-black/45">— КП и сроки поставки в течение 10–30 минут в рабочее время</span>
+            В наличии и под заказ <span className="text-black/45">— КП и сроки поставки в течение 10–30 минут в рабочее время. Поддерживаем поставку по РФ и СНГ.</span>
           </p>
           <a href="#rfq-form" className="whitespace-nowrap rounded-md border border-black/20 px-3.5 py-1.5 text-xs font-medium text-[#111110] hover:bg-black/5">
             Получить КП быстро
