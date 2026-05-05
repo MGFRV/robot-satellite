@@ -18,13 +18,18 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white shadow-sm">
       <div className="mx-auto flex w-full max-w-6xl items-center gap-3 px-4 py-3">
         <Link href="/" className="shrink-0" aria-label="ЩУПЫ.РФ — на главную">
-          <Image
+          <img
             src="/logo-schupy-horiz.png"
             alt="ЩУПЫ.РФ — Купить щупы для ЧПУ от Renishaw и других брендов в РФ"
             width={220}
             height={74}
-            priority
             className="h-10 w-auto"
+            onError={(event) => {
+              const img = event.currentTarget;
+              if (img.src.endsWith('/logo-schupy-horiz.png')) {
+                img.src = '/logo%20schupy%20horiz.png';
+              }
+            }}
           />
         </Link>
 
