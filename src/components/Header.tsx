@@ -17,8 +17,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white shadow-sm">
       <div className="mx-auto flex w-full max-w-6xl items-center gap-3 px-4 py-3">
-        <Link href="/" className="shrink-0 text-lg font-bold text-slate-900">
-          RenishawParts
+        <Link href="/" className="shrink-0">
+          <span className="flex h-10 min-w-[170px] items-center justify-center rounded-md border border-dashed border-slate-300 bg-slate-50 px-3 text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">
+            Логотип ЩУПЫ.РУ
+          </span>
         </Link>
 
         <nav className="hidden lg:block">

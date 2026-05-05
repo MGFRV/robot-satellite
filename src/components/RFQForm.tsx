@@ -88,14 +88,14 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
     }
 
     if (!WEB3FORM_ACCESS_KEY) {
-      setErrorMessage('Форма временно недоступна. Напишите нам напрямую: info@example.ru');
+      setErrorMessage('Форма временно недоступна. Напишите нам напрямую: zakaz@schupy.ru');
       return;
     }
 
     const payload = {
       access_key: WEB3FORM_ACCESS_KEY,
       subject: resolvedSubject,
-      from_name: 'Сайт Renishaw',
+      from_name: 'Сайт ЩУПЫ.РУ',
       name: formState.name,
       company: formState.company,
       email: formState.email,
@@ -125,7 +125,7 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
       setIsSuccess(true);
       setFormState(initialState);
     } catch {
-      setErrorMessage('Ошибка отправки. Напишите нам напрямую: info@example.ru');
+      setErrorMessage('Ошибка отправки. Напишите нам напрямую: zakaz@schupy.ru');
     } finally {
       setIsSubmitting(false);
     }
@@ -136,8 +136,8 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
       <div className="space-y-4 rounded-xl border border-emerald-200 bg-emerald-50 p-5">
         <h3 className="text-lg font-semibold text-emerald-900">Заявка отправлена!</h3>
         <p className="text-sm text-emerald-800">
-          Мы свяжемся с вами в течение 2 часов. Для срочных вопросов: WhatsApp +7 (000) 000-00-00 / Email
-          info@example.ru
+          Мы свяжемся с вами в течение 2 часов. Для срочных вопросов: WhatsApp +7 961 137-59-74 / Email
+          zakaz@schupy.ru
         </p>
         <Link href="/catalog" className="inline-flex rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white">
           Вернуться к каталогу

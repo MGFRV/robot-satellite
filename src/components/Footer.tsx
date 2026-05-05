@@ -6,10 +6,10 @@ export function Footer() {
       <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-10 md:grid-cols-3">
         <section className="space-y-2 text-sm text-slate-700">
           <h2 className="text-base font-semibold text-slate-900">Контакты</h2>
-          <p>Email: info@example.ru</p>
-          <p>Телефон: +7 (000) 000-00-00</p>
-          <p>WhatsApp: +7 (000) 000-00-00</p>
-          <p>Telegram: @example</p>
+          <p>Email: zakaz@schupy.ru</p>
+          <p>Телефон: +7 961 137-59-74</p>
+          <p>WhatsApp: +7 961 137-59-74</p>
+          <p>Telegram: @schupy_ru</p>
         </section>
 
         <section className="space-y-2 text-sm text-slate-700">
@@ -27,7 +27,7 @@ export function Footer() {
           <p> </p>
           <div className="flex gap-2 pt-1">
             <Link
-              href="https://wa.me/70000000000"
+              href="https://wa.me/79611375974"
               className="inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-3 py-2 text-sm font-semibold text-white hover:opacity-90"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -37,7 +37,7 @@ export function Footer() {
               WhatsApp
             </Link>
             <Link
-              href="https://t.me/example"
+              href="https://t.me/schupy_ru"
               className="inline-flex items-center gap-2 rounded-lg bg-[#229ED9] px-3 py-2 text-sm font-semibold text-white hover:opacity-90"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -46,7 +46,7 @@ export function Footer() {
               Telegram
             </Link>
             <Link
-              href="https://max.ru/example"
+              href="https://schupy.ru/"
               className="inline-flex items-center gap-2 rounded-lg bg-[#5B50D6] px-3 py-2 text-sm font-semibold text-white hover:opacity-90"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
@@ -60,7 +60,7 @@ export function Footer() {
 
       <div className="border-t border-slate-200 bg-slate-50 py-5">
         <div className="mx-auto w-full max-w-6xl space-y-2 px-4 text-xs text-slate-600">
-          <p>© {new Date().getFullYear()} RenishawParts - Ваш надежный поставщик Renishaw в РФ и СНГ. Все права защищены.</p>
+          <p>© 2005–2026 ЩУПЫ.РУ. Москва, Ленинский проспект, д. 15А. Все права защищены.</p>
         </div>
       </div>
     </footer>
