@@ -22,7 +22,7 @@ export function StickyContact() {
           Запросить цену
         </a>
         <Link
-          href="https://wa.me/70000000000"
+          href="https://wa.me/79611375974"
           className="flex-1 rounded-md border border-slate-300 px-3 py-2 text-center text-sm font-semibold text-slate-800"
         >
           WhatsApp
