@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { ProductCard } from '@/components/ProductCard';
@@ -50,7 +51,7 @@ export default function HomePage() {
   return (
     <div className="space-y-12">
       <section className="overflow-hidden rounded-2xl bg-[#0E0E0C] text-[#F2EFE9]">
-        <div className="relative grid min-h-[320px] md:grid-cols-[1fr_280px]">
+        <div className="relative grid min-h-[320px] md:grid-cols-[minmax(320px,1fr)_minmax(420px,1.2fr)]">
           <svg className="absolute inset-0 h-full w-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg" aria-hidden>
             <defs>
               <pattern id="heroGrid" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
@@ -74,8 +75,17 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="relative z-10 flex items-center justify-center px-4 py-8">
-            <div className="text-xs font-mono text-[#F2EFE9]/70">ФОТО ПРОДУКТА</div>
+          <div className="relative z-10 flex items-center justify-center p-4 md:justify-end md:p-5">
+            <div className="relative w-full max-w-[640px] overflow-hidden rounded-[28px] bg-white/95 md:aspect-[4/2.35]">
+              <Image
+                src="/hero-image.png"
+                alt="Компоненты Renishaw"
+                fill
+                priority
+                className="object-contain"
+                sizes="(min-width: 1024px) 640px, (min-width: 768px) 50vw, 100vw"
+              />
+            </div>
           </div>
         </div>
       </section>
