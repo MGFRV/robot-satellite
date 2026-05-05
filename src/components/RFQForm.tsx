@@ -21,7 +21,7 @@ type RFQFormState = {
 
 type RFQFormErrors = Partial<Record<keyof RFQFormState, string>>;
 
-const WEB3FORM_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? '5e837837-b769-4e1a-bb18-2d3fbe7a3a9b';
+const WEB3FORM_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
 
 const initialState: RFQFormState = {
   name: '',
