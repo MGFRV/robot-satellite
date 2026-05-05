@@ -75,8 +75,8 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="relative z-10 flex items-center justify-center p-4 md:justify-end md:p-5">
-            <div className="relative w-full max-w-[640px] overflow-hidden rounded-[28px] md:aspect-[4/2.35]">
+          <div className="relative z-10 flex h-full items-center justify-center p-4 md:justify-end md:p-5">
+            <div className="relative h-full min-h-[220px] w-full max-w-[640px] overflow-hidden rounded-[28px] aspect-[4/2.35]">
               <Image
                 src="/hero-image.png"
                 alt="Компоненты Renishaw"
