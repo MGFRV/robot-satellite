@@ -20,13 +20,6 @@ const processSteps = [
   },
 ];
 
-const trustChips = [
-  'Независимый поставщик оригинальных компонентов',
-  'Проверка совместимости перед отправкой',
-  'Подбор по фото и маркировке',
-  'Широкий ассортимент компонентов Renishaw',
-];
-
 function formatPositions(count: number): string {
   const last = count % 10;
   const lastTwo = count % 100;
@@ -63,7 +56,11 @@ export default function HomePage() {
 
           <div className="relative z-10 flex max-w-md flex-col justify-center px-5 py-10 sm:px-8 sm:py-12">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#D95215] sm:text-[13px]">Оригинальные компоненты Renishaw</p>
-            <h1 className="mb-4 text-[42px] font-extrabold leading-[1.06] tracking-[-0.03em] sm:text-[48px]">Щупы, стилусы и датчики</h1>
+            <h1 className="mb-4 text-[42px] font-extrabold leading-[1.06] tracking-[-0.03em] sm:text-[48px]">
+              Щупы, стилусы
+              <br />
+              и датчики
+            </h1>
             <p className="mb-7 max-w-[320px] text-base leading-[1.65] text-[#F2EFE9]/75 sm:text-lg">
               Поставка измерительных компонентов для станков с ЧПУ. Подбор по артикулу или фото маркировки.
             </p>
@@ -71,12 +68,12 @@ export default function HomePage() {
               Запросить цену <span aria-hidden>→</span>
             </a>
             <Link href="/podbor" className="mt-2.5 text-sm text-[#F2EFE9]/70 underline underline-offset-4">
-              или помогите подобрать деталь
+              или помочь с подбором компонентов
             </Link>
           </div>
 
           <div className="relative z-10 flex h-full items-center justify-center p-4 md:justify-end md:p-5">
-            <div className="relative h-full min-h-[220px] w-full max-w-[640px] overflow-hidden rounded-[28px] aspect-[4/2.35]">
+            <div className="relative aspect-[4/2.35] h-full min-h-[180px] w-full max-w-[640px] overflow-hidden rounded-[28px] sm:min-h-[220px]">
               <Image
                 src="/hero-image.png"
                 alt="Компоненты Renishaw"
@@ -91,20 +88,25 @@ export default function HomePage() {
       </section>
 
       <section className="border-y border-black/10 bg-[#F2EFE9] px-4 py-4 sm:px-8">
-        <div className="flex flex-wrap items-center gap-4">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#D95215]" />
-          <p className="flex-1 text-sm text-[#111110] sm:text-base">
-            В наличии и под заказ <span className="text-black/45">— КП и сроки поставки в течение 10–30 минут в рабочее время. Поддерживаем поставку по РФ и СНГ.</span>
-          </p>
-          <a href="#rfq-form" className="whitespace-nowrap rounded-md border border-black/20 px-3.5 py-1.5 text-xs font-medium text-[#111110] hover:bg-black/5">
-            Получить КП быстро
-          </a>
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex min-w-0 items-center gap-2">
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#D95215]" />
+              <p className="truncate text-sm font-medium text-[#111110] sm:text-base">В наличии и под заказ</p>
+            </div>
+            <a
+              href="#rfq-form"
+              className="whitespace-nowrap rounded-md bg-[#D95215] px-3.5 py-1.5 text-xs font-semibold text-white hover:opacity-95"
+            >
+              Получить КП быстро
+            </a>
+          </div>
+          <p className="text-sm text-black/60 sm:text-base">КП и сроки поставки в течение 10–30 минут в рабочее время. Поддерживаем поставку по РФ и СНГ.</p>
         </div>
       </section>
 
       <section className="grid gap-10 bg-[#F2EFE9] px-4 py-12 sm:px-8 md:grid-cols-[180px_1fr]">
         <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-[#D95215]">Процесс</p>
           <h2 className="text-3xl font-extrabold tracking-[-0.025em] text-[#111110]">Как мы работаем</h2>
         </div>
         <div>
@@ -118,14 +120,6 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
-
-      <section className="flex flex-wrap gap-2 px-4 pb-10 sm:px-8">
-        {trustChips.map((chip) => (
-          <span key={chip} className="rounded-full border border-black/10 bg-black/5 px-3 py-1.5 text-xs text-black/65 sm:text-sm">
-            {chip}
-          </span>
-        ))}
       </section>
 
       <section className="space-y-5 px-4 pb-12 sm:px-8">
