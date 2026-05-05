@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-const SMTP_USER = process.env.SMTP_USER ?? 'order@schupy.ru';
+const SMTP_USER = process.env.SMTP_USER ?? 'zakaz@schupy.ru';
 const SMTP_PASSWORD = process.env.SMTP_PASSWORD;
 const CONTACT_TO = process.env.CONTACT_TO ?? SMTP_USER;
 
