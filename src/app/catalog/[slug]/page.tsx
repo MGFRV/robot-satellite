@@ -86,9 +86,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
               className="inline-flex rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-100"
             />
           </div>
-          <p className="text-sm text-slate-600">Ответим в течение 2 часов</p>
+          <p className="text-sm text-slate-600">Ответим в течении 30-60 минут</p>
           <p className="text-sm font-medium text-slate-500">Цена по запросу</p>
-          <Link href="/podbor" className="inline-flex text-sm font-medium text-slate-800 hover:text-slate-950">
+          <Link href="/podbor" className="inline-flex text-sm font-medium text-orange-600 underline underline-offset-2 hover:text-orange-700">
             Не уверены в совместимости? Поможем подобрать
           </Link>
           

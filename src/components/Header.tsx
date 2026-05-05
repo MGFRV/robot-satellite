@@ -15,14 +15,14 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white shadow-sm">
-      <div className="mx-auto flex w-full max-w-6xl items-center gap-3 px-4 py-3">
+      <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-3 px-4 py-3 md:flex-nowrap">
         <Link href="/" className="shrink-0" aria-label="ЩУПЫ.РФ — на главную">
           <img
             src="/logo-schupy-horiz.png"
             alt="ЩУПЫ.РФ — Купить щупы для ЧПУ от Renishaw и других брендов в РФ"
             width={220}
             height={74}
-            className="h-10 w-auto"
+            className="h-9 w-auto sm:h-10"
             onError={(event) => {
               const img = event.currentTarget;
               if (img.src.endsWith('/logo-schupy-horiz.png')) {
@@ -44,7 +44,7 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="ml-auto hidden w-full max-w-xl md:block" id="header-search">
+        <div className="order-3 w-full md:order-none md:ml-auto md:block md:max-w-xl" id="header-search">
           <SearchBar />
         </div>
 
@@ -67,10 +67,6 @@ export function Header() {
         >
           ☰
         </button>
-      </div>
-
-      <div className="mx-auto w-full max-w-6xl px-4 pb-3 md:hidden">
-        <SearchBar />
       </div>
 
       {isMobileMenuOpen ? (
