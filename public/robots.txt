@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://schupy.ru/sitemap.xml
