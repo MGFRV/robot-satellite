@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { CONTACT_LINKS } from '@/lib/contact-links';
+
 type ContactFormState = {
   name: string;
   contact: string;
@@ -69,12 +71,16 @@ export default function ContactsPage() {
           <p className="mt-2 text-slate-900">zakaz@schupy.ru</p>
         </article>
         <article className="rounded-lg border border-slate-200 bg-white p-4">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">WhatsApp</h2>
-          <p className="mt-2 text-slate-900">+7 961 137-59-74</p>
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">MAX</h2>
+          <a href={CONTACT_LINKS.max} className="mt-2 inline-flex text-slate-900 hover:text-orange-600">
+            Написать в MAX
+          </a>
         </article>
         <article className="rounded-lg border border-slate-200 bg-white p-4">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Telegram</h2>
-          <p className="mt-2 text-slate-900">@schupy_ru</p>
+          <a href={CONTACT_LINKS.telegram} className="mt-2 inline-flex text-slate-900 hover:text-orange-600">
+            Написать в Telegram
+          </a>
         </article>
       </div>
 

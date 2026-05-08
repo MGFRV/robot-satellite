@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { CONTACT_LINKS } from '@/lib/contact-links';
+
 const hiddenOnPaths = ['/podbor', '/contacts'];
 
 export function StickyContact() {
@@ -22,10 +24,10 @@ export function StickyContact() {
           Запросить цену
         </a>
         <Link
-          href="https://wa.me/79611375974"
+          href={CONTACT_LINKS.telegram}
           className="flex-1 rounded-md border border-slate-300 px-3 py-2 text-center text-sm font-semibold text-slate-800"
         >
-          WhatsApp
+          Telegram
         </Link>
       </div>
     </div>

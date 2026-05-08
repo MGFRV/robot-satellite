@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import { CONTACT_LINKS } from '@/lib/contact-links';
+
 export function Footer() {
   return (
     <footer className="mt-12 border-t border-slate-200 bg-white">
@@ -9,7 +11,8 @@ export function Footer() {
           <p>Email: zakaz@schupy.ru</p>
           <p>Телефон: +7 961 137-59-74</p>
           <p>WhatsApp: +7 961 137-59-74</p>
-          <p>Telegram: @schupy_ru</p>
+          <p>Telegram: +7 961 137-59-74</p>
+          <p>MAX: написать в MAX</p>
         </section>
 
         <section className="space-y-2 text-sm text-slate-700">
@@ -27,7 +30,7 @@ export function Footer() {
           <p> </p>
           <div className="flex gap-2 pt-1">
             <Link
-              href="https://wa.me/79611375974"
+              href={CONTACT_LINKS.whatsapp}
               className="inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-3 py-2 text-sm font-semibold text-white hover:opacity-90"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -37,7 +40,7 @@ export function Footer() {
               WhatsApp
             </Link>
             <Link
-              href="https://t.me/schupy_ru"
+              href={CONTACT_LINKS.telegram}
               className="inline-flex items-center gap-2 rounded-lg bg-[#229ED9] px-3 py-2 text-sm font-semibold text-white hover:opacity-90"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -46,7 +49,7 @@ export function Footer() {
               Telegram
             </Link>
             <Link
-              href="https://schupy.ru/"
+              href={CONTACT_LINKS.max}
               className="inline-flex items-center gap-2 rounded-lg bg-[#5B50D6] px-3 py-2 text-sm font-semibold text-white hover:opacity-90"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
