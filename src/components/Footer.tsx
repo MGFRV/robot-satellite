@@ -9,10 +9,13 @@ export function Footer() {
         <section className="space-y-2 text-sm text-slate-700">
           <h2 className="text-base font-semibold text-slate-900">Контакты</h2>
           <p>Email: zakaz@schupy.ru</p>
-          <p>Телефон: +7 961 137-59-74</p>
-          <p>WhatsApp: +7 961 137-59-74</p>
-          <p>Telegram: +7 961 137-59-74</p>
-          <p>MAX: написать в MAX</p>
+          <p>Телефон / WhatsApp / Telegram: +7 961 137-59-74</p>
+          <p>
+            Мы в MAX:{' '}
+            <Link href={CONTACT_LINKS.max} className="font-medium text-slate-900 hover:text-slate-700">
+              напишите нам
+            </Link>
+          </p>
         </section>
 
         <section className="space-y-2 text-sm text-slate-700">
