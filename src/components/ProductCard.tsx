@@ -19,6 +19,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const topSpecs = Object.entries(product.specs ?? {}).filter(([, value]) => String(value).trim().length > 0).slice(0, 2);
+  const hasPrice = typeof product.price === 'number';
 
   return (
     <>
@@ -39,7 +40,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <div>
             <p className="text-xs uppercase tracking-wide text-slate-500">Артикул: {product.article}</p>
             <h2
-              className="mt-1 text-lg font-semibold text-slate-900 group-hover:text-slate-700"
+              className="mt-1 break-words text-lg font-semibold text-slate-900 group-hover:text-slate-700"
               style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
             >
               {product.title}
@@ -57,21 +58,27 @@ export function ProductCard({ product }: ProductCardProps) {
               ))}
             </ul>
           ) : null}
-          {typeof product.price === 'number' ? <p className="text-base font-semibold text-slate-900">{formatProductPrice(product.price)}</p> : null}
+          {hasPrice ? <p className="text-base font-semibold text-slate-900">{formatProductPrice(product.price)}</p> : null}
 
-          <div className="mt-auto grid grid-cols-[1fr,1fr] items-end gap-2">
-            <button
-              type="button"
-              onClick={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                setIsModalOpen(true);
-              }}
-              className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md bg-orange-500 px-2 text-sm font-medium text-white hover:bg-orange-600"
-            >
-              Запросить цену
-            </button>
-            <AddToCartButton slug={product.slug} title={product.title} article={product.article} />
+          <div className={hasPrice ? 'mt-auto' : 'mt-auto grid grid-cols-[minmax(0,1fr),96px] items-end gap-2'}>
+            {hasPrice ? (
+              <AddToCartButton slug={product.slug} title={product.title} article={product.article} mode="order" />
+            ) : (
+              <>
+                <button
+                  type="button"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    setIsModalOpen(true);
+                  }}
+                  className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md bg-orange-500 px-2 text-sm font-medium text-white hover:bg-orange-600"
+                >
+                  Запросить цену
+                </button>
+                <AddToCartButton slug={product.slug} title={product.title} article={product.article} />
+              </>
+            )}
           </div>
         </div>
       </article>
