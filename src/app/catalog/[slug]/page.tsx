@@ -7,6 +7,7 @@ import { ProductCard } from '@/components/ProductCard';
 import { ProductPrimaryAction } from '@/components/ProductPrimaryAction';
 import { ProductGallery } from '@/components/ProductGallery';
 import { RFQForm } from '@/components/RFQForm';
+import { formatProductPrice } from '@/lib/product-format';
 import { getAllProducts, getProductBySlug } from '@/lib/products';
 
 type ProductPageProps = {
@@ -87,7 +88,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
             />
           </div>
           <p className="text-sm text-slate-600">Ответим в течении 30-60 минут</p>
-          <p className="text-sm font-medium text-slate-500">Цена по запросу</p>
+          <p className="text-sm font-medium text-slate-500">
+            {typeof product.price === 'number' ? formatProductPrice(product.price) : 'Цена по запросу'}
+          </p>
           <Link href="/podbor" className="inline-flex text-sm font-medium text-orange-600 underline underline-offset-2 hover:text-orange-700">
             Не уверены в совместимости? Поможем подобрать
           </Link>

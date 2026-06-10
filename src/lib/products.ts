@@ -56,6 +56,19 @@ function remapCategoryByTitle(product: Product): string {
   return product.category;
 }
 
+function normalizePrice(price: unknown): number | null {
+  if (typeof price === 'number' && Number.isFinite(price)) {
+    return price;
+  }
+
+  if (typeof price === 'string') {
+    const normalizedPrice = Number(price.trim());
+    return Number.isFinite(normalizedPrice) ? normalizedPrice : null;
+  }
+
+  return null;
+}
+
 function normalizeProduct(product: Product): Product {
   const normalizedImages = Array.isArray(product.images)
     ? product.images
@@ -66,6 +79,7 @@ function normalizeProduct(product: Product): Product {
   return {
     ...product,
     category: remapCategoryByTitle(product),
+    price: normalizePrice(product.price),
     description: normalizeDescription(product.description ?? ''),
     images: normalizedImages.length > 0 ? normalizedImages : [PRODUCT_IMAGE_PLACEHOLDER],
   };
