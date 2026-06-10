@@ -46,6 +46,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   const productState = product.specs['Состояние'] ?? product.specs['Condition'] ?? 'Уточняйте у менеджера';
+  const hasPrice = typeof product.price === 'number';
   const relatedProducts = getAllProducts()
     .filter((item) => item.category === product.category && item.slug !== product.slug)
     .slice(0, 4);
@@ -60,9 +61,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <section className="grid gap-8 rounded-2xl border border-slate-200 bg-white p-6 lg:grid-cols-2">
         <ProductGallery title={product.title} images={product.images} />
 
-        <div className="space-y-4">
+        <div className="min-w-0 space-y-4">
           <p className="text-sm font-medium text-slate-500">Бренд: Renishaw</p>
-          <h1 className="text-3xl font-bold text-slate-900">{product.title}</h1>
+          <h1 className="break-words text-3xl font-bold text-slate-900">{product.title}</h1>
           <dl className="space-y-2 text-sm text-slate-700">
             <div className="flex gap-2">
               <dt className="font-semibold">Артикул/SKU:</dt>
@@ -78,19 +79,26 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </div>
           </dl>
 
-          <div className="flex flex-wrap gap-2">
-            <ProductPrimaryAction slug={product.slug} />
-            <AddToCartButton
-              slug={product.slug}
-              title={product.title}
-              article={product.article}
-              className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-md border border-slate-300 bg-transparent px-5 text-sm font-semibold text-slate-800 hover:text-slate-950"
-            />
+          <p className={hasPrice ? 'text-3xl font-bold text-slate-900' : 'text-sm font-medium text-slate-500'}>
+            {hasPrice ? formatProductPrice(product.price) : 'Цена по запросу'}
+          </p>
+
+          <div className={hasPrice ? 'w-full max-w-full sm:max-w-sm' : 'flex flex-wrap gap-2'}>
+            {hasPrice ? (
+              <AddToCartButton slug={product.slug} title={product.title} article={product.article} mode="order" />
+            ) : (
+              <>
+                <ProductPrimaryAction slug={product.slug} />
+                <AddToCartButton
+                  slug={product.slug}
+                  title={product.title}
+                  article={product.article}
+                  className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-md border border-slate-300 bg-transparent px-5 text-sm font-semibold text-slate-800 hover:text-slate-950"
+                />
+              </>
+            )}
           </div>
           <p className="text-sm text-slate-600">Ответим в течении 30-60 минут</p>
-          <p className="text-sm font-medium text-slate-500">
-            {typeof product.price === 'number' ? formatProductPrice(product.price) : 'Цена по запросу'}
-          </p>
           <Link href="/podbor" className="inline-flex text-sm font-medium text-orange-600 underline underline-offset-2 hover:text-orange-700">
             Не уверены в совместимости? Поможем подобрать
           </Link>
