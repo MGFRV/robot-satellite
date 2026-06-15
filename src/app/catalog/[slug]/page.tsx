@@ -83,7 +83,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             {hasPrice ? formatProductPrice(product.price) : 'Цена по запросу'}
           </p>
 
-          <div className={hasPrice ? 'w-full max-w-full sm:max-w-sm' : 'flex flex-wrap gap-2'}>
+          <div className={hasPrice ? 'w-full max-w-sm' : 'flex flex-wrap gap-2'}>
             {hasPrice ? (
               <AddToCartButton slug={product.slug} title={product.title} article={product.article} mode="order" />
             ) : (
