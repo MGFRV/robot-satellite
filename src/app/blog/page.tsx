@@ -25,7 +25,7 @@ export default function BlogPage() {
           >
             <div className="relative aspect-video overflow-hidden">
               <Image
-                src={BLOG_IMAGE_PLACEHOLDER}
+                src={post.coverImage || BLOG_IMAGE_PLACEHOLDER}
                 alt={post.title}
                 fill
                 className="object-cover transition duration-300 group-hover:scale-105"

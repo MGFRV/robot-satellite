@@ -14,12 +14,57 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+type HastNode = {
+  type?: string;
+  tagName?: string;
+  properties?: Record<string, unknown>;
+  children?: unknown[];
+};
+
+function wrapTablesInScrollableContainer(node: HastNode) {
+  if (!Array.isArray(node.children)) {
+    return;
+  }
+
+  node.children = node.children.map((child) => {
+    if (typeof child !== 'object' || child === null) {
+      return child;
+    }
+
+    const childNode = child as HastNode;
+
+    if (childNode.type === 'element' && childNode.tagName === 'table') {
+      childNode.properties = {
+        ...childNode.properties,
+        border: '1',
+        style: 'width: 100%; min-width: 600px; border-collapse: collapse;',
+      };
+
+      return {
+        type: 'element',
+        tagName: 'div',
+        properties: {
+          style: 'overflow-x: auto; -webkit-overflow-scrolling: touch;',
+        },
+        children: [childNode],
+      };
+    }
+
+    wrapTablesInScrollableContainer(childNode);
+    return childNode;
+  });
+}
+
+function rehypeScrollableTables() {
+  return wrapTablesInScrollableContainer;
+}
+
 async function renderMDX(source: string) {
   const code = String(
     await compile(source, {
       outputFormat: 'function-body',
       remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypeSlug],
+      rehypePlugins: [rehypeSlug, rehypeScrollableTables],
     }),
   );
 
