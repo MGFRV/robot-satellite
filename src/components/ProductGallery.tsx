@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-import { PRODUCT_IMAGE_PLACEHOLDER } from '@/lib/assets';
+import { isExternalStorageImage, PRODUCT_IMAGE_PLACEHOLDER } from '@/lib/assets';
 
 type ProductGalleryProps = {
   title: string;
@@ -26,6 +26,7 @@ export function ProductGallery({ title, images }: ProductGalleryProps) {
           priority
           sizes="(min-width: 1024px) 50vw, 100vw"
           className="h-80 w-full rounded-lg border border-slate-200 object-cover"
+          unoptimized={isExternalStorageImage(safeImages[activeIndex])}
         />
       </button>
       <div className="grid grid-cols-4 gap-2">
@@ -45,6 +46,7 @@ export function ProductGallery({ title, images }: ProductGalleryProps) {
               height={140}
               sizes="(min-width: 1024px) 12vw, 25vw"
               className="h-20 w-full object-cover"
+              unoptimized={isExternalStorageImage(image)}
             />
           </button>
         ))}
@@ -60,6 +62,7 @@ export function ProductGallery({ title, images }: ProductGalleryProps) {
               height={1000}
               sizes="100vw"
               className="max-h-[85vh] w-full rounded-lg object-contain"
+              unoptimized={isExternalStorageImage(safeImages[activeIndex])}
             />
             {safeImages.length > 1 ? (
               <>

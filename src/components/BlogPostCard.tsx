@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { BLOG_IMAGE_PLACEHOLDER } from '@/lib/assets';
+import { BLOG_IMAGE_PLACEHOLDER, isExternalStorageImage } from '@/lib/assets';
 import { formatBlogDate, type BlogPostMeta } from '@/lib/blog';
 
 type BlogPostCardProps = {
@@ -21,6 +21,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover transition duration-300 group-hover:scale-105"
+            unoptimized={isExternalStorageImage(coverImage)}
           />
         </div>
         <div className="flex flex-1 flex-col space-y-2 p-4">
