@@ -17,6 +17,10 @@ export type Product = {
   images: string[];
 };
 
+export type CatalogProduct = Pick<Product, 'title' | 'slug' | 'article' | 'price' | 'category' | 'specs'> & {
+  images: string[];
+};
+
 const productsDirectory = path.join(process.cwd(), 'content', 'products');
 
 let productsCache: Product[] | null = null;
@@ -72,6 +76,12 @@ function normalizePrice(price: unknown): number | null {
   return null;
 }
 
+function selectPreviewImages(images: string[]): string[] {
+  // Keep only a compact preview set for catalog cards. If image-size metadata is
+  // added to product JSON later, this is the only place that needs to sort it.
+  return images.slice(0, 3);
+}
+
 function normalizeProduct(product: Product): Product {
   const normalizedImages = Array.isArray(product.images)
     ? product.images
@@ -121,4 +131,20 @@ export function getCategories(): string[] {
   }
 
   return categoriesCache;
+}
+
+export function toCatalogProduct(product: Product): CatalogProduct {
+  return {
+    title: product.title,
+    slug: product.slug,
+    article: product.article,
+    price: product.price,
+    category: product.category,
+    specs: product.specs,
+    images: selectPreviewImages(product.images),
+  };
+}
+
+export function getCatalogProducts(): CatalogProduct[] {
+  return getAllProducts().map(toCatalogProduct);
 }

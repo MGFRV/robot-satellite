@@ -48,3 +48,37 @@ a {
 .animate-fade-in {
   animation: fade-in 0.16s ease-out;
 }
+
+.prose {
+  overflow-wrap: anywhere;
+}
+
+.prose :where(table) {
+  width: 100%;
+  min-width: 560px;
+}
+
+.prose :where(pre, code) {
+  max-width: 100%;
+}
+
+.prose :where(pre) {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose :where(img, iframe, video) {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 640px) {
+  .prose {
+    font-size: 0.97rem;
+  }
+
+  .prose :where(h1, h2, h3, h4, h5, h6, p, li, a, td, th) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}

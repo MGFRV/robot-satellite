@@ -8,10 +8,10 @@ import { AddToCartButton } from '@/components/AddToCartButton';
 import { RFQForm } from '@/components/RFQForm';
 import { PRODUCT_IMAGE_PLACEHOLDER } from '@/lib/assets';
 import { formatProductPrice } from '@/lib/product-format';
-import type { Product } from '@/lib/products';
+import type { CatalogProduct } from '@/lib/products';
 
 type ProductCardProps = {
-  product: Product;
+  product: CatalogProduct;
 };
 
 export function ProductCard({ product }: ProductCardProps) {
