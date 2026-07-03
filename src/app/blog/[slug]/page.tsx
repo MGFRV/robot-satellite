@@ -185,12 +185,12 @@ export default async function BlogPostPage({ params }: Props) {
         <div
           className="prose prose-slate max-w-none break-words prose-pre:max-w-full prose-pre:overflow-x-auto prose-code:break-words sm:prose-lg
           prose-headings:font-bold
-          prose-a:text-blue-600 prose-a:underline
+          prose-a:text-[#F97316] prose-a:underline
           prose-strong:font-semibold
           prose-table:border-collapse
           prose-th:border prose-th:border-gray-300 prose-th:bg-gray-50 prose-th:px-3 prose-th:py-2 prose-th:text-left
           prose-td:border prose-td:border-gray-300 prose-td:px-3 prose-td:py-2
-          prose-blockquote:rounded-r-lg prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50
+          prose-blockquote:rounded-r-lg prose-blockquote:border-l-4 prose-blockquote:border-[#F97316] prose-blockquote:bg-orange-50
           prose-img:rounded-lg"
         >
           <MDXContent />

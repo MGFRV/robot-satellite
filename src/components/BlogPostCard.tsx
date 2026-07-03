@@ -26,9 +26,9 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
         </div>
         <div className="flex flex-1 flex-col space-y-2 p-4">
           <p className="text-xs uppercase tracking-wide text-slate-500">{formatBlogDate(post.date)}</p>
-          <h2 className="break-words text-lg font-semibold text-slate-900 group-hover:text-blue-700">{post.title}</h2>
+          <h2 className="break-words text-lg font-semibold text-slate-900 group-hover:text-[#F97316]">{post.title}</h2>
           <p className="line-clamp-3 text-sm text-slate-600">{post.excerpt}</p>
-          <span className="mt-auto inline-flex text-sm font-medium text-blue-700 group-hover:text-blue-900">Читать статью</span>
+          <span className="mt-auto inline-flex text-sm font-medium text-[#F97316] group-hover:text-orange-700">Читать статью</span>
         </div>
       </Link>
     </article>

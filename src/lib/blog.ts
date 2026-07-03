@@ -21,6 +21,14 @@ const BLOG_DIR = path.join(process.cwd(), 'content', 'blog');
 
 let postsCache: BlogPost[] | null = null;
 
+function stripMarkdownLinks(value: string): string {
+  return value.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+}
+
+function sanitizeMetaText(value: unknown): string {
+  return stripMarkdownLinks(String(value ?? '')).trim();
+}
+
 function loadAllPostData(): BlogPost[] {
   const files = fs.readdirSync(BLOG_DIR).filter((file) => file.endsWith('.mdx'));
 
@@ -31,13 +39,13 @@ function loadAllPostData(): BlogPost[] {
 
     return {
       slug,
-      title: String(data.title ?? ''),
+      title: sanitizeMetaText(data.title),
       date: String(data.date ?? ''),
-      excerpt: String(data.excerpt ?? ''),
-      tags: Array.isArray(data.tags) ? data.tags.map((tag) => String(tag)) : [],
+      excerpt: sanitizeMetaText(data.excerpt ?? data.description),
+      tags: Array.isArray(data.tags) ? data.tags.map(sanitizeMetaText).filter(Boolean) : [],
       coverImage:
-        typeof data.coverImage === 'string' && data.coverImage.trim().length > 0
-          ? withS3BaseUrl(data.coverImage, '/products/blog/placeholder.webp')
+        typeof data.coverImage === 'string' && data.coverImage.trim().length > 0 && !data.coverImage.includes('ваш-бакет')
+          ? withS3BaseUrl(data.coverImage, '/blog/placeholder.webp')
           : BLOG_IMAGE_PLACEHOLDER,
       content,
     } satisfies BlogPost;
