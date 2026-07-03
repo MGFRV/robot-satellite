@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.excerpt,
       type: 'article',
       publishedTime: post.date,
-      images: [BLOG_IMAGE_PLACEHOLDER],
+      images: [post.coverImage || BLOG_IMAGE_PLACEHOLDER],
     },
   };
 }
@@ -73,7 +73,7 @@ export default async function BlogPostPage({ params }: Props) {
     headline: post.title,
     datePublished: post.date,
     description: post.excerpt,
-    image: BLOG_IMAGE_PLACEHOLDER,
+    image: post.coverImage || BLOG_IMAGE_PLACEHOLDER,
   };
 
   return (
@@ -94,7 +94,12 @@ export default async function BlogPostPage({ params }: Props) {
         </nav>
 
         <div className="relative mb-8 aspect-video overflow-hidden rounded-xl">
-          <Image src={BLOG_IMAGE_PLACEHOLDER} alt={post.title} fill className="object-cover" />
+          <Image
+            src={post.coverImage || BLOG_IMAGE_PLACEHOLDER}
+            alt={post.title}
+            fill
+            className="object-cover"
+          />
         </div>
 
         <h1 className="mb-4 text-3xl font-bold md:text-4xl">{post.title}</h1>
