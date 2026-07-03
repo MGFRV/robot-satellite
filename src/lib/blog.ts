@@ -36,7 +36,7 @@ function loadAllPostData(): BlogPost[] {
       excerpt: String(data.excerpt ?? ''),
       tags: Array.isArray(data.tags) ? data.tags.map((tag) => String(tag)) : [],
       coverImage:
-        typeof data.coverImage === 'string' && data.coverImage.trim().length > 0 && !data.coverImage.includes('ваш-бакет')
+        typeof data.coverImage === 'string' && data.coverImage.trim().length > 0
           ? withS3BaseUrl(data.coverImage, '/products/blog/placeholder.webp')
           : BLOG_IMAGE_PLACEHOLDER,
       content,
