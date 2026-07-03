@@ -14,12 +14,57 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+type HastNode = {
+  type?: string;
+  tagName?: string;
+  properties?: Record<string, unknown>;
+  children?: unknown[];
+};
+
+function wrapTablesInScrollableContainer(node: HastNode) {
+  if (!Array.isArray(node.children)) {
+    return;
+  }
+
+  node.children = node.children.map((child) => {
+    if (typeof child !== 'object' || child === null) {
+      return child;
+    }
+
+    const childNode = child as HastNode;
+
+    if (childNode.type === 'element' && childNode.tagName === 'table') {
+      childNode.properties = {
+        ...childNode.properties,
+        border: '1',
+        style: 'width: 100%; min-width: 600px; border-collapse: collapse;',
+      };
+
+      return {
+        type: 'element',
+        tagName: 'div',
+        properties: {
+          style: 'overflow-x: auto; -webkit-overflow-scrolling: touch;',
+        },
+        children: [childNode],
+      };
+    }
+
+    wrapTablesInScrollableContainer(childNode);
+    return childNode;
+  });
+}
+
+function rehypeScrollableTables() {
+  return wrapTablesInScrollableContainer;
+}
+
 async function renderMDX(source: string) {
   const code = String(
     await compile(source, {
       outputFormat: 'function-body',
       remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypeSlug],
+      rehypePlugins: [rehypeSlug, rehypeScrollableTables],
     }),
   );
 
@@ -51,7 +96,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.excerpt,
       type: 'article',
       publishedTime: post.date,
-      images: [BLOG_IMAGE_PLACEHOLDER],
+      images: [post.coverImage || BLOG_IMAGE_PLACEHOLDER],
     },
   };
 }
@@ -73,7 +118,7 @@ export default async function BlogPostPage({ params }: Props) {
     headline: post.title,
     datePublished: post.date,
     description: post.excerpt,
-    image: BLOG_IMAGE_PLACEHOLDER,
+    image: post.coverImage || BLOG_IMAGE_PLACEHOLDER,
   };
 
   return (
@@ -94,7 +139,12 @@ export default async function BlogPostPage({ params }: Props) {
         </nav>
 
         <div className="relative mb-8 aspect-video overflow-hidden rounded-xl">
-          <Image src={BLOG_IMAGE_PLACEHOLDER} alt={post.title} fill className="object-cover" />
+          <Image
+            src={post.coverImage || BLOG_IMAGE_PLACEHOLDER}
+            alt={post.title}
+            fill
+            className="object-cover"
+          />
         </div>
 
         <h1 className="mb-4 text-3xl font-bold md:text-4xl">{post.title}</h1>
