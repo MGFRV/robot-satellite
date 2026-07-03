@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import { AddToCartButton } from '@/components/AddToCartButton';
 import { RFQForm } from '@/components/RFQForm';
-import { PRODUCT_IMAGE_PLACEHOLDER } from '@/lib/assets';
+import { isExternalStorageImage, PRODUCT_IMAGE_PLACEHOLDER } from '@/lib/assets';
 import { formatProductPrice } from '@/lib/product-format';
 import type { CatalogProduct } from '@/lib/products';
 
@@ -41,6 +41,7 @@ export function ProductCard({ product }: ProductCardProps) {
           height={420}
           sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="h-52 w-full object-cover"
+          unoptimized={isExternalStorageImage(safeImage)}
         />
 
         <div className="flex flex-1 flex-col gap-3 p-4">

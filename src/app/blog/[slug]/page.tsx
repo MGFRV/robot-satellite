@@ -9,7 +9,7 @@ import * as runtime from 'react/jsx-runtime';
 import remarkGfm from 'remark-gfm';
 
 import { BlogPostCard } from '@/components/BlogPostCard';
-import { BLOG_IMAGE_PLACEHOLDER } from '@/lib/assets';
+import { BLOG_IMAGE_PLACEHOLDER, isExternalStorageImage } from '@/lib/assets';
 import { formatDate, getAllSlugs, getPostBySlug, getRelatedPosts } from '@/lib/blog';
 
 interface Props {
@@ -164,6 +164,7 @@ export default async function BlogPostPage({ params }: Props) {
             priority
             sizes="(min-width: 768px) 768px, 100vw"
             className="object-cover"
+            unoptimized={isExternalStorageImage(post.coverImage || BLOG_IMAGE_PLACEHOLDER)}
           />
         </div>
 
