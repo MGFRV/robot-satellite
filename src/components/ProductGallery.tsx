@@ -23,6 +23,8 @@ export function ProductGallery({ title, images }: ProductGalleryProps) {
           alt={`${title} — изображение ${activeIndex + 1}`}
           width={1000}
           height={700}
+          priority
+          sizes="(min-width: 1024px) 50vw, 100vw"
           className="h-80 w-full rounded-lg border border-slate-200 object-cover"
         />
       </button>
@@ -36,7 +38,14 @@ export function ProductGallery({ title, images }: ProductGalleryProps) {
               index === activeIndex ? 'border-slate-900' : 'border-slate-300'
             }`}
           >
-            <Image src={image} alt={`${title} превью ${index + 1}`} width={180} height={140} className="h-20 w-full object-cover" />
+            <Image
+              src={image}
+              alt={`${title} превью ${index + 1}`}
+              width={180}
+              height={140}
+              sizes="(min-width: 1024px) 12vw, 25vw"
+              className="h-20 w-full object-cover"
+            />
           </button>
         ))}
       </div>
@@ -49,6 +58,7 @@ export function ProductGallery({ title, images }: ProductGalleryProps) {
               alt={`${title} — увеличенное изображение`}
               width={1400}
               height={1000}
+              sizes="100vw"
               className="max-h-[85vh] w-full rounded-lg object-contain"
             />
             {safeImages.length > 1 ? (

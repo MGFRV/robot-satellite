@@ -17,7 +17,14 @@ export type Product = {
   images: string[];
 };
 
+export type CatalogProduct = Pick<Product, 'title' | 'slug' | 'article' | 'price' | 'category' | 'specs'> & {
+  images: string[];
+};
+
 const productsDirectory = path.join(process.cwd(), 'content', 'products');
+
+let productsCache: Product[] | null = null;
+let categoriesCache: string[] | null = null;
 
 function normalizeDescription(description: string): string {
   const marker = 'ООО «Эффективное производство»';
@@ -69,6 +76,12 @@ function normalizePrice(price: unknown): number | null {
   return null;
 }
 
+function selectPreviewImages(images: string[]): string[] {
+  // Keep only a compact preview set for catalog cards. If image-size metadata is
+  // added to product JSON later, this is the only place that needs to sort it.
+  return images.slice(0, 3);
+}
+
 function normalizeProduct(product: Product): Product {
   const normalizedImages = Array.isArray(product.images)
     ? product.images
@@ -85,7 +98,7 @@ function normalizeProduct(product: Product): Product {
   };
 }
 
-export function getAllProducts(): Product[] {
+function readProducts(): Product[] {
   const files = fs.readdirSync(productsDirectory).filter((file) => file.endsWith('.json'));
 
   return files
@@ -98,12 +111,40 @@ export function getAllProducts(): Product[] {
     .sort((a, b) => (a.title ?? '').localeCompare(b.title ?? '', 'ru-RU'));
 }
 
+export function getAllProducts(): Product[] {
+  if (!productsCache) {
+    productsCache = readProducts();
+  }
+
+  return productsCache;
+}
+
 export function getProductBySlug(slug: string): Product | null {
   const product = getAllProducts().find((item) => item.slug === slug);
   return product ?? null;
 }
 
 export function getCategories(): string[] {
-  const categories = new Set(getAllProducts().map((product) => product.category));
-  return [...categories].sort((a, b) => a.localeCompare(b, 'ru-RU'));
+  if (!categoriesCache) {
+    const categories = new Set(getAllProducts().map((product) => product.category));
+    categoriesCache = [...categories].sort((a, b) => a.localeCompare(b, 'ru-RU'));
+  }
+
+  return categoriesCache;
+}
+
+export function toCatalogProduct(product: Product): CatalogProduct {
+  return {
+    title: product.title,
+    slug: product.slug,
+    article: product.article,
+    price: product.price,
+    category: product.category,
+    specs: product.specs,
+    images: selectPreviewImages(product.images),
+  };
+}
+
+export function getCatalogProducts(): CatalogProduct[] {
+  return getAllProducts().map(toCatalogProduct);
 }

@@ -1,8 +1,20 @@
 const s3BaseUrl = process.env.NEXT_PUBLIC_S3_BASE_URL ?? 'https://storage.yandexcloud.net/rbstorage';
 
+function encodePathSegment(segment: string): string {
+  try {
+    return encodeURIComponent(decodeURIComponent(segment));
+  } catch {
+    return encodeURIComponent(segment);
+  }
+}
+
+function encodePathname(pathname: string): string {
+  return pathname.split('/').map(encodePathSegment).join('/');
+}
+
 function joinS3Path(pathname: string): string {
   const normalizedPath = pathname.startsWith('/') ? pathname : `/${pathname}`;
-  return `${s3BaseUrl}${normalizedPath}`;
+  return `${s3BaseUrl}${encodePathname(normalizedPath)}`;
 }
 
 export const PRODUCT_IMAGE_PLACEHOLDER = joinS3Path('/products/placeholder.webp');
@@ -14,7 +26,9 @@ export function withS3BaseUrl(url: string | undefined, fallbackPath: string): st
   }
 
   if (/^https?:\/\//i.test(url)) {
-    return url;
+    const parsedUrl = new URL(url);
+    parsedUrl.pathname = encodePathname(parsedUrl.pathname);
+    return parsedUrl.toString();
   }
 
   return joinS3Path(url);
