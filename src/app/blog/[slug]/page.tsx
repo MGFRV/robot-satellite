@@ -3,10 +3,12 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { ComponentType } from 'react';
 import rehypeSlug from 'rehype-slug';
 import * as runtime from 'react/jsx-runtime';
 import remarkGfm from 'remark-gfm';
 
+import { BlogPostCard } from '@/components/BlogPostCard';
 import { BLOG_IMAGE_PLACEHOLDER } from '@/lib/assets';
 import { formatDate, getAllSlugs, getPostBySlug, getRelatedPosts } from '@/lib/blog';
 
@@ -59,7 +61,9 @@ function rehypeScrollableTables() {
   return wrapTablesInScrollableContainer;
 }
 
-async function renderMDX(source: string) {
+const mdxComponentCache = new Map<string, Promise<ComponentType>>();
+
+async function compileMDX(source: string) {
   const code = String(
     await compile(source, {
       outputFormat: 'function-body',
@@ -73,8 +77,22 @@ async function renderMDX(source: string) {
     baseUrl: new URL(`file://${process.cwd()}/`),
   });
 
-  return MDXContent;
+  return MDXContent as ComponentType;
 }
+
+async function renderMDX(slug: string, source: string) {
+  const cached = mdxComponentCache.get(slug);
+
+  if (cached) {
+    return cached;
+  }
+
+  const compiled = compileMDX(source);
+  mdxComponentCache.set(slug, compiled);
+  return compiled;
+}
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -109,7 +127,7 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
-  const MDXContent = await renderMDX(post.content);
+  const MDXContent = await renderMDX(slug, post.content);
   const related = getRelatedPosts(slug, post.tags, 3);
 
   const jsonLd = {
@@ -125,16 +143,16 @@ export default async function BlogPostPage({ params }: Props) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <article className="mx-auto max-w-3xl px-4 py-12">
-        <nav className="mb-6 text-sm text-gray-400">
+      <article className="mx-auto min-w-0 max-w-3xl overflow-hidden px-4 py-8 sm:py-12">
+        <nav className="mb-6 flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 break-words text-sm text-gray-400">
           <Link href="/" className="hover:text-gray-600">
             Главная
           </Link>
-          <span className="mx-2">→</span>
+          <span>→</span>
           <Link href="/blog" className="hover:text-gray-600">
             Блог
           </Link>
-          <span className="mx-2">→</span>
+          <span>→</span>
           <span className="text-gray-600">{post.title}</span>
         </nav>
 
@@ -143,18 +161,20 @@ export default async function BlogPostPage({ params }: Props) {
             src={post.coverImage || BLOG_IMAGE_PLACEHOLDER}
             alt={post.title}
             fill
+            priority
+            sizes="(min-width: 768px) 768px, 100vw"
             className="object-cover"
           />
         </div>
 
-        <h1 className="mb-4 text-3xl font-bold md:text-4xl">{post.title}</h1>
+        <h1 className="mb-4 break-words text-3xl font-bold md:text-4xl">{post.title}</h1>
 
         <div className="mb-8 flex flex-wrap items-center gap-3 text-sm text-gray-500">
           <time>{formatDate(post.date)}</time>
           <span>•</span>
-          <div className="flex gap-2">
+          <div className="flex min-w-0 flex-wrap gap-2">
             {post.tags.map((tag) => (
-              <span key={tag} className="rounded bg-gray-100 px-2 py-0.5 text-xs text-gray-600">
+              <span key={tag} className="max-w-full break-words rounded bg-gray-100 px-2 py-0.5 text-xs text-gray-600">
                 {tag}
               </span>
             ))}
@@ -162,7 +182,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
 
         <div
-          className="prose prose-lg max-w-none
+          className="prose prose-slate max-w-none break-words prose-pre:max-w-full prose-pre:overflow-x-auto prose-code:break-words sm:prose-lg
           prose-headings:font-bold
           prose-a:text-blue-600 prose-a:underline
           prose-strong:font-semibold
@@ -180,14 +200,7 @@ export default async function BlogPostPage({ params }: Props) {
             <h2 className="mb-6 text-xl font-bold">Похожие статьи</h2>
             <div className="grid gap-6 md:grid-cols-3">
               {related.map((relatedPost) => (
-                <Link
-                  key={relatedPost.slug}
-                  href={`/blog/${relatedPost.slug}`}
-                  className="group block rounded-lg border p-4 transition hover:shadow-sm"
-                >
-                  <h3 className="mb-2 font-medium transition group-hover:text-blue-600">{relatedPost.title}</h3>
-                  <p className="line-clamp-2 text-sm text-gray-500">{relatedPost.excerpt}</p>
-                </Link>
+                <BlogPostCard key={relatedPost.slug} post={relatedPost} />
               ))}
             </div>
           </div>

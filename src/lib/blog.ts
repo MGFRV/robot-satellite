@@ -3,6 +3,8 @@ import path from 'node:path';
 
 import matter from 'gray-matter';
 
+import { BLOG_IMAGE_PLACEHOLDER, withS3BaseUrl } from '@/lib/assets';
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -17,7 +19,9 @@ export type BlogPostMeta = Omit<BlogPost, 'content'>;
 
 const BLOG_DIR = path.join(process.cwd(), 'content', 'blog');
 
-function readAllPostData(): BlogPost[] {
+let postsCache: BlogPost[] | null = null;
+
+function loadAllPostData(): BlogPost[] {
   const files = fs.readdirSync(BLOG_DIR).filter((file) => file.endsWith('.mdx'));
 
   const posts = files.map((file) => {
@@ -32,14 +36,22 @@ function readAllPostData(): BlogPost[] {
       excerpt: String(data.excerpt ?? ''),
       tags: Array.isArray(data.tags) ? data.tags.map((tag) => String(tag)) : [],
       coverImage:
-        typeof data.coverImage === 'string' && data.coverImage.trim().length > 0
-          ? data.coverImage
-          : 'https://storage.yandexcloud.net/rbstorage/products/blog/placeholder.webp',
+        typeof data.coverImage === 'string' && data.coverImage.trim().length > 0 && !data.coverImage.includes('ваш-бакет')
+          ? withS3BaseUrl(data.coverImage, '/products/blog/placeholder.webp')
+          : BLOG_IMAGE_PLACEHOLDER,
       content,
     } satisfies BlogPost;
   });
 
   return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+function readAllPostData(): BlogPost[] {
+  if (!postsCache) {
+    postsCache = loadAllPostData();
+  }
+
+  return postsCache;
 }
 
 export function getAllPosts(): BlogPostMeta[] {

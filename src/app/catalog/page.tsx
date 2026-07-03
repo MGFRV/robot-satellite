@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { CatalogClient } from '@/components/CatalogClient';
-import { getAllProducts, getCategories } from '@/lib/products';
+import { getCatalogProducts, getCategories } from '@/lib/products';
 import { searchProducts } from '@/lib/search';
 
 type CatalogPageProps = {
@@ -16,7 +16,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
   const searchQuery = params.search?.trim() ?? '';
   const categoryQuery = params.category?.trim() ?? '';
 
-  const products = getAllProducts();
+  const products = getCatalogProducts();
   const categories = getCategories();
 
   const searchResultSlugs = searchQuery.length > 0 ? new Set(searchProducts(searchQuery).map((item) => item.slug)) : null;
