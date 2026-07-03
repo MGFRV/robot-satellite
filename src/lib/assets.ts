@@ -17,8 +17,12 @@ function joinS3Path(pathname: string): string {
   return `${s3BaseUrl}${encodePathname(normalizedPath)}`;
 }
 
+export function isExternalStorageImage(src: unknown): boolean {
+  return typeof src === 'string' && src.startsWith('https://storage.yandexcloud.net/');
+}
+
 export const PRODUCT_IMAGE_PLACEHOLDER = joinS3Path('/products/placeholder.webp');
-export const BLOG_IMAGE_PLACEHOLDER = joinS3Path('/products/blog/placeholder.webp');
+export const BLOG_IMAGE_PLACEHOLDER = joinS3Path('/blog/placeholder.webp');
 
 export function withS3BaseUrl(url: string | undefined, fallbackPath: string): string {
   if (!url || url.trim().length === 0) {

@@ -9,7 +9,7 @@ import * as runtime from 'react/jsx-runtime';
 import remarkGfm from 'remark-gfm';
 
 import { BlogPostCard } from '@/components/BlogPostCard';
-import { BLOG_IMAGE_PLACEHOLDER } from '@/lib/assets';
+import { BLOG_IMAGE_PLACEHOLDER, isExternalStorageImage } from '@/lib/assets';
 import { formatDate, getAllSlugs, getPostBySlug, getRelatedPosts } from '@/lib/blog';
 
 interface Props {
@@ -164,6 +164,7 @@ export default async function BlogPostPage({ params }: Props) {
             priority
             sizes="(min-width: 768px) 768px, 100vw"
             className="object-cover"
+            unoptimized={isExternalStorageImage(post.coverImage || BLOG_IMAGE_PLACEHOLDER)}
           />
         </div>
 
@@ -184,12 +185,12 @@ export default async function BlogPostPage({ params }: Props) {
         <div
           className="prose prose-slate max-w-none break-words prose-pre:max-w-full prose-pre:overflow-x-auto prose-code:break-words sm:prose-lg
           prose-headings:font-bold
-          prose-a:text-blue-600 prose-a:underline
+          prose-a:text-[#F97316] prose-a:underline
           prose-strong:font-semibold
           prose-table:border-collapse
           prose-th:border prose-th:border-gray-300 prose-th:bg-gray-50 prose-th:px-3 prose-th:py-2 prose-th:text-left
           prose-td:border prose-td:border-gray-300 prose-td:px-3 prose-td:py-2
-          prose-blockquote:rounded-r-lg prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50
+          prose-blockquote:rounded-r-lg prose-blockquote:border-l-4 prose-blockquote:border-[#F97316] prose-blockquote:bg-orange-50
           prose-img:rounded-lg"
         >
           <MDXContent />

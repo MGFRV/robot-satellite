@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Статьи о промышленной робототехнике, обслуживании и запчастях.',
 };
 
-const POSTS_PER_PAGE = 10;
+const POSTS_PER_PAGE = 9;
 
 type BlogPageProps = {
   searchParams?: Promise<{
