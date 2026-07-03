@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 };
 
 const POSTS_PER_PAGE = 9;
+const BLOG_GRID_COLUMNS = 3;
 
 type BlogPageProps = {
   searchParams?: Promise<{
@@ -38,6 +39,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const currentPage = getPageNumber(params.page, totalPages);
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
   const visiblePosts = posts.slice(startIndex, startIndex + POSTS_PER_PAGE);
+  const fillerCards = (BLOG_GRID_COLUMNS - (visiblePosts.length % BLOG_GRID_COLUMNS)) % BLOG_GRID_COLUMNS;
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 sm:py-12">
@@ -51,6 +53,9 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {visiblePosts.map((post) => (
           <BlogPostCard key={post.slug} post={post} />
+        ))}
+        {Array.from({ length: fillerCards }, (_, index) => (
+          <div key={`blog-filler-${index}`} aria-hidden="true" className="hidden lg:block" />
         ))}
       </div>
 

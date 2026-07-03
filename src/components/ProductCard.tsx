@@ -1,10 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { AddToCartButton } from '@/components/AddToCartButton';
+import { FallbackImage } from '@/components/FallbackImage';
 import { RFQForm } from '@/components/RFQForm';
 import { isExternalStorageImage, PRODUCT_IMAGE_PLACEHOLDER } from '@/lib/assets';
 import { formatProductPrice } from '@/lib/product-format';
@@ -15,7 +15,8 @@ type ProductCardProps = {
 };
 
 export function ProductCard({ product }: ProductCardProps) {
-  const safeImage = product.images[0] ?? PRODUCT_IMAGE_PLACEHOLDER;
+  const safeImages = product.images.length > 0 ? product.images : [PRODUCT_IMAGE_PLACEHOLDER];
+  const safeImage = safeImages[0] ?? PRODUCT_IMAGE_PLACEHOLDER;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const topSpecs = Object.entries(product.specs ?? {}).filter(([, value]) => String(value).trim().length > 0).slice(0, 2);
@@ -34,8 +35,9 @@ export function ProductCard({ product }: ProductCardProps) {
         }}
         className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
       >
-        <Image
+        <FallbackImage
           src={safeImage}
+          fallbackSrc={[...safeImages.slice(1), PRODUCT_IMAGE_PLACEHOLDER]}
           alt={product.title}
           width={640}
           height={420}

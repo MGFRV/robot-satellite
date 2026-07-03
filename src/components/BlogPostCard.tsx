@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
+import { FallbackImage } from '@/components/FallbackImage';
 import { BLOG_IMAGE_PLACEHOLDER, isExternalStorageImage } from '@/lib/assets';
 import { formatBlogDate, type BlogPostMeta } from '@/lib/blog';
 
@@ -15,8 +15,9 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
     <article className="h-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:shadow-md">
       <Link href={`/blog/${post.slug}`} className="group flex h-full flex-col">
         <div className="relative aspect-video overflow-hidden bg-slate-100">
-          <Image
+          <FallbackImage
             src={coverImage}
+            fallbackSrc={BLOG_IMAGE_PLACEHOLDER}
             alt={post.title}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"

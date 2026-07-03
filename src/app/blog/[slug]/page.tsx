@@ -1,14 +1,15 @@
 import { compile, run } from '@mdx-js/mdx';
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import type { ComponentType } from 'react';
+import type { ComponentType, ElementType } from 'react';
 import rehypeSlug from 'rehype-slug';
 import * as runtime from 'react/jsx-runtime';
 import remarkGfm from 'remark-gfm';
 
+import { BlogMdxImage } from '@/components/BlogMdxImage';
 import { BlogPostCard } from '@/components/BlogPostCard';
+import { FallbackImage } from '@/components/FallbackImage';
 import { BLOG_IMAGE_PLACEHOLDER, isExternalStorageImage } from '@/lib/assets';
 import { formatDate, getAllSlugs, getPostBySlug, getRelatedPosts } from '@/lib/blog';
 
@@ -61,7 +62,9 @@ function rehypeScrollableTables() {
   return wrapTablesInScrollableContainer;
 }
 
-const mdxComponentCache = new Map<string, Promise<ComponentType>>();
+type MDXComponent = ComponentType<{ components?: Record<string, ElementType> }>;
+
+const mdxComponentCache = new Map<string, Promise<MDXComponent>>();
 
 async function compileMDX(source: string) {
   const code = String(
@@ -77,7 +80,7 @@ async function compileMDX(source: string) {
     baseUrl: new URL(`file://${process.cwd()}/`),
   });
 
-  return MDXContent as ComponentType;
+  return MDXContent as MDXComponent;
 }
 
 async function renderMDX(slug: string, source: string) {
@@ -157,8 +160,9 @@ export default async function BlogPostPage({ params }: Props) {
         </nav>
 
         <div className="relative mb-8 aspect-video overflow-hidden rounded-xl">
-          <Image
+          <FallbackImage
             src={post.coverImage || BLOG_IMAGE_PLACEHOLDER}
+            fallbackSrc={BLOG_IMAGE_PLACEHOLDER}
             alt={post.title}
             fill
             priority
@@ -193,7 +197,7 @@ export default async function BlogPostPage({ params }: Props) {
           prose-blockquote:rounded-r-lg prose-blockquote:border-l-4 prose-blockquote:border-[#F97316] prose-blockquote:bg-orange-50
           prose-img:rounded-lg"
         >
-          <MDXContent />
+          <MDXContent components={{ img: BlogMdxImage }} />
         </div>
 
         {related.length > 0 && (
