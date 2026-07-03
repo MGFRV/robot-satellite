@@ -34,7 +34,14 @@ export function ProductCard({ product }: ProductCardProps) {
         }}
         className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
       >
-        <Image src={safeImage} alt={product.title} width={640} height={420} className="h-52 w-full object-cover" />
+        <Image
+          src={safeImage}
+          alt={product.title}
+          width={640}
+          height={420}
+          sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="h-52 w-full object-cover"
+        />
 
         <div className="flex flex-1 flex-col gap-3 p-4">
           <div>

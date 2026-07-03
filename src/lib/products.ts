@@ -19,6 +19,9 @@ export type Product = {
 
 const productsDirectory = path.join(process.cwd(), 'content', 'products');
 
+let productsCache: Product[] | null = null;
+let categoriesCache: string[] | null = null;
+
 function normalizeDescription(description: string): string {
   const marker = 'ООО «Эффективное производство»';
   const markerIndex = description.indexOf(marker);
@@ -85,7 +88,7 @@ function normalizeProduct(product: Product): Product {
   };
 }
 
-export function getAllProducts(): Product[] {
+function readProducts(): Product[] {
   const files = fs.readdirSync(productsDirectory).filter((file) => file.endsWith('.json'));
 
   return files
@@ -98,12 +101,24 @@ export function getAllProducts(): Product[] {
     .sort((a, b) => (a.title ?? '').localeCompare(b.title ?? '', 'ru-RU'));
 }
 
+export function getAllProducts(): Product[] {
+  if (!productsCache) {
+    productsCache = readProducts();
+  }
+
+  return productsCache;
+}
+
 export function getProductBySlug(slug: string): Product | null {
   const product = getAllProducts().find((item) => item.slug === slug);
   return product ?? null;
 }
 
 export function getCategories(): string[] {
-  const categories = new Set(getAllProducts().map((product) => product.category));
-  return [...categories].sort((a, b) => a.localeCompare(b, 'ru-RU'));
+  if (!categoriesCache) {
+    const categories = new Set(getAllProducts().map((product) => product.category));
+    categoriesCache = [...categories].sort((a, b) => a.localeCompare(b, 'ru-RU'));
+  }
+
+  return categoriesCache;
 }
