@@ -1,14 +1,22 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { AddToCartButton } from '@/components/AddToCartButton';
 import { FallbackImage } from '@/components/FallbackImage';
-import { RFQForm } from '@/components/RFQForm';
-import { isExternalStorageImage, PRODUCT_IMAGE_PLACEHOLDER } from '@/lib/assets';
+import { PRODUCT_IMAGE_PLACEHOLDER } from '@/lib/assets';
 import { formatProductPrice } from '@/lib/product-format';
 import type { CatalogProduct } from '@/lib/products';
+
+const RFQForm = dynamic(() => import('@/components/RFQForm').then((module) => module.RFQForm), {
+  loading: () => (
+    <div className="rounded-xl border border-slate-200 bg-white p-5 text-sm text-slate-600">
+      Загружаем форму запроса…
+    </div>
+  ),
+});
 
 type ProductCardProps = {
   product: CatalogProduct;
@@ -43,7 +51,6 @@ export function ProductCard({ product }: ProductCardProps) {
           height={420}
           sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="h-52 w-full object-cover"
-          unoptimized={isExternalStorageImage(safeImage)}
         />
 
         <div className="flex flex-1 flex-col gap-3 p-4">
