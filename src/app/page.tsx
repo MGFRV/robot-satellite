@@ -1,9 +1,15 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { ProductCard } from '@/components/ProductCard';
 import { RFQForm } from '@/components/RFQForm';
 import { getAllProducts } from '@/lib/products';
+
+export const metadata: Metadata = {
+  title: 'Щупы Renishaw, стилусы и датчики для ЧПУ с доставкой',
+  description: 'Каталог оригинальных щупов, стилусов, датчиков и комплектующих Renishaw для станков с ЧПУ. Подберем позицию по артикулу или фото маркировки.',
+};
 
 const processSteps = [
   {
