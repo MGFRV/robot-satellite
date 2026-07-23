@@ -43,5 +43,5 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "
             ln -sfn $RELEASE_DIR /var/www/schupy/current &&
             cd /var/www/schupy/releases && ls -t | tail -n +6 | xargs -r rm -rf &&
-            pm2 restart schupy || pm2 start /var/www/schupy/current/server.js --name schupy --env PORT=3001
+            pm2 restart schupy --update-env || pm2 start /var/www/schupy/ecosystem.config.js
           "
