@@ -1,0 +1,47 @@
+name: Deploy schupy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_S3_BASE_URL: https://storage.yandexcloud.net/rbstorage
+      NEXT_PUBLIC_SITE_URL: https://schupy.ru
+      NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: 5e837837-b769-4e1a-bb18-2d3fbe7a3a9b
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Assemble standalone bundle
+        run: |
+          cp -r public .next/standalone/public
+          cp -r .next/static .next/standalone/.next/static
+
+      - name: Prepare SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to VPS
+        run: |
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+          RELEASE_DIR=/var/www/schupy/releases/$TIMESTAMP
+          ssh -i ~/.ssh/id_ed25519 ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "mkdir -p $RELEASE_DIR"
+          rsync -avz --delete -e "ssh -i ~/.ssh/id_ed25519" .next/standalone/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:$RELEASE_DIR/
+          ssh -i ~/.ssh/id_ed25519 ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "
+            ln -sfn $RELEASE_DIR /var/www/schupy/current &&
+            cd /var/www/schupy/releases && ls -t | tail -n +6 | xargs -r rm -rf &&
+            pm2 restart schupy || pm2 start /var/www/schupy/current/server.js --name schupy --env PORT=3001
+          "
