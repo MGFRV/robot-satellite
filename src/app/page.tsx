@@ -37,7 +37,19 @@ function formatPositions(count: number): string {
 
 export default function HomePage() {
   const products = getAllProducts();
-  const latestProducts = products.slice(0, 8);
+  const frequentlyRequestedSlugs = [
+    'datchik-renishaw-omp60-a-4038-0001',
+    'datchik-renishaw-omp40-2-a-4071-2001',
+    'omp600-datchik',
+    'komplekt-datchikov-renishaw-opticheskij-datchik-omp60-opticheskij-datchik-ots-diskovyj-stilus-i-komplekt-opticheskogo-interfejsa-priemnika-omi-2t-8-m-renishaw',
+    'ots-datchik',
+    'komplekt-datchika-ts27r-datchik-ts27r-s-diskovym-stilusom-i-interfejsom-mi-8-4-renishaw',
+    'golovka-renishaw-rp3-a-2197-0049',
+    'predohranitel-renishaw-m4-l15mm-a-5004-7443',
+  ];
+  const frequentlyRequestedProducts = frequentlyRequestedSlugs
+    .map((slug) => products.find((product) => product.slug === slug))
+    .filter((product): product is NonNullable<typeof product> => Boolean(product));
 
   const topCategories = [...products.reduce((acc, product) => {
     const current = acc.get(product.category) ?? 0;
@@ -157,7 +169,7 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {latestProducts.map((product) => (
+          {frequentlyRequestedProducts.map((product) => (
             <ProductCard key={product.slug} product={product} />
           ))}
         </div>
