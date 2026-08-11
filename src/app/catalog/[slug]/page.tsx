@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   }
 
   return {
-    title: `${product.title} | ${product.article}`,
-    description: product.description,
+    title: product.seoTitle ? { absolute: product.seoTitle } : `${product.title} | ${product.article}`,
+    description: product.metaDescription ?? product.description,
   };
 }
 
