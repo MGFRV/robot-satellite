@@ -13,6 +13,8 @@ export type Product = {
   category: string;
   brand: string;
   description: string;
+  seoTitle?: string;
+  metaDescription?: string;
   specs: Record<string, string>;
   images: string[];
 };
