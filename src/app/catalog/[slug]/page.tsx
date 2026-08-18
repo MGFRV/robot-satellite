@@ -62,7 +62,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <ProductGallery title={product.title} images={product.images} />
 
         <div className="min-w-0 space-y-4">
-          <p className="text-sm font-medium text-slate-500">Бренд: Renishaw</p>
+          <p className="text-sm font-medium text-slate-500">Бренд: {product.brand}</p>
           <h1 className="break-words text-3xl font-bold text-slate-900">{product.title}</h1>
           <dl className="space-y-2 text-sm text-slate-700">
             <div className="flex gap-2">
