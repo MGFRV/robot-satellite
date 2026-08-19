@@ -1,14 +1,14 @@
 {
   "title": "TL Micro лазерная система для наладки инструмента HEIDENHAIN",
   "slug": "tl-micro",
-  "article": "A-2197-0049",
+  "article": "HH-TL-MICRO",
   "price": null,
   "category": "Запчасти и комплектующие",
   "brand": "Heidenhain",
   "description": "Лазерная система TL Micro HEIDENHAIN — бесконтактный лазерный контроль инструмента: измеряет длину, диаметр и форму режущей кромки на рабочей скорости вращения, без остановки и касания инструмента. Подходит для мелкого и хрупкого инструмента, который контактный щуп может повредить при касании. Минимальный обнаруживаемый размер Ø0,1 мм, повторяемость 1 мкм.",
   "specs": {
     "Производитель": "Heidenhain",
-    "Артикул": "A-2197-0049",
+    "Артикул": "HH-TL-MICRO",
     "Тип": "Запчасть",
     "Состояние": "Новое",
     "Наличие": "Под заказ"
@@ -20,6 +20,6 @@
     "https://storage.yandexcloud.net/rbstorage/products/heidenhain/tl-micro/4.webp",
     "https://storage.yandexcloud.net/rbstorage/products/heidenhain/tl-micro/5.webp"
   ],
-  "seoTitle": "Лазерная система TL Micro HEIDENHAIN A-2197-0049 | ЩУПЫ.РУ",
+  "seoTitle": "Лазерная система TL Micro HEIDENHAIN HH-TL-MICRO | ЩУПЫ.РУ",
   "metaDescription": "Лазерная система TL Micro HEIDENHAIN для ЧПУ. Под заказ. Уточните наличие, сроки поставки и получите консультацию по совместимости с вашим оборудованием."
 }

@@ -1,14 +1,14 @@
 {
   "title": "TL Nano лазерная система для наладки инструмента HEIDENHAIN",
   "slug": "tl-nano",
-  "article": "A-5500-1600",
+  "article": "HH-TL-NANO",
   "price": null,
   "category": "Запчасти и комплектующие",
   "brand": "Heidenhain",
   "description": "Лазерная система TL Nano HEIDENHAIN — более точная версия в линейке TL: минимальный обнаруживаемый размер Ø0,03 мм и повторяемость 0,2 мкм (точнее TL Micro: Ø0,1 мм / 1 мкм). Тот же принцип — бесконтактный лазерный контроль инструмента на рабочей скорости вращения, без риска повредить мелкий или хрупкий инструмент касанием.",
   "specs": {
     "Производитель": "Heidenhain",
-    "Артикул": "A-5500-1600",
+    "Артикул": "HH-TL-NANO",
     "Тип": "Запчасть",
     "Состояние": "Новое",
     "Наличие": "Под заказ"
@@ -20,6 +20,6 @@
     "https://storage.yandexcloud.net/rbstorage/products/heidenhain/tl-nano/4.webp",
     "https://storage.yandexcloud.net/rbstorage/products/heidenhain/tl-nano/5.webp"
   ],
-  "seoTitle": "Лазерная система TL Nano HEIDENHAIN A-5500-1600 | ЩУПЫ.РУ",
+  "seoTitle": "Лазерная система TL Nano HEIDENHAIN HH-TL-NANO | ЩУПЫ.РУ",
   "metaDescription": "Лазерная система TL Nano HEIDENHAIN для ЧПУ. Под заказ. Уточните наличие, сроки поставки и получите консультацию по совместимости с вашим оборудованием."
 }
