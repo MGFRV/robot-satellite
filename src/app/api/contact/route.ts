@@ -4,6 +4,7 @@ const SMTP_USER = process.env.SMTP_USER ?? 'zakaz@schupy.ru';
 const SMTP_PASSWORD = process.env.SMTP_PASSWORD;
 const CONTACT_TO = process.env.CONTACT_TO ?? SMTP_USER;
 const WEB3FORMS_ACCESS_KEY = process.env.WEB3FORMS_ACCESS_KEY ?? process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://schupy.ru';
 const MAX_BODY_BYTES = 32_000;
 type ContactPayload = Record<string, unknown>;
 
@@ -25,12 +26,14 @@ function parsePayload(body: ContactPayload) {
   const email = textField(body, 'email', 254);
   const phone = textField(body, 'phone', 50);
   const contact = textField(body, 'contact', 254);
+  const contactIsEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
   if (!email && !phone && !contact) throw new Error('Поле contact обязательно');
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error('Некорректный email');
   if (textField(body, 'website', 200)) throw new Error('Spam detected');
   return {
     name,
     email,
+    replyEmail: email || (contactIsEmail ? contact : ''),
     phone,
     contact,
     company: textField(body, 'company', 200),
@@ -63,12 +66,23 @@ function formatCart(cartJson: string) {
   }
 }
 
-async function deliverWithWeb3Forms(subject: string, text: string, email: string) {
+async function deliverWithWeb3Forms(subject: string, text: string, name: string, email: string) {
   if (!WEB3FORMS_ACCESS_KEY) throw new Error('DELIVERY_NOT_CONFIGURED');
   const response = await fetch('https://api.web3forms.com/submit', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ access_key: WEB3FORMS_ACCESS_KEY, subject, from_name: 'Сайт ЩУПЫ.РУ', email, message: text }),
+    headers: {
+      'Content-Type': 'application/json',
+      Origin: SITE_URL,
+      Referer: `${SITE_URL}/`,
+    },
+    body: JSON.stringify({
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject,
+      from_name: 'Сайт ЩУПЫ.РУ',
+      name,
+      email: email || CONTACT_TO,
+      message: text,
+    }),
     signal: AbortSignal.timeout(15_000),
     cache: 'no-store',
   });
@@ -76,7 +90,7 @@ async function deliverWithWeb3Forms(subject: string, text: string, email: string
   if (!response.ok || !result?.success) throw new Error(`WEB3FORMS_FAILED:${result?.message ?? response.status}`);
 }
 
-async function deliverInquiry(subject: string, text: string, email: string) {
+async function deliverInquiry(subject: string, text: string, name: string, email: string) {
   if (SMTP_PASSWORD) {
     try {
       const transporter = nodemailer.createTransport({
@@ -91,7 +105,7 @@ async function deliverInquiry(subject: string, text: string, email: string) {
       console.error('SMTP delivery failed; trying the configured fallback', error);
     }
   }
-  await deliverWithWeb3Forms(subject, text, email);
+  await deliverWithWeb3Forms(subject, text, name, email);
 }
 
 export function GET() {
@@ -128,7 +142,7 @@ export async function POST(request: Request) {
       `Список позиций:\n${formatCart(data.cartJson)}`,
     ].join('\n');
 
-    await deliverInquiry(subject, text, data.email);
+    await deliverInquiry(subject, text, data.name, data.replyEmail);
     return Response.json({ success: true });
   } catch (error) {
     const invalid = error instanceof SyntaxError || (error instanceof Error && /Поле|Некоррект|Spam/.test(error.message));
