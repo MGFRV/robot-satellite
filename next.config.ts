@@ -1,7 +1,10 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
+  // Vercel creates its own serverless output during onBuildComplete. Forcing
+  // standalone there makes the adapter look for a trace file Next 16 no longer
+  // emits in that mode. Keep standalone only for the existing VPS deployment.
+  output: process.env.VERCEL ? undefined : 'standalone',
   poweredByHeader: false,
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
   images: {
