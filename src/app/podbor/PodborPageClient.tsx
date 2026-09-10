@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackGoal } from '@/lib/analytics';
 
 type PodborState = {
   name: string;
@@ -47,6 +48,7 @@ export function PodborPageClient() {
       from_name: 'Сайт ЩУПЫ.РУ',
       ...formState,
       website: '',
+      consent: hasConsent,
     };
 
     try {
@@ -62,6 +64,7 @@ export function PodborPageClient() {
         throw new Error('Ошибка запроса');
       }
 
+      trackGoal('form_podbor_submit');
       setIsSuccess(true);
       setFormState(initialState);
     } catch {
@@ -156,7 +159,7 @@ export function PodborPageClient() {
 
             <label className="flex items-start gap-2 text-sm text-slate-700">
               <input type="checkbox" required checked={hasConsent} onChange={(event) => setHasConsent(event.target.checked)} className="mt-1" />
-              <span>Я согласен на обработку персональных данных согласно <a href="/privacy" className="underline">политике конфиденциальности</a>.</span>
+              <span>Я согласен с <a href="/privacy" className="underline">политикой</a> и <a href="/consent" className="underline">согласием на обработку ПД</a>.</span>
             </label>
 
             <button

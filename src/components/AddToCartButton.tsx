@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import Link from 'next/link';
 
 import {
   INQUIRY_CART_EVENT,
@@ -47,6 +48,15 @@ export function AddToCartButton({ slug, title, article, className, mode = 'compa
       window.removeEventListener('storage', sync);
     };
   }, [slug]);
+
+  useEffect(() => {
+    if (!isConfirmationOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsConfirmationOpen(false);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [isConfirmationOpen]);
 
   const compactButtonClassName =
     className ??
@@ -108,8 +118,14 @@ export function AddToCartButton({ slug, title, article, className, mode = 'compa
 
   const confirmationModal = isConfirmationOpen
     ? createPortal(
-        <div className="fixed inset-0 z-[70] flex items-center justify-center bg-slate-900/70 p-4">
-          <div className="relative w-full max-w-sm bg-white p-7 text-center shadow-xl">
+        <div
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-slate-900/70 p-4"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setIsConfirmationOpen(false);
+          }}
+        >
+          <div className="relative w-full max-w-sm bg-white p-7 text-center shadow-xl" role="dialog" aria-modal="true" aria-labelledby="cart-confirmation-title">
             <button
               type="button"
               aria-label="Закрыть"
@@ -118,14 +134,14 @@ export function AddToCartButton({ slug, title, article, className, mode = 'compa
             >
               ×
             </button>
-            <h2 className="text-lg font-medium text-slate-900">Товар добавлен в заказ</h2>
+            <h2 id="cart-confirmation-title" className="text-lg font-medium text-slate-900">Товар добавлен в заказ</h2>
             <p className="mx-auto mt-3 max-w-64 text-sm text-slate-600">{title}</p>
-            <a
-              href="https://schupy.ru/cart"
+            <Link
+              href="/cart"
               className="mt-5 inline-flex h-11 items-center justify-center rounded bg-orange-500 px-5 text-sm font-semibold text-white hover:bg-orange-600"
             >
               К заказу
-            </a>
+            </Link>
             <button
               type="button"
               onClick={() => setIsConfirmationOpen(false)}

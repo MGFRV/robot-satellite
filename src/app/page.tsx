@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ProductCard } from '@/components/ProductCard';
 import { RFQForm } from '@/components/RFQForm';
 import { getAllProducts } from '@/lib/products';
+import { categoryHref } from '@/lib/categories';
 
 export const metadata: Metadata = {
   title: 'Щупы Renishaw, стилусы и датчики для ЧПУ с доставкой',
@@ -151,7 +152,7 @@ export default function HomePage() {
           {topCategories.map(([category, count]) => (
             <Link
               key={category}
-              href={`/catalog?category=${encodeURIComponent(category)}`}
+              href={categoryHref(category)}
               className="min-h-[104px] rounded-xl border border-black/10 bg-white p-5 transition hover:border-black/20 hover:shadow-sm"
             >
               <p className="text-base font-semibold leading-snug text-[#111110] sm:text-lg">{category}</p>

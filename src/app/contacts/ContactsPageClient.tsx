@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackGoal } from '@/lib/analytics';
 
 import { CONTACT_LINKS } from '@/lib/contact-links';
 
@@ -40,6 +41,7 @@ export function ContactsPageClient() {
           from_name: 'Сайт Renishaw',
           ...formState,
           website: '',
+          consent: hasConsent,
         }),
       });
 
@@ -47,6 +49,7 @@ export function ContactsPageClient() {
         throw new Error('Ошибка отправки');
       }
 
+      trackGoal('form_contacts_submit');
       setStatus('success');
       setFormState(initialFormState);
     } catch {
@@ -134,7 +137,7 @@ export function ContactsPageClient() {
 
         <label className="flex items-start gap-2 text-sm text-slate-700">
           <input type="checkbox" required checked={hasConsent} onChange={(event) => setHasConsent(event.target.checked)} className="mt-1" />
-          <span>Я согласен на обработку персональных данных согласно <a href="/privacy" className="underline">политике конфиденциальности</a>.</span>
+          <span>Я согласен с <a href="/privacy" className="underline">политикой</a> и <a href="/consent" className="underline">согласием на обработку ПД</a>.</span>
         </label>
 
         <button

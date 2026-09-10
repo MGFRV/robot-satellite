@@ -16,7 +16,7 @@ jobs:
     env:
       NEXT_PUBLIC_S3_BASE_URL: https://storage.yandexcloud.net/rbstorage
       NEXT_PUBLIC_SITE_URL: https://schupy.ru
-      NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: 5e837837-b769-4e1a-bb18-2d3fbe7a3a9b
+      WEB3FORMS_ACCESS_KEY: 5e837837-b769-4e1a-bb18-2d3fbe7a3a9b
     steps:
       - uses: actions/checkout@v4
 
@@ -33,6 +33,7 @@ jobs:
         run: |
           cp -r public .next/standalone/public
           cp -r .next/static .next/standalone/.next/static
+          printf 'WEB3FORMS_ACCESS_KEY=%s\n' "$WEB3FORMS_ACCESS_KEY" > .next/standalone/.env
 
       - name: Prepare SSH
         if: github.event_name == 'push'
@@ -53,10 +54,14 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "
             ln -sfn $RELEASE_DIR /var/www/schupy/current &&
             cd /var/www/schupy/releases && ls -t | tail -n +6 | xargs -r rm -rf &&
+            set -a && . $RELEASE_DIR/.env && set +a &&
             pm2 restart schupy --update-env || pm2 start /var/www/schupy/ecosystem.config.js
           "
           for i in {1..10}; do
-            if curl --fail --silent --show-error --max-time 5 https://schupy.ru/ >/dev/null; then exit 0; fi
+            if curl --fail --silent --show-error --max-time 5 https://schupy.ru/ >/dev/null &&
+               curl --fail --silent --show-error --max-time 5 https://schupy.ru/api/contact >/dev/null; then
+              exit 0
+            fi
             sleep 3
           done
           exit 1

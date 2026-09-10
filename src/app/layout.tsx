@@ -6,6 +6,8 @@ import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { StickyContact } from '@/components/StickyContact';
 import { ScrollTopButton } from '@/components/ScrollTopButton';
+import { SITE, SITE_URL } from '@/lib/site';
+import { AnalyticsEvents } from '@/components/AnalyticsEvents';
 
 const siteName = 'ЩУПЫ.РУ — поставка щупов Renishaw, стилусов и датчиков для ЧПУ.';
 const siteDescription = 'ЩУПЫ.РУ — поставка щупов Renishaw, стилусов, датчиков и комплектующих для ЧПУ.';
@@ -33,12 +35,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organization = { '@context': 'https://schema.org', '@type': 'Organization', name: SITE.brand, legalName: SITE.legalName, url: SITE_URL, logo: `${SITE_URL}/logo-schupy-horiz.png`, telephone: SITE.phone, email: SITE.email, taxID: SITE.taxId, address: { '@type': 'PostalAddress', streetAddress: SITE.address, addressCountry: 'RU' } };
   return (
     <html lang="ru">
       <head>
         <meta name="mailru-domain" content="iJPg6eSwtLxzE8Kl" />
       </head>
       <body className="flex min-h-screen flex-col">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />
+        <AnalyticsEvents />
         <Header />
         <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 pb-24 md:pb-10">{children}</main>
         <Footer />
@@ -66,6 +71,8 @@ export default function RootLayout({
             });
           `}
         </Script>
+        {process.env.NEXT_PUBLIC_GA_ID ? <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} strategy="afterInteractive" /> : null}
+        {process.env.NEXT_PUBLIC_GA_ID ? <Script id="google-analytics" strategy="afterInteractive">{`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${process.env.NEXT_PUBLIC_GA_ID}');`}</Script> : null}
         <noscript>
           <div>
             <img src="https://mc.yandex.ru/watch/109048844" style={{ position: 'absolute', left: '-9999px' }} alt="" />
