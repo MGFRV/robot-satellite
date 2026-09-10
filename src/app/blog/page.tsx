@@ -4,11 +4,6 @@ import Link from 'next/link';
 import { BlogPostCard } from '@/components/BlogPostCard';
 import { getAllPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: 'Блог',
-  description: 'Статьи о промышленной робототехнике, обслуживании и запчастях.',
-};
-
 const POSTS_PER_PAGE = 9;
 const BLOG_GRID_COLUMNS = 3;
 
@@ -17,6 +12,11 @@ type BlogPageProps = {
     page?: string;
   }>;
 };
+
+export async function generateMetadata({ searchParams }: BlogPageProps): Promise<Metadata> {
+  const page = Math.max(1, Number((await searchParams)?.page || 1));
+  return { title: `Блог${page > 1 ? ` — страница ${page}` : ''}`, description: 'Статьи об измерительных щупах, промышленной робототехнике, обслуживании и запчастях.', alternates: { canonical: page > 1 ? `/blog?page=${page}` : '/blog' } };
+}
 
 function getPageNumber(value: string | undefined, totalPages: number): number {
   const parsed = Number(value ?? '1');

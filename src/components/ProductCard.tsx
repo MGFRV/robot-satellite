@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { AddToCartButton } from '@/components/AddToCartButton';
 import { FallbackImage } from '@/components/FallbackImage';
@@ -29,6 +29,15 @@ export function ProductCard({ product }: ProductCardProps) {
   const router = useRouter();
   const topSpecs = Object.entries(product.specs ?? {}).filter(([, value]) => String(value).trim().length > 0).slice(0, 2);
   const hasPrice = typeof product.price === 'number';
+
+  useEffect(() => {
+    if (!isModalOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsModalOpen(false);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [isModalOpen]);
 
   return (
     <>
@@ -101,8 +110,14 @@ export function ProductCard({ product }: ProductCardProps) {
       </article>
 
       {isModalOpen ? (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900/60 p-4">
-          <div className="max-h-[90vh] w-full max-w-2xl overflow-auto rounded-xl bg-white p-4">
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900/60 p-4"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setIsModalOpen(false);
+          }}
+        >
+          <div className="max-h-[90vh] w-full max-w-2xl overflow-auto rounded-xl bg-white p-4" role="dialog" aria-modal="true" aria-label="Запросить цену и наличие">
             <div className="mb-3 flex justify-end">
               <button
                 type="button"
