@@ -1,8 +1,14 @@
 name: Deploy schupy
 
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
+
+concurrency:
+  group: production-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -20,6 +26,7 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
+      - run: npm run check
       - run: npm run build
 
       - name: Assemble standalone bundle
@@ -28,6 +35,7 @@ jobs:
           cp -r .next/static .next/standalone/.next/static
 
       - name: Prepare SSH
+        if: github.event_name == 'push'
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
@@ -35,7 +43,9 @@ jobs:
           ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy to VPS
+        if: github.event_name == 'push'
         run: |
+          set -euo pipefail
           TIMESTAMP=$(date +%Y%m%d%H%M%S)
           RELEASE_DIR=/var/www/schupy/releases/$TIMESTAMP
           ssh -i ~/.ssh/id_ed25519 ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "mkdir -p $RELEASE_DIR"
@@ -45,3 +55,8 @@ jobs:
             cd /var/www/schupy/releases && ls -t | tail -n +6 | xargs -r rm -rf &&
             pm2 restart schupy --update-env || pm2 start /var/www/schupy/ecosystem.config.js
           "
+          for i in {1..10}; do
+            if curl --fail --silent --show-error --max-time 5 https://schupy.ru/ >/dev/null; then exit 0; fi
+            sleep 3
+          done
+          exit 1

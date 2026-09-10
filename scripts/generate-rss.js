@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://ваш-домен.ru';
-const SITE_NAME = 'Название сайта';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://schupy.ru';
+const SITE_NAME = 'ЩУПЫ.РУ';
 
 const blogDir = path.join(process.cwd(), 'content', 'blog');
 const files = fs.readdirSync(blogDir).filter((file) => file.endsWith('.mdx'));

@@ -27,6 +27,7 @@ export function CartPageClient() {
   const [formState, setFormState] = useState({ name: '', company: '', email: '', phone: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasConsent, setHasConsent] = useState(false);
 
   useEffect(() => {
     const sync = () => setItems(getInquiryCart());
@@ -78,6 +79,7 @@ export function CartPageClient() {
             .map((item) => `- ${item.article} | ${item.title} | Кол-во: ${item.quantity}`)
             .join('\n')}`,
           cart_json: JSON.stringify(cartPayload),
+          website: '',
         }),
       });
 
@@ -222,6 +224,11 @@ export function CartPageClient() {
             />
 
             <input type="hidden" name="cart_json" value={JSON.stringify(cartPayload)} readOnly />
+
+            <label className="flex items-start gap-2 text-sm text-slate-700">
+              <input type="checkbox" required checked={hasConsent} onChange={(event) => setHasConsent(event.target.checked)} className="mt-1" />
+              <span>Я согласен на обработку персональных данных согласно <Link href="/privacy" className="underline">политике конфиденциальности</Link>.</span>
+            </label>
 
             {status === 'success' ? <p className="text-sm text-emerald-700">Запрос отправлен успешно. Список очищен.</p> : null}
             {status === 'error' ? (

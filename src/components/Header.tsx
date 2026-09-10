@@ -64,13 +64,15 @@ export function Header() {
           className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-300 text-slate-700 lg:hidden"
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           aria-label="Открыть меню"
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-menu"
         >
           ☰
         </button>
       </div>
 
       {isMobileMenuOpen ? (
-        <div className="border-t border-slate-200 bg-white lg:hidden">
+        <div id="mobile-menu" className="border-t border-slate-200 bg-white lg:hidden">
           <nav className="mx-auto w-full max-w-6xl px-4 py-3">
             <ul className="space-y-2 text-sm font-medium text-slate-700">
               {primaryNavItems.map((item) => (

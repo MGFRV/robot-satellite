@@ -25,6 +25,7 @@ export function Footer() {
             <li><Link href="/blog" className="hover:text-slate-900">Блог</Link></li>
             <li><Link href="/podbor" className="hover:text-slate-900">Помочь подобрать</Link></li>
             <li><Link href="/contacts" className="hover:text-slate-900">Контакты</Link></li>
+            <li><Link href="/privacy" className="hover:text-slate-900">Политика конфиденциальности</Link></li>
           </ul>
         </section>
 

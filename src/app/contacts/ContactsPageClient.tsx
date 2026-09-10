@@ -21,6 +21,7 @@ export function ContactsPageClient() {
   const [formState, setFormState] = useState<ContactFormState>(initialFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState('');
+  const [hasConsent, setHasConsent] = useState(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -38,6 +39,7 @@ export function ContactsPageClient() {
               subject: 'Запрос цены с сайта',
           from_name: 'Сайт Renishaw',
           ...formState,
+          website: '',
         }),
       });
 
@@ -129,6 +131,11 @@ export function ContactsPageClient() {
         {status === 'error' ? (
           <p className="text-sm text-rose-600">Ошибка отправки. Напишите нам напрямую: zakaz@schupy.ru или звоните +7 961 137-59-74</p>
         ) : null}
+
+        <label className="flex items-start gap-2 text-sm text-slate-700">
+          <input type="checkbox" required checked={hasConsent} onChange={(event) => setHasConsent(event.target.checked)} className="mt-1" />
+          <span>Я согласен на обработку персональных данных согласно <a href="/privacy" className="underline">политике конфиденциальности</a>.</span>
+        </label>
 
         <button
           type="submit"
