@@ -27,6 +27,7 @@ export function CartPageClient() {
   const [isHydrated, setIsHydrated] = useState(false);
   const [formState, setFormState] = useState({ name: '', company: '', email: '', phone: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasConsent, setHasConsent] = useState(false);
 
@@ -64,6 +65,7 @@ export function CartPageClient() {
 
     setIsSubmitting(true);
     setStatus('idle');
+    setErrorMessage('');
 
     try {
       const response = await fetch('/api/contact', {
@@ -76,17 +78,16 @@ export function CartPageClient() {
           company: formState.company,
           email: formState.email,
           phone: formState.phone,
-          message: `${formState.message}\n\nСписок позиций:\n${cartPayload
-            .map((item) => `- ${item.article} | ${item.title} | Кол-во: ${item.quantity}`)
-            .join('\n')}`,
+          message: formState.message,
           cart_json: JSON.stringify(cartPayload),
           website: '',
           consent: hasConsent,
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('Ошибка');
+      const result = await response.json().catch(() => null) as { success?: boolean; error?: string } | null;
+      if (!response.ok || !result?.success) {
+        throw new Error(result?.error || 'Сервис не вернул подтверждение отправки.');
       }
 
       trackGoal('form_cart_submit');
@@ -94,8 +95,9 @@ export function CartPageClient() {
       setItems([]);
       setFormState({ name: '', company: '', email: '', phone: '', message: '' });
       setStatus('success');
-    } catch {
+    } catch (error) {
       setStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Не удалось отправить запрос.');
     } finally {
       setIsSubmitting(false);
     }
@@ -236,7 +238,7 @@ export function CartPageClient() {
 
             {status === 'success' ? <p className="text-sm text-emerald-700">Запрос отправлен успешно. Список очищен.</p> : null}
             {status === 'error' ? (
-              <p className="text-sm text-rose-600">Ошибка отправки. Напишите нам напрямую: zakaz@schupy.ru</p>
+              <p className="text-sm text-rose-600">{errorMessage} Повторите попытку или напишите нам напрямую: zakaz@schupy.ru.</p>
             ) : null}
 
             <button
