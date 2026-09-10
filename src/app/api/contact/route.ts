@@ -140,6 +140,10 @@ export async function POST(request: Request) {
       return Response.json({ success: false, error: 'Payload too large' }, { status: 413 });
     }
     const data = parsePayload(JSON.parse(raw) as ContactPayload);
+    if (!SMTP_PASSWORD) {
+      console.error('Contact form is unavailable: SMTP is not configured');
+      return Response.json({ success: false, error: 'Service temporarily unavailable' }, { status: 503 });
+    }
     const subject = data.productSku ? `Запрос цены: ${data.productSku}` : data.cartJson ? 'Запрос цены по списку' : 'Новая заявка с сайта';
     const text = [
       `Имя: ${data.name}`, `Компания: ${data.company || '-'}`, `Email: ${data.email}`,

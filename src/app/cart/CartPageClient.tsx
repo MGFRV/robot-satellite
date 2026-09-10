@@ -170,7 +170,8 @@ export function CartPageClient() {
             type="button"
             onClick={() => {
               if (window.confirm('Очистить весь список запроса?')) {
-                clearInquiryCart();
+                trackGoal('form_cart_submit');
+      clearInquiryCart();
                 setItems([]);
               }
             }}
