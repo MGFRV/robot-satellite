@@ -12,6 +12,9 @@ import { BlogPostCard } from '@/components/BlogPostCard';
 import { FallbackImage } from '@/components/FallbackImage';
 import { BLOG_IMAGE_PLACEHOLDER, isExternalStorageImage } from '@/lib/assets';
 import { formatDate, getAllSlugs, getPostBySlug, getRelatedPosts } from '@/lib/blog';
+import { categories } from '@/lib/categories';
+import { getAllProducts } from '@/lib/products';
+import { SITE_URL } from '@/lib/site';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -132,19 +135,24 @@ export default async function BlogPostPage({ params }: Props) {
 
   const MDXContent = await renderMDX(slug, post.content);
   const related = getRelatedPosts(slug, post.tags, 3);
+  const catalogProducts = getAllProducts().filter((product) => post.tags.some((tag) => product.title.toLowerCase().includes(tag.toLowerCase()))).slice(0, 3);
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
     datePublished: post.date,
+    dateModified: post.date,
+    author: { '@type': 'Organization', name: 'ЩУПЫ.РУ' },
     description: post.excerpt,
     image: post.coverImage || BLOG_IMAGE_PLACEHOLDER,
   };
+  const breadcrumbLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Главная', item: SITE_URL }, { '@type': 'ListItem', position: 2, name: 'Блог', item: `${SITE_URL}/blog` }, { '@type': 'ListItem', position: 3, name: post.title, item: `${SITE_URL}/blog/${post.slug}` }] };
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
       <article className="mx-auto min-w-0 max-w-3xl overflow-hidden px-4 py-8 sm:py-12">
         <nav className="mb-6 flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 break-words text-sm text-gray-400">
@@ -171,6 +179,15 @@ export default async function BlogPostPage({ params }: Props) {
             unoptimized={isExternalStorageImage(post.coverImage || BLOG_IMAGE_PLACEHOLDER)}
           />
         </div>
+
+        <section className="mt-12 rounded-xl border bg-slate-50 p-5">
+          <h2 className="text-xl font-bold">Товары и разделы по теме</h2>
+          <ul className="mt-3 list-disc space-y-2 pl-5">
+            <li><Link href={`/catalog/${categories[0].slug}`}>{categories[0].name}</Link></li>
+            <li><Link href={`/catalog/${categories[1].slug}`}>{categories[1].name}</Link></li>
+            {catalogProducts.map(product => <li key={product.slug}><Link href={`/catalog/${product.slug}`}>{product.title}</Link></li>)}
+          </ul>
+        </section>
 
         <h1 className="mb-4 break-words text-3xl font-bold md:text-4xl">{post.title}</h1>
 

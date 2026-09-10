@@ -16,10 +16,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white shadow-sm">
       <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-3 px-4 py-3 md:flex-nowrap">
-        <Link href="/" className="shrink-0" aria-label="ЩУПЫ.РФ — на главную">
+        <Link href="/" className="shrink-0" aria-label="ЩУПЫ.РУ — на главную">
           <img
             src="/logo-schupy-horiz.png"
-            alt="ЩУПЫ.РФ — Купить щупы для ЧПУ от Renishaw и других брендов в РФ"
+            alt="ЩУПЫ.РУ — Купить щупы для ЧПУ от Renishaw и других брендов в РФ"
             width={220}
             height={74}
             className="h-9 w-auto sm:h-10"

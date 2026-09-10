@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "check:content": "node scripts/validate-content.js",
-    "check": "npm run lint && npm run typecheck && npm run check:content"
+    "check": "npm run lint && npm run typecheck && npm run check:content",
+    "audit:baseline": "node scripts/generate-audit-reports.js"
   },
   "dependencies": {
     "@mdx-js/mdx": "^3.1.1",
