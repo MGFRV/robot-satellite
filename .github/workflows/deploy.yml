@@ -25,6 +25,10 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
+      - name: Verify delivery configuration
+        if: github.event_name == 'push'
+        run: test -n "$WEB3FORMS_ACCESS_KEY"
+
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
@@ -64,7 +68,8 @@ jobs:
             trap 'kill \$HEALTH_PID 2>/dev/null || true' EXIT
             for i in \$(seq 1 10); do
               if curl --fail --silent --show-error --max-time 5 http://127.0.0.1:3100/ >/dev/null &&
-                 curl --fail --silent --show-error --max-time 5 http://127.0.0.1:3100/catalog >/dev/null; then
+                 curl --fail --silent --show-error --max-time 5 http://127.0.0.1:3100/catalog >/dev/null &&
+                 curl --fail --silent --show-error --max-time 5 http://127.0.0.1:3100/api/contact >/dev/null; then
                 exit 0
               fi
               sleep 2
@@ -80,7 +85,8 @@ jobs:
           "
           for i in {1..10}; do
             if curl --fail --silent --show-error --max-time 5 https://schupy.ru/ >/dev/null &&
-               curl --fail --silent --show-error --max-time 5 https://schupy.ru/catalog >/dev/null; then
+               curl --fail --silent --show-error --max-time 5 https://schupy.ru/catalog >/dev/null &&
+               curl --fail --silent --show-error --max-time 5 https://schupy.ru/api/contact >/dev/null; then
               exit 0
             fi
             sleep 3
