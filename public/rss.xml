@@ -1,165 +1,886 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Название сайта</title>
-    <link>https://ваш-домен.ru</link>
+    <title>ЩУПЫ.РУ</title>
+    <link>https://schupy.ru</link>
     <description>Блог</description>
     <language>ru</language>
-    <atom:link href="https://ваш-домен.ru/rss.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://schupy.ru/rss.xml" rel="self" type="application/rss+xml"/>
     
   <item>
+    <title><![CDATA[Что прислать поставщику для точного подбора щупа]]></title>
+    <link>https://schupy.ru/blog/dannye-dlya-podbora-schupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/dannye-dlya-podbora-schupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Граммометры для настройки усилия срабатывания измерительного щупа]]></title>
+    <link>https://schupy.ru/blog/grammometr-dlya-schupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/grammometr-dlya-schupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Калибры, кольца и сферы: метрологическое оснащение для щупа ЧПУ]]></title>
+    <link>https://schupy.ru/blog/kalibry-kolca-sfery</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/kalibry-kolca-sfery</guid>
+  </item>
+  <item>
+    <title><![CDATA[Кронштейны и крепления для датчиков привязки инструмента на ЧПУ]]></title>
+    <link>https://schupy.ru/blog/krepleniya-datchikov-privyazki</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/krepleniya-datchikov-privyazki</guid>
+  </item>
+  <item>
+    <title><![CDATA[Болты, винты и крепёж Renishaw: расшифровка артикулов]]></title>
+    <link>https://schupy.ru/blog/krepyozh-renishaw-artikuly</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/krepyozh-renishaw-artikuly</guid>
+  </item>
+  <item>
+    <title><![CDATA[Как определить модель щупа по фото маркировки]]></title>
+    <link>https://schupy.ru/blog/opredelit-schup-po-foto-markirovki</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/opredelit-schup-po-foto-markirovki</guid>
+  </item>
+  <item>
+    <title><![CDATA[Подбор измерительной системы по артикулу]]></title>
+    <link>https://schupy.ru/blog/podbor-izmeritelnoy-sistemi-po-artikulu</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/podbor-izmeritelnoy-sistemi-po-artikulu</guid>
+  </item>
+  <item>
+    <title><![CDATA[Подбор лазерного датчика инструмента под станок]]></title>
+    <link>https://schupy.ru/blog/podbor-lazernogo-datchika</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/podbor-lazernogo-datchika</guid>
+  </item>
+  <item>
+    <title><![CDATA[Как подобрать щуп по модели станка]]></title>
+    <link>https://schupy.ru/blog/podbor-schupa-po-stanku</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/podbor-schupa-po-stanku</guid>
+  </item>
+  <item>
+    <title><![CDATA[Подбор стилуса под конкретный датчик: полный разбор совместимости]]></title>
+    <link>https://schupy.ru/blog/podbor-stilusa-pod-datchik</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/podbor-stilusa-pod-datchik</guid>
+  </item>
+  <item>
+    <title><![CDATA[Погрешность измерения на станке: из чего складывается]]></title>
+    <link>https://schupy.ru/blog/pogreshnost-izmereniya-na-stanke</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/pogreshnost-izmereniya-na-stanke</guid>
+  </item>
+  <item>
+    <title><![CDATA[Поверка измерительных систем на ЧПУ: нужна ли]]></title>
+    <link>https://schupy.ru/blog/poverka-izmeritelnyh-sistem</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/poverka-izmeritelnyh-sistem</guid>
+  </item>
+  <item>
+    <title><![CDATA[Что такое pre-travel щупа и как он влияет на точность измерения]]></title>
+    <link>https://schupy.ru/blog/pre-travel-schupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/pre-travel-schupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Прослеживаемость измерений и сертификаты калибровки]]></title>
+    <link>https://schupy.ru/blog/proslezhivaemost-izmereniy-kalibrovka</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/proslezhivaemost-izmereniy-kalibrovka</guid>
+  </item>
+  <item>
+    <title><![CDATA[Проверка геометрии станка щупом и ballbar]]></title>
+    <link>https://schupy.ru/blog/proverka-geometrii-stanka</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/proverka-geometrii-stanka</guid>
+  </item>
+  <item>
+    <title><![CDATA[Renishaw Ballbar QC20: для чего нужен и как работает]]></title>
+    <link>https://schupy.ru/blog/renishaw-ballbar-qc20-primeneniye</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/renishaw-ballbar-qc20-primeneniye</guid>
+  </item>
+  <item>
+    <title><![CDATA[Совместимость измерительных циклов с вашей стойкой ЧПУ]]></title>
+    <link>https://schupy.ru/blog/sovmestimost-ciklov-izmereniya</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/sovmestimost-ciklov-izmereniya</guid>
+  </item>
+  <item>
+    <title><![CDATA[Совместимость приёмника и щупа по протоколу]]></title>
+    <link>https://schupy.ru/blog/sovmestimost-priemnika-i-schupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/sovmestimost-priemnika-i-schupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Совместимость щупа со стойкой ЧПУ: что проверить]]></title>
+    <link>https://schupy.ru/blog/sovmestimost-schupa-so-stoykoy</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/sovmestimost-schupa-so-stoykoy</guid>
+  </item>
+  <item>
+    <title><![CDATA[Статистический контроль процесса (SPC) на основе измерений]]></title>
+    <link>https://schupy.ru/blog/spc-kontrol-izmereniya</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/spc-kontrol-izmereniya</guid>
+  </item>
+  <item>
+    <title><![CDATA[Влияние температуры цеха на точность измерения]]></title>
+    <link>https://schupy.ru/blog/temperatura-i-tochnost</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/temperatura-i-tochnost</guid>
+  </item>
+  <item>
+    <title><![CDATA[Как доказать точность измерения на станке аудитору]]></title>
+    <link>https://schupy.ru/blog/tochnost-izmereniya-audit</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/tochnost-izmereniya-audit</guid>
+  </item>
+  <item>
+    <title><![CDATA[Поставщик предлагает замену снятой позиции: стоит ли переживать]]></title>
+    <link>https://schupy.ru/blog/zamena-snyatoy-pozicii-schup</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/zamena-snyatoy-pozicii-schup</guid>
+  </item>
+  <item>
+    <title><![CDATA[Уплотнения и защита щупа от СОЖ и стружки]]></title>
+    <link>https://schupy.ru/blog/zaschita-schupa-ot-sozh</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/zaschita-schupa-ot-sozh</guid>
+  </item>
+  <item>
+    <title><![CDATA[Запасные стилусы: как собрать комплект ЗИП]]></title>
+    <link>https://schupy.ru/blog/zip-stilusy-komplekt</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/zip-stilusy-komplekt</guid>
+  </item>
+  <item>
+    <title><![CDATA[Аналоги Renishaw: есть ли достойные замены]]></title>
+    <link>https://schupy.ru/blog/analogi-renishaw</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/analogi-renishaw</guid>
+  </item>
+  <item>
+    <title><![CDATA[Батареи для радиощупов Renishaw: какие нужны и как менять]]></title>
+    <link>https://schupy.ru/blog/batareya-dlya-radioshchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/batareya-dlya-radioshchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Blum-Novotest: обзор измерительных решений для станков с ЧПУ]]></title>
+    <link>https://schupy.ru/blog/blum-novotest-obzor</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/blum-novotest-obzor</guid>
+  </item>
+  <item>
+    <title><![CDATA[Диагностика приёмника измерительной системы щупа]]></title>
+    <link>https://schupy.ru/blog/diagnostika-priemnika</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/diagnostika-priemnika</guid>
+  </item>
+  <item>
+    <title><![CDATA[Heidenhain TS и TT датчики: обзор и отличия]]></title>
+    <link>https://schupy.ru/blog/heidenhain-ts-tt-datchiki</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/heidenhain-ts-tt-datchiki</guid>
+  </item>
+  <item>
+    <title><![CDATA[Hexagon (M&H) измерительные щупы: полный обзор линейки]]></title>
+    <link>https://schupy.ru/blog/hexagon-mh-shchupy</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/hexagon-mh-shchupy</guid>
+  </item>
+  <item>
+    <title><![CDATA[Кабели для проводных датчиков измерения на ЧПУ]]></title>
+    <link>https://schupy.ru/blog/kabeli-dlya-datchikov-izmereniya</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/kabeli-dlya-datchikov-izmereniya</guid>
+  </item>
+  <item>
+    <title><![CDATA[Ложные срабатывания щупа на ЧПУ: причины и устранение]]></title>
+    <link>https://schupy.ru/blog/lozhnye-srabatyvaniya-shchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/lozhnye-srabatyvaniya-shchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Датчики Marposs для контроля на станке: обзор линейки]]></title>
+    <link>https://schupy.ru/blog/marposs-obzor-sistem</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/marposs-obzor-sistem</guid>
+  </item>
+  <item>
+    <title><![CDATA[Модули и платы измерительных систем ЧПУ: что это и как работают]]></title>
+    <link>https://schupy.ru/blog/moduli-izmeritelnyh-sistem</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/moduli-izmeritelnyh-sistem</guid>
+  </item>
+  <item>
+    <title><![CDATA[Нет сигнала от радиощупа: диагностика и устранение]]></title>
+    <link>https://schupy.ru/blog/net-signala-ot-radioshchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/net-signala-ot-radioshchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Проблемы оптической передачи щупа: засветка, грязь, юстировка]]></title>
+    <link>https://schupy.ru/blog/opticheskaya-peredacha-problemy</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/opticheskaya-peredacha-problemy</guid>
+  </item>
+  <item>
+    <title><![CDATA[Помехи радиоканала щупа: причины и решение]]></title>
+    <link>https://schupy.ru/blog/pomehi-radiokanala-shchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/pomehi-radiokanala-shchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Приёмники и интерфейсы: как подобрать к щупу]]></title>
+    <link>https://schupy.ru/blog/priemnik-interfeys-shchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/priemnik-interfeys-shchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Как проверить исправность измерительного щупа]]></title>
+    <link>https://schupy.ru/blog/proverka-ispravnosti-shchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/proverka-ispravnosti-shchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Расшифровка артикулов Renishaw: как читать маркировку]]></title>
+    <link>https://schupy.ru/blog/rasshifrovka-artikulov-renishaw</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/rasshifrovka-artikulov-renishaw</guid>
+  </item>
+  <item>
+    <title><![CDATA[Ремонт или замена щупа: как принять правильное решение]]></title>
+    <link>https://schupy.ru/blog/remont-ili-zamena-shchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/remont-ili-zamena-shchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Renishaw: обзор линейки измерительных систем для ЧПУ]]></title>
+    <link>https://schupy.ru/blog/renishaw-obzor-lineyki</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/renishaw-obzor-lineyki</guid>
+  </item>
+  <item>
+    <title><![CDATA[Renishaw OMP, RMP, OLP: чем отличаются модели щупов]]></title>
+    <link>https://schupy.ru/blog/renishaw-omp-rmp-olp-otlichiya</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/renishaw-omp-rmp-olp-otlichiya</guid>
+  </item>
+  <item>
+    <title><![CDATA[Renishaw RMI, OMI, OSI: приёмники и интерфейсы щупов ЧПУ]]></title>
+    <link>https://schupy.ru/blog/renishaw-rmi-omi-interfeisy</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/renishaw-rmi-omi-interfeisy</guid>
+  </item>
+  <item>
+    <title><![CDATA[Renishaw vs Heidenhain: сравнение датчиков для привязки инструмента на ЧПУ]]></title>
+    <link>https://schupy.ru/blog/renishaw-vs-heidenhain-sravnenie</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/renishaw-vs-heidenhain-sravnenie</guid>
+  </item>
+  <item>
+    <title><![CDATA[Щуп измеряет с погрешностью: поиск причины]]></title>
+    <link>https://schupy.ru/blog/shchup-izmeryaet-s-pogreshnostyu</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/shchup-izmeryaet-s-pogreshnostyu</guid>
+  </item>
+  <item>
+    <title><![CDATA[Щуп не срабатывает: причины и что делать]]></title>
+    <link>https://schupy.ru/blog/shchup-ne-srabatyvaet</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/shchup-ne-srabatyvaet</guid>
+  </item>
+  <item>
+    <title><![CDATA[Замена батарейки в щупе OMP/RMP: пошаговая инструкция]]></title>
+    <link>https://schupy.ru/blog/zamena-batareyki-shchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/zamena-batareyki-shchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Замена мембраны и механизма щупа ЧПУ]]></title>
+    <link>https://schupy.ru/blog/zamena-mehanizma-shchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/zamena-mehanizma-shchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Адаптивная обработка на основе измерений в реальном времени]]></title>
+    <link>https://schupy.ru/blog/adaptivnaya-obrabotka-izmerenie</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/adaptivnaya-obrabotka-izmerenie</guid>
+  </item>
+  <item>
+    <title><![CDATA[Автоматическая коррекция инструмента по результатам измерения]]></title>
+    <link>https://schupy.ru/blog/avtokorrekciya-instrumenta-po-izmereniyu</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/avtokorrekciya-instrumenta-po-izmereniyu</guid>
+  </item>
+  <item>
+    <title><![CDATA[Бесконтактное измерение длины и диаметра инструмента на ЧПУ]]></title>
+    <link>https://schupy.ru/blog/beskontaktnoe-izmerenie-instrumenta</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/beskontaktnoe-izmerenie-instrumenta</guid>
+  </item>
+  <item>
+    <title><![CDATA[Blum Laser Control: обзор и применение на ЧПУ]]></title>
+    <link>https://schupy.ru/blog/blum-laser-control-obzor</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/blum-laser-control-obzor</guid>
+  </item>
+  <item>
+    <title><![CDATA[Циклы измерения для стоек FANUC: как работают]]></title>
+    <link>https://schupy.ru/blog/cikly-izmereniya-fanuc</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/cikly-izmereniya-fanuc</guid>
+  </item>
+  <item>
+    <title><![CDATA[Циклы измерения для Heidenhain (TNC): обзор]]></title>
+    <link>https://schupy.ru/blog/cikly-izmereniya-heidenhain</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/cikly-izmereniya-heidenhain</guid>
+  </item>
+  <item>
+    <title><![CDATA[Измерение биения инструмента лазером на ЧПУ]]></title>
+    <link>https://schupy.ru/blog/izmerenie-bieniya-instrumenta</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/izmerenie-bieniya-instrumenta</guid>
+  </item>
+  <item>
+    <title><![CDATA[Измерение детали в цикле обработки: контроль на лету]]></title>
+    <link>https://schupy.ru/blog/izmerenie-detali-v-cikle</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/izmerenie-detali-v-cikle</guid>
+  </item>
+  <item>
+    <title><![CDATA[Измерение микроинструмента бесконтактными системами]]></title>
+    <link>https://schupy.ru/blog/izmerenie-mikroinstrumenta</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/izmerenie-mikroinstrumenta</guid>
+  </item>
+  <item>
+    <title><![CDATA[Измерение отверстий и расточек щупом на ЧПУ]]></title>
+    <link>https://schupy.ru/blog/izmerenie-otverstiy-shchupom</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/izmerenie-otverstiy-shchupom</guid>
+  </item>
+  <item>
+    <title><![CDATA[Измерение углов и плоскостей на станке ЧПУ щупом]]></title>
+    <link>https://schupy.ru/blog/izmerenie-uglov-i-ploskostey</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/izmerenie-uglov-i-ploskostey</guid>
+  </item>
+  <item>
+    <title><![CDATA[Измерительные циклы Renishaw: полный обзор]]></title>
+    <link>https://schupy.ru/blog/izmeritelnye-cikly-renishaw</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/izmeritelnye-cikly-renishaw</guid>
+  </item>
+  <item>
+    <title><![CDATA[Калибровка лазерного датчика привязки инструмента]]></title>
+    <link>https://schupy.ru/blog/kalibrovka-lazernogo-datchika</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/kalibrovka-lazernogo-datchika</guid>
+  </item>
+  <item>
+    <title><![CDATA[Контактный или лазерный датчик инструмента: что выбрать]]></title>
+    <link>https://schupy.ru/blog/kontaktnyy-ili-lazernyy-datchik</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/kontaktnyy-ili-lazernyy-datchik</guid>
+  </item>
+  <item>
+    <title><![CDATA[Контроль поломки инструмента на ЧПУ: как это работает]]></title>
+    <link>https://schupy.ru/blog/kontrol-polomki-instrumenta</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/kontrol-polomki-instrumenta</guid>
+  </item>
+  <item>
+    <title><![CDATA[Лазерные системы измерения инструмента: принцип работы]]></title>
+    <link>https://schupy.ru/blog/lazernaya-sistema-izmereniya-instrumenta</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/lazernaya-sistema-izmereniya-instrumenta</guid>
+  </item>
+  <item>
+    <title><![CDATA[Как написать макрос измерения для ЧПУ]]></title>
+    <link>https://schupy.ru/blog/makros-izmereniya-chpu</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/makros-izmereniya-chpu</guid>
+  </item>
+  <item>
+    <title><![CDATA[Очистка и обслуживание лазерных датчиков инструмента на ЧПУ]]></title>
+    <link>https://schupy.ru/blog/obsluzhivanie-lazernyh-datchikov</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/obsluzhivanie-lazernyh-datchikov</guid>
+  </item>
+  <item>
+    <title><![CDATA[On-machine measurement: что это и зачем нужно на ЧПУ]]></title>
+    <link>https://schupy.ru/blog/on-machine-measurement-chto-eto</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/on-machine-measurement-chto-eto</guid>
+  </item>
+  <item>
+    <title><![CDATA[Ошибки калибровки щупа и как их избежать]]></title>
+    <link>https://schupy.ru/blog/oshibki-kalibrovki-shchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/oshibki-kalibrovki-shchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Как часто проверять привязку инструмента на станке]]></title>
+    <link>https://schupy.ru/blog/proverka-privyazki-instrumenta</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/proverka-privyazki-instrumenta</guid>
+  </item>
+  <item>
+    <title><![CDATA[Что такое вектор калибровки и радиус-коррекция щупа]]></title>
+    <link>https://schupy.ru/blog/radius-korrekciya-shchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/radius-korrekciya-shchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Renishaw NC4 и аналоги: обзор лазерных датчиков для ЧПУ]]></title>
+    <link>https://schupy.ru/blog/renishaw-nc4-lazernyy-datchik</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/renishaw-nc4-lazernyy-datchik</guid>
+  </item>
+  <item>
+    <title><![CDATA[Температурная компенсация при измерении на станке]]></title>
+    <link>https://schupy.ru/blog/temperaturnaya-kompensaciya-izmereniya</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/temperaturnaya-kompensaciya-izmereniya</guid>
+  </item>
+  <item>
+    <title><![CDATA[Установка лазерной системы измерения на станок]]></title>
+    <link>https://schupy.ru/blog/ustanovka-lazernoy-sistemy</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/ustanovka-lazernoy-sistemy</guid>
+  </item>
+  <item>
+    <title><![CDATA[Как [замен](/blog/kak-zamenit-stilus)ить стилус и не сбить настройку щупа]]></title>
+    <link>https://schupy.ru/blog/kak-zamenit-stilus</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/kak-zamenit-stilus</guid>
+  </item>
+  <item>
+    <title><![CDATA[[стилус](/blog/dlina-i-diametr-stilusa)ы для измерения резьбы и сложных поверхностей]]></title>
+    <link>https://schupy.ru/blog/stilusy-dlya-rezby-i-slozhnyh-poverhnostey</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/stilusy-dlya-rezby-i-slozhnyh-poverhnostey</guid>
+  </item>
+  <item>
+    <title><![CDATA[Виды измерительных [щуп](/blog/vidy-izmeritelnyh-shchupov-chpu)ов для ЧПУ: обзор типов]]></title>
+    <link>https://schupy.ru/blog/vidy-izmeritelnyh-shchupov-chpu</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Sun, 21 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/vidy-izmeritelnyh-shchupov-chpu</guid>
+  </item>
+  <item>
+    <title><![CDATA[Контактные и бесконтактные щупы: в чём разница]]></title>
+    <link>https://schupy.ru/blog/kontaktnye-i-beskontaktnye-shchupy</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Sat, 20 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/kontaktnye-i-beskontaktnye-shchupy</guid>
+  </item>
+  <item>
+    <title><![CDATA[Из чего делают стилусы: рубин, нитрид кремния, керамика, карбид]]></title>
+    <link>https://schupy.ru/blog/materialy-stilusov-rubin-keramika</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/materialy-stilusov-rubin-keramika</guid>
+  </item>
+  <item>
+    <title><![CDATA[Как выбрать стилус по форме: шар, диск, звезда, цилиндр]]></title>
+    <link>https://schupy.ru/blog/formy-stilusov-shar-disk-zvezda</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Thu, 18 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/formy-stilusov-shar-disk-zvezda</guid>
+  </item>
+  <item>
+    <title><![CDATA[Зачем калибровать измерительный щуп и как часто]]></title>
+    <link>https://schupy.ru/blog/kalibrovka-izmeritelnogo-shchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 17 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/kalibrovka-izmeritelnogo-shchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Калибровка щупа по калибровочному кольцу: пошагово]]></title>
+    <link>https://schupy.ru/blog/kalibrovka-shchupa-po-kolcu</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 17 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/kalibrovka-shchupa-po-kolcu</guid>
+  </item>
+  <item>
+    <title><![CDATA[Калибровка по эталонной сфере: пошаговая инструкция]]></title>
+    <link>https://schupy.ru/blog/kalibrovka-shchupa-po-sfere</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 17 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/kalibrovka-shchupa-po-sfere</guid>
+  </item>
+  <item>
+    <title><![CDATA[Радио[щуп](/blog/vidy-izmeritelnyh-shchupov-chpu), оптический или кабельный: какой тип передачи выбрать]]></title>
+    <link>https://schupy.ru/blog/radioshchup-opticheskiy-kabelnyy-shchup</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/radioshchup-opticheskiy-kabelnyy-shchup</guid>
+  </item>
+  <item>
+    <title><![CDATA[[щуп](/blog/vidy-izmeritelnyh-shchupov-chpu) для привязки инструмента vs [щуп](/blog/vidy-izmeritelnyh-shchupov-chpu) для измерения детали: в чём разница]]></title>
+    <link>https://schupy.ru/blog/shchup-privyazki-vs-izmereniya-detali</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/shchup-privyazki-vs-izmereniya-detali</guid>
+  </item>
+  <item>
+    <title><![CDATA[Привязка инструмента по датчику: как настроить]]></title>
+    <link>https://schupy.ru/blog/privyazka-instrumenta-po-datchiku</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/privyazka-instrumenta-po-datchiku</guid>
+  </item>
+  <item>
+    <title><![CDATA[Привязка нуля детали с помощью щупа на станке с ЧПУ]]></title>
+    <link>https://schupy.ru/blog/privyazka-nulya-detali-shchupom</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/privyazka-nulya-detali-shchupom</guid>
+  </item>
+  <item>
+    <title><![CDATA[Удлинители и адаптеры для [стилус](/blog/dlina-i-diametr-stilusa)ов: как нарастить вылет]]></title>
+    <link>https://schupy.ru/blog/udliniteli-i-adaptery-stilusov</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Sat, 13 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/udliniteli-i-adaptery-stilusov</guid>
+  </item>
+  <item>
+    <title><![CDATA[Звездчатые (star) стилусы: когда нужны и как использовать]]></title>
+    <link>https://schupy.ru/blog/zvezdchatye-stilusy</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Sat, 13 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/zvezdchatye-stilusy</guid>
+  </item>
+  <item>
+    <title><![CDATA[Как выбрать [щуп](/blog/vidy-izmeritelnyh-shchupov-chpu) для токарного станка с ЧПУ]]></title>
+    <link>https://schupy.ru/blog/shchup-dlya-tokarnogo-stanka-chpu</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/shchup-dlya-tokarnogo-stanka-chpu</guid>
+  </item>
+  <item>
+    <title><![CDATA[Прогиб стилуса и его влияние на точность измерения]]></title>
+    <link>https://schupy.ru/blog/progib-stilusa-i-tochnost</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Thu, 11 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/progib-stilusa-i-tochnost</guid>
+  </item>
+  <item>
+    <title><![CDATA[Повторяемость и точность щупа: что важно при выборе]]></title>
+    <link>https://schupy.ru/blog/povtoryaemost-i-tochnost-shchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Tue, 09 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/povtoryaemost-i-tochnost-shchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Принцип работы тензометрического (strain-gauge) щупа]]></title>
+    <link>https://schupy.ru/blog/princip-raboty-tenzometricheskogo-shchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Sat, 06 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/princip-raboty-tenzometricheskogo-shchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Как выбрать измерительный щуп для фрезерного станка]]></title>
+    <link>https://schupy.ru/blog/kak-vybrat-shchup-dlya-frezernogo-stanka</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Fri, 05 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/kak-vybrat-shchup-dlya-frezernogo-stanka</guid>
+  </item>
+  <item>
+    <title><![CDATA[Окупаемость измерительного щупа на производстве]]></title>
+    <link>https://schupy.ru/blog/okupaemost-izmeritelnogo-shchupa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Thu, 04 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/okupaemost-izmeritelnogo-shchupa</guid>
+  </item>
+  <item>
+    <title><![CDATA[Рубиновый шарик [стилус](/blog/dlina-i-diametr-stilusa)а: почему именно рубин]]></title>
+    <link>https://schupy.ru/blog/rubinovyy-sharik-stilusa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Thu, 04 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/rubinovyy-sharik-stilusa</guid>
+  </item>
+  <item>
+    <title><![CDATA[[длина и диаметр](/blog/dlina-i-diametr-stilusa) стилуса: как подобрать под задачу]]></title>
+    <link>https://schupy.ru/blog/dlina-i-diametr-stilusa</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Wed, 03 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/dlina-i-diametr-stilusa</guid>
+  </item>
+  <item>
+    <title><![CDATA[[стилус](/blog/dlina-i-diametr-stilusa), [щуп](/blog/vidy-izmeritelnyh-shchupov-chpu) или наконечник: разбираемся в терминологии]]></title>
+    <link>https://schupy.ru/blog/stilus-shchup-nakonechnik-terminologiya</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/stilus-shchup-nakonechnik-terminologiya</guid>
+  </item>
+  <item>
+    <title><![CDATA[TS27R vs OTS vs RTS: какой датчик привязки инструмента Renishaw выбрать]]></title>
+    <link>https://schupy.ru/blog/ts27r-vs-ots-vs-rts-sravnenie</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Thu, 05 Feb 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/ts27r-vs-ots-vs-rts-sravnenie</guid>
+  </item>
+  <item>
+    <title><![CDATA[Что такое измерительный щуп для станка с ЧПУ и зачем он нужен]]></title>
+    <link>https://schupy.ru/blog/chto-takoe-izmeritelnyy-shchup-chpu</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Thu, 29 Jan 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/chto-takoe-izmeritelnyy-shchup-chpu</guid>
+  </item>
+  <item>
+    <title><![CDATA[Как расшифровать артикул стилуса Renishaw — разбор обозначений]]></title>
+    <link>https://schupy.ru/blog/kak-rasshifrovat-artikul-stilusa-renishaw</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Thu, 29 Jan 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/kak-rasshifrovat-artikul-stilusa-renishaw</guid>
+  </item>
+  <item>
+    <title><![CDATA[Совместимость щупов Renishaw со стойками ЧПУ: Fanuc, Siemens, Heidenhain]]></title>
+    <link>https://schupy.ru/blog/sovmestimost-schupov-renishaw-so-stoikami-chpu</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Thu, 22 Jan 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/sovmestimost-schupov-renishaw-so-stoikami-chpu</guid>
+  </item>
+  <item>
+    <title><![CDATA[Как выбрать измерительный щуп Renishaw для станка с ЧПУ]]></title>
+    <link>https://schupy.ru/blog/kak-vybrat-izmeritelnyy-schup-dlya-chpu</link>
+    <description><![CDATA[]]></description>
+    <pubDate>Thu, 15 Jan 2026 00:00:00 GMT</pubDate>
+    <guid>https://schupy.ru/blog/kak-vybrat-izmeritelnyy-schup-dlya-chpu</guid>
+  </item>
+  <item>
     <title><![CDATA[Как выбрать контроллер для промышленного робота]]></title>
-    <link>https://ваш-домен.ru/blog/kak-vybrat-kontroller-dlya-robota</link>
+    <link>https://schupy.ru/blog/kak-vybrat-kontroller-dlya-robota</link>
     <description><![CDATA[Разбираемся в типах контроллеров FANUC, ABB и KUKA - на что обращать внимание при покупке нового или восстановленного блока управления.]]></description>
     <pubDate>Mon, 01 Dec 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/kak-vybrat-kontroller-dlya-robota</guid>
+    <guid>https://schupy.ru/blog/kak-vybrat-kontroller-dlya-robota</guid>
   </item>
   <item>
     <title><![CDATA[Замена тичпенданта ABB: пошаговая инструкция]]></title>
-    <link>https://ваш-домен.ru/blog/zamena-tichpendanta-abb-instruktsiya</link>
+    <link>https://schupy.ru/blog/zamena-tichpendanta-abb-instruktsiya</link>
     <description><![CDATA[Подробное руководство по замене пульта управления FlexPendant на контроллерах ABB IRC5 - от диагностики до калибровки.]]></description>
     <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/zamena-tichpendanta-abb-instruktsiya</guid>
+    <guid>https://schupy.ru/blog/zamena-tichpendanta-abb-instruktsiya</guid>
   </item>
   <item>
     <title><![CDATA[Диагностика сервоприводов KUKA: основные неисправности и решения]]></title>
-    <link>https://ваш-домен.ru/blog/diagnostika-servoprivodov-kuka</link>
+    <link>https://schupy.ru/blog/diagnostika-servoprivodov-kuka</link>
     <description><![CDATA[Обзор типичных проблем с сервоприводами KUKA KSP и KPP - как распознать неисправность, расшифровать код ошибки и принять решение о ремонте или замене.]]></description>
     <pubDate>Tue, 25 Nov 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/diagnostika-servoprivodov-kuka</guid>
+    <guid>https://schupy.ru/blog/diagnostika-servoprivodov-kuka</guid>
   </item>
   <item>
     <title><![CDATA[Новые vs восстановленные запчасти для роботов: что выбрать]]></title>
-    <link>https://ваш-домен.ru/blog/novye-vs-vosstanovlennye-zapchasti</link>
+    <link>https://schupy.ru/blog/novye-vs-vosstanovlennye-zapchasti</link>
     <description><![CDATA[Сравнение новых, восстановленных и б/у запчастей для промышленных роботов - плюсы, минусы и когда какой вариант оптимален.]]></description>
     <pubDate>Sat, 22 Nov 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/novye-vs-vosstanovlennye-zapchasti</guid>
+    <guid>https://schupy.ru/blog/novye-vs-vosstanovlennye-zapchasti</guid>
   </item>
   <item>
     <title><![CDATA[Ошибки при замене печатных плат FANUC: как избежать типичных проблем]]></title>
-    <link>https://ваш-домен.ru/blog/oshibki-pri-zamene-plat-fanuc</link>
+    <link>https://schupy.ru/blog/oshibki-pri-zamene-plat-fanuc</link>
     <description><![CDATA[Пять самых частых ошибок при замене плат управления в контроллерах FANUC и способы их предотвращения.]]></description>
     <pubDate>Wed, 19 Nov 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/oshibki-pri-zamene-plat-fanuc</guid>
+    <guid>https://schupy.ru/blog/oshibki-pri-zamene-plat-fanuc</guid>
   </item>
   <item>
     <title><![CDATA[Как продлить срок службы промышленного робота]]></title>
-    <link>https://ваш-домен.ru/blog/kak-prodlit-srok-sluzhby-robota</link>
+    <link>https://schupy.ru/blog/kak-prodlit-srok-sluzhby-robota</link>
     <description><![CDATA[Практические рекомендации по обслуживанию промышленных роботов FANUC, ABB и KUKA - от ежедневных проверок до капитального ремонта.]]></description>
     <pubDate>Sat, 15 Nov 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/kak-prodlit-srok-sluzhby-robota</guid>
+    <guid>https://schupy.ru/blog/kak-prodlit-srok-sluzhby-robota</guid>
   </item>
   <item>
     <title><![CDATA[Обзор контроллеров FANUC серии R-30iB: архитектура и компоненты]]></title>
-    <link>https://ваш-домен.ru/blog/obzor-kontrollerov-fanuc-r30ib</link>
+    <link>https://schupy.ru/blog/obzor-kontrollerov-fanuc-r30ib</link>
     <description><![CDATA[Детальный обзор платформы FANUC R-30iB - структура контроллера, ключевые модули, варианты конфигурации и вопросы совместимости.]]></description>
     <pubDate>Wed, 12 Nov 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/obzor-kontrollerov-fanuc-r30ib</guid>
+    <guid>https://schupy.ru/blog/obzor-kontrollerov-fanuc-r30ib</guid>
   </item>
   <item>
     <title><![CDATA[Сервомоторы ABB для промышленных роботов: виды и совместимость]]></title>
-    <link>https://ваш-домен.ru/blog/servomotory-abb-vidy-sovmestimost</link>
+    <link>https://schupy.ru/blog/servomotory-abb-vidy-sovmestimost</link>
     <description><![CDATA[Обзор сервомоторов ABB серий 3HAC - типы, характеристики, как определить нужный мотор по артикулу и модели робота.]]></description>
     <pubDate>Sat, 08 Nov 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/servomotory-abb-vidy-sovmestimost</guid>
+    <guid>https://schupy.ru/blog/servomotory-abb-vidy-sovmestimost</guid>
   </item>
   <item>
     <title><![CDATA[Кабели для промышленных роботов: как выбрать и не ошибиться]]></title>
-    <link>https://ваш-домен.ru/blog/kabeli-dlya-promyshlennyh-robotov</link>
+    <link>https://schupy.ru/blog/kabeli-dlya-promyshlennyh-robotov</link>
     <description><![CDATA[Типы кабелей для роботов FANUC, ABB и KUKA - силовые, энкодерные, коммуникационные. Как определить нужный кабель и когда его менять.]]></description>
     <pubDate>Wed, 05 Nov 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/kabeli-dlya-promyshlennyh-robotov</guid>
+    <guid>https://schupy.ru/blog/kabeli-dlya-promyshlennyh-robotov</guid>
   </item>
   <item>
     <title><![CDATA[Редукторы RV для промышленных роботов: принцип работы и замена]]></title>
-    <link>https://ваш-домен.ru/blog/reduktory-rv-dlya-robotov</link>
+    <link>https://schupy.ru/blog/reduktory-rv-dlya-robotov</link>
     <description><![CDATA[Всё о циклоидных редукторах RV в промышленных роботах - как работают, почему выходят из строя и как заменить без потери точности.]]></description>
     <pubDate>Sat, 01 Nov 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/reduktory-rv-dlya-robotov</guid>
+    <guid>https://schupy.ru/blog/reduktory-rv-dlya-robotov</guid>
   </item>
   <item>
     <title><![CDATA[Сравнение iPendant FANUC разных поколений: от R-30iA до R-30iB Plus]]></title>
-    <link>https://ваш-домен.ru/blog/sravnenie-ipendant-fanuc-pokoleniya</link>
+    <link>https://schupy.ru/blog/sravnenie-ipendant-fanuc-pokoleniya</link>
     <description><![CDATA[Чем отличаются пульты управления FANUC серий A05B-2255 и A05B-2518 - дисплей, функции, совместимость и какой выбрать для замены.]]></description>
     <pubDate>Tue, 28 Oct 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/sravnenie-ipendant-fanuc-pokoleniya</guid>
+    <guid>https://schupy.ru/blog/sravnenie-ipendant-fanuc-pokoleniya</guid>
   </item>
   <item>
     <title><![CDATA[Блоки питания для контроллеров роботов: диагностика и замена]]></title>
-    <link>https://ваш-домен.ru/blog/bloki-pitaniya-kontrollerov-robotov</link>
+    <link>https://schupy.ru/blog/bloki-pitaniya-kontrollerov-robotov</link>
     <description><![CDATA[Как устроены блоки питания в контроллерах FANUC, ABB и KUKA, признаки выхода из строя и правила безопасной замены.]]></description>
     <pubDate>Sat, 25 Oct 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/bloki-pitaniya-kontrollerov-robotov</guid>
+    <guid>https://schupy.ru/blog/bloki-pitaniya-kontrollerov-robotov</guid>
   </item>
   <item>
     <title><![CDATA[Регламент технического обслуживания роботов KUKA]]></title>
-    <link>https://ваш-домен.ru/blog/reglament-obsluzhivaniya-kuka</link>
+    <link>https://schupy.ru/blog/reglament-obsluzhivaniya-kuka</link>
     <description><![CDATA[Полный график планового обслуживания роботов KUKA - от ежедневных проверок до замены редукторов. Что, когда и зачем проверять.]]></description>
     <pubDate>Wed, 22 Oct 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/reglament-obsluzhivaniya-kuka</guid>
+    <guid>https://schupy.ru/blog/reglament-obsluzhivaniya-kuka</guid>
   </item>
   <item>
     <title><![CDATA[Модули ввода/вывода в промышленных роботах: назначение и выбор]]></title>
-    <link>https://ваш-домен.ru/blog/moduli-vvoda-vyvoda-robotov</link>
+    <link>https://schupy.ru/blog/moduli-vvoda-vyvoda-robotov</link>
     <description><![CDATA[Зачем нужны I/O модули, какие бывают и как правильно заменить модуль ввода/вывода в контроллере FANUC, ABB или KUKA.]]></description>
     <pubDate>Sat, 18 Oct 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/moduli-vvoda-vyvoda-robotov</guid>
+    <guid>https://schupy.ru/blog/moduli-vvoda-vyvoda-robotov</guid>
   </item>
   <item>
     <title><![CDATA[Энкодеры для сервомоторов промышленных роботов]]></title>
-    <link>https://ваш-домен.ru/blog/enkodery-dlya-servomotorov-robotov</link>
+    <link>https://schupy.ru/blog/enkodery-dlya-servomotorov-robotov</link>
     <description><![CDATA[Типы энкодеров в роботах FANUC, ABB и KUKA - абсолютные и инкрементальные, принцип работы, диагностика и замена.]]></description>
     <pubDate>Wed, 15 Oct 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/enkodery-dlya-servomotorov-robotov</guid>
+    <guid>https://schupy.ru/blog/enkodery-dlya-servomotorov-robotov</guid>
   </item>
   <item>
     <title><![CDATA[Хранение запчастей для промышленных роботов: правила и ошибки]]></title>
-    <link>https://ваш-домен.ru/blog/hranenie-zapchastey-dlya-robotov</link>
+    <link>https://schupy.ru/blog/hranenie-zapchastey-dlya-robotov</link>
     <description><![CDATA[Как правильно хранить электронные платы, моторы, кабели и редукторы - температура, влажность, антистатика и сроки годности.]]></description>
     <pubDate>Sun, 12 Oct 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/hranenie-zapchastey-dlya-robotov</guid>
+    <guid>https://schupy.ru/blog/hranenie-zapchastey-dlya-robotov</guid>
   </item>
   <item>
     <title><![CDATA[Роботизация производства: с чего начать]]></title>
-    <link>https://ваш-домен.ru/blog/robotizatsiya-proizvodstva-s-chego-nachat</link>
+    <link>https://schupy.ru/blog/robotizatsiya-proizvodstva-s-chego-nachat</link>
     <description><![CDATA[Практическое руководство для предприятий, планирующих внедрение промышленных роботов - от оценки задач до запуска первой ячейки.]]></description>
     <pubDate>Wed, 08 Oct 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/robotizatsiya-proizvodstva-s-chego-nachat</guid>
+    <guid>https://schupy.ru/blog/robotizatsiya-proizvodstva-s-chego-nachat</guid>
   </item>
   <item>
     <title><![CDATA[Частые причины выхода из строя сервоусилителей FANUC]]></title>
-    <link>https://ваш-домен.ru/blog/prichiny-vyhoda-servousilitelej-fanuc</link>
+    <link>https://schupy.ru/blog/prichiny-vyhoda-servousilitelej-fanuc</link>
     <description><![CDATA[Почему горят сервоусилители FANUC серии A06B - перегрев, скачки напряжения, износ компонентов. Как предотвратить и что делать при отказе.]]></description>
     <pubDate>Sun, 05 Oct 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/prichiny-vyhoda-servousilitelej-fanuc</guid>
+    <guid>https://schupy.ru/blog/prichiny-vyhoda-servousilitelej-fanuc</guid>
   </item>
   <item>
     <title><![CDATA[ABB IRC5: архитектура контроллера и ключевые компоненты]]></title>
-    <link>https://ваш-домен.ru/blog/abb-irc5-arhitektura-komponenty</link>
+    <link>https://schupy.ru/blog/abb-irc5-arhitektura-komponenty</link>
     <description><![CDATA[Детальный обзор контроллера ABB IRC5 - модульная архитектура, основные платы, системы безопасности и вопросы обслуживания.]]></description>
     <pubDate>Wed, 01 Oct 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/abb-irc5-arhitektura-komponenty</guid>
+    <guid>https://schupy.ru/blog/abb-irc5-arhitektura-komponenty</guid>
   </item>
   <item>
     <title><![CDATA[Профилактика и замена кабельных жгутов (dress pack) промышленных роботов]]></title>
-    <link>https://ваш-домен.ru/blog/profilaktika-kabelnyh-zhgutov-dress-pack</link>
+    <link>https://schupy.ru/blog/profilaktika-kabelnyh-zhgutov-dress-pack</link>
     <description><![CDATA[Почему dress pack - расходный компонент, как продлить его ресурс и когда менять. Практические советы для FANUC, ABB и KUKA.]]></description>
     <pubDate>Sun, 28 Sep 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/profilaktika-kabelnyh-zhgutov-dress-pack</guid>
+    <guid>https://schupy.ru/blog/profilaktika-kabelnyh-zhgutov-dress-pack</guid>
   </item>
   <item>
     <title><![CDATA[Как выбрать контроллер для промышленного робота]]></title>
-    <link>https://ваш-домен.ru/blog/kak-vybrat-kontroller</link>
+    <link>https://schupy.ru/blog/kak-vybrat-kontroller</link>
     <description><![CDATA[Разбираемся в типах контроллеров и на что обращать внимание при покупке б/у оборудования.]]></description>
     <pubDate>Sat, 15 Mar 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/kak-vybrat-kontroller</guid>
-  </item>
-  <item>
-    <title><![CDATA[Обслуживание сервоусилителей: базовый чек‑лист]]></title>
-    <link>https://ваш-домен.ru/blog/obsluzhivanie-servoprivodov</link>
-    <description><![CDATA[Короткий чек-лист для оценки состояния сервоусилителя перед запуском в производственной линии.]]></description>
-    <pubDate>Sun, 02 Feb 2025 00:00:00 GMT</pubDate>
-    <guid>https://ваш-домен.ru/blog/obsluzhivanie-servoprivodov</guid>
+    <guid>https://schupy.ru/blog/kak-vybrat-kontroller</guid>
   </item>
   </channel>
 </rss>

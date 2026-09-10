@@ -38,6 +38,7 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [resolvedUrl, setResolvedUrl] = useState(pageUrl ?? '');
+  const [hasConsent, setHasConsent] = useState(false);
 
   useEffect(() => {
     if (!pageUrl && typeof window !== 'undefined') {
@@ -99,6 +100,7 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
       productName,
       productSku,
       pageUrl: resolvedUrl,
+      website: '',
     };
 
     setIsSubmitting(true);
@@ -215,6 +217,20 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
           className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
           placeholder="Укажите нужное количество, сроки и город доставки"
         />
+      </label>
+
+      <label className="flex items-start gap-2 text-sm text-slate-700">
+        <input
+          type="checkbox"
+          required
+          checked={hasConsent}
+          onChange={(event) => setHasConsent(event.target.checked)}
+          className="mt-1"
+        />
+        <span>
+          Я согласен на обработку персональных данных согласно{' '}
+          <Link href="/privacy" className="underline">политике конфиденциальности</Link>.
+        </span>
       </label>
 
       {productName ? <input type="hidden" name="productName" value={productName} /> : null}

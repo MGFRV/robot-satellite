@@ -28,6 +28,7 @@ export function PodborPageClient() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [hasConsent, setHasConsent] = useState(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -45,6 +46,7 @@ export function PodborPageClient() {
       subject: 'Помочь подобрать деталь',
       from_name: 'Сайт ЩУПЫ.РУ',
       ...formState,
+      website: '',
     };
 
     try {
@@ -151,6 +153,11 @@ export function PodborPageClient() {
             />
 
             {errorMessage ? <p className="text-sm text-rose-600">{errorMessage}</p> : null}
+
+            <label className="flex items-start gap-2 text-sm text-slate-700">
+              <input type="checkbox" required checked={hasConsent} onChange={(event) => setHasConsent(event.target.checked)} className="mt-1" />
+              <span>Я согласен на обработку персональных данных согласно <a href="/privacy" className="underline">политике конфиденциальности</a>.</span>
+            </label>
 
             <button
               type="submit"

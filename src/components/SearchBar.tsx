@@ -62,9 +62,10 @@ export function SearchBar() {
       return;
     }
 
+    const controller = new AbortController();
     const timeoutId = window.setTimeout(async () => {
       try {
-        const response = await fetch(`/api/search?q=${encodeURIComponent(trimmed)}`);
+        const response = await fetch(`/api/search?q=${encodeURIComponent(trimmed)}`, { signal: controller.signal });
         if (!response.ok) {
           return;
         }
@@ -74,7 +75,8 @@ export function SearchBar() {
         setTotal(data.total);
         setIsOpen(true);
         setActiveIndex(-1);
-      } catch {
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') return;
         setResults([]);
         setTotal(0);
         setIsOpen(false);
@@ -83,6 +85,7 @@ export function SearchBar() {
 
     return () => {
       window.clearTimeout(timeoutId);
+      controller.abort();
     };
   }, [query]);
 
@@ -177,6 +180,11 @@ export function SearchBar() {
             placeholder="Поиск по артикулу или названию..."
             className="h-10 w-full rounded-lg border border-slate-300 bg-white pl-9 pr-3 text-sm outline-none transition focus:border-slate-500"
             aria-label="Поиск по каталогу"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-expanded={isOpen}
+            aria-controls="search-results"
+            aria-activedescendant={activeIndex >= 0 ? `search-result-${activeIndex}` : undefined}
           />
         </div>
 
@@ -186,9 +194,9 @@ export function SearchBar() {
         <div className="animate-fade-in absolute left-0 top-[calc(100%+0.5rem)] z-50 w-full rounded-xl border border-slate-200 bg-white shadow-lg md:w-full">
           {results.length > 0 ? (
             <>
-              <ul className="max-h-[22rem] overflow-auto py-2">
+              <ul id="search-results" role="listbox" className="max-h-[22rem] overflow-auto py-2">
                 {results.map((result, index) => (
-                  <li key={result.slug}>
+                  <li key={result.slug} id={`search-result-${index}`} role="option" aria-selected={activeIndex === index}>
                     <Link
                       href={`/catalog/${result.slug}`}
                       onClick={() => {

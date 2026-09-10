@@ -2,10 +2,8 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   output: 'standalone',
+  poweredByHeader: false,
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: {
     remotePatterns: [
       {
@@ -13,6 +11,17 @@ const nextConfig: NextConfig = {
         hostname: 'storage.yandexcloud.net',
       },
     ],
+  },
+  async headers() {
+    return [{
+      source: '/(.*)',
+      headers: [
+        { key: 'X-Content-Type-Options', value: 'nosniff' },
+        { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+        { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+        { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+      ],
+    }];
   },
 };
 
