@@ -54,10 +54,14 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "
             ln -sfn $RELEASE_DIR /var/www/schupy/current &&
             cd /var/www/schupy/releases && ls -t | tail -n +6 | xargs -r rm -rf &&
+            set -a && . $RELEASE_DIR/.env && set +a &&
             pm2 restart schupy --update-env || pm2 start /var/www/schupy/ecosystem.config.js
           "
           for i in {1..10}; do
-            if curl --fail --silent --show-error --max-time 5 https://schupy.ru/ >/dev/null; then exit 0; fi
+            if curl --fail --silent --show-error --max-time 5 https://schupy.ru/ >/dev/null &&
+               curl --fail --silent --show-error --max-time 5 https://schupy.ru/api/contact >/dev/null; then
+              exit 0
+            fi
             sleep 3
           done
           exit 1

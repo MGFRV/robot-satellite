@@ -116,6 +116,14 @@ async function deliverInquiry(subject: string, text: string, email: string) {
   await deliverWithWeb3Forms(subject, text, email);
 }
 
+export function GET() {
+  const configured = Boolean(SMTP_PASSWORD || WEB3FORMS_ACCESS_KEY);
+  return Response.json(
+    { status: configured ? 'ready' : 'unavailable', delivery: configured ? 'configured' : 'missing' },
+    { status: configured ? 200 : 503 },
+  );
+}
+
 export async function POST(request: Request) {
   if (request.headers.get('content-type')?.split(';')[0] !== 'application/json') {
     return Response.json({ success: false, error: 'Unsupported content type' }, { status: 415 });
