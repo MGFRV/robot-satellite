@@ -1,63 +1,38 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+import { permanentRedirect } from 'next/navigation';
+import { Pagination } from '@/components/Pagination';
+import { ProductCard } from '@/components/ProductCard';
+import { categories, getCategoryByName } from '@/lib/categories';
+import { getAllProducts } from '@/lib/products';
+import { SITE_URL } from '@/lib/site';
 
-import { CatalogClient } from '@/components/CatalogClient';
-import { getCatalogProducts, getCategories } from '@/lib/products';
-import { searchProducts } from '@/lib/search';
+const PAGE_SIZE = 24;
+type Props = { searchParams?: Promise<{ page?: string; category?: string; search?: string }> };
+const pageNumber = (value?: string) => Math.max(1, Number.parseInt(value || '1', 10) || 1);
 
-type CatalogPageProps = {
-  searchParams?: Promise<{
-    search?: string;
-    category?: string;
-  }>;
-};
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const page = pageNumber((await searchParams)?.page);
+  return { title: `Каталог щупов и датчиков${page > 1 ? ` — страница ${page}` : ''} — ЩУПЫ.РУ`, description: 'Каталог щупов, стилусов, датчиков и комплектующих для станков с ЧПУ.', alternates: { canonical: page > 1 ? `/catalog?page=${page}` : '/catalog' } };
+}
 
-export default async function CatalogPage({ searchParams }: CatalogPageProps) {
-  const params = (await searchParams) ?? {};
-  const searchQuery = params.search?.trim() ?? '';
-  const categoryQuery = params.category?.trim() ?? '';
-
-  const products = getCatalogProducts();
-  const categories = getCategories();
-
-  const searchResultSlugs = searchQuery.length > 0 ? new Set(searchProducts(searchQuery).map((item) => item.slug)) : null;
-  const visibleProducts = searchResultSlugs
-    ? products.filter((product) => searchResultSlugs.has(product.slug))
-    : products;
-
-  return (
-    <section className="space-y-6">
-      <h1 className="text-3xl font-bold tracking-tight text-slate-900">Каталог</h1>
-      <p className="text-slate-700">Выберите категорию и подходящий товар из ассортимента.</p>
-
-      {searchQuery.length > 0 ? (
-        <div className="rounded-xl border border-slate-200 bg-white p-4">
-          <div className="flex flex-wrap items-center gap-3">
-            <p className="text-sm font-medium text-slate-900">
-              Результаты поиска: «{searchQuery}» ({visibleProducts.length} товаров)
-            </p>
-            <Link
-              href="/catalog"
-              className="inline-flex rounded-md border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-100"
-            >
-              Сбросить поиск
-            </Link>
-          </div>
-        </div>
-      ) : null}
-
-      {searchQuery.length > 0 && visibleProducts.length === 0 ? (
-        <div className="space-y-3 rounded-xl border border-slate-200 bg-white p-6">
-          <p className="text-lg font-semibold text-slate-900">По запросу &quot;{searchQuery}&quot; ничего не найдено</p>
-          <Link href="/podbor" className="inline-block font-medium text-slate-800 hover:text-slate-950">
-            Отправьте маркировку — поможем подобрать
-          </Link>
-          <Link href="/catalog" className="block text-sm text-slate-600 hover:text-slate-900">
-            Показать все товары
-          </Link>
-        </div>
-      ) : (
-        <CatalogClient products={visibleProducts} categories={categories} initialCategory={categoryQuery} />
-      )}
-    </section>
-  );
+export default async function CatalogPage({ searchParams }: Props) {
+  const params = await searchParams;
+  if (params?.category) {
+    const category = getCategoryByName(params.category);
+    permanentRedirect(category ? `/catalog/${category.slug}` : '/catalog');
+  }
+  const page = pageNumber(params?.page);
+  const products = getAllProducts();
+  const total = Math.ceil(products.length / PAGE_SIZE);
+  const shown = products.slice((Math.min(page, total) - 1) * PAGE_SIZE, Math.min(page, total) * PAGE_SIZE);
+  const breadcrumb = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Главная', item: SITE_URL }, { '@type': 'ListItem', position: 2, name: 'Каталог', item: `${SITE_URL}/catalog` }] };
+  return <section className="space-y-6">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+    <h1 className="text-3xl font-bold text-slate-900">Каталог</h1>
+    <p className="text-slate-700">Все {products.length} товаров доступны поисковым роботам через постраничную навигацию.</p>
+    <nav className="flex flex-wrap gap-2" aria-label="Категории">{categories.map(c => <Link className="rounded-full border bg-white px-4 py-2 text-sm" key={c.slug} href={`/catalog/${c.slug}`}>{c.name}</Link>)}</nav>
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{shown.map(product => <ProductCard key={product.slug} product={product} />)}</div>
+    <Pagination current={Math.min(page, total)} total={total} base="/catalog" />
+  </section>;
 }

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
+import { trackGoal } from '@/lib/analytics';
 
 import {
   clearInquiryCart,
@@ -80,6 +81,7 @@ export function CartPageClient() {
             .join('\n')}`,
           cart_json: JSON.stringify(cartPayload),
           website: '',
+          consent: hasConsent,
         }),
       });
 
@@ -87,6 +89,7 @@ export function CartPageClient() {
         throw new Error('Ошибка');
       }
 
+      trackGoal('form_cart_submit');
       clearInquiryCart();
       setItems([]);
       setFormState({ name: '', company: '', email: '', phone: '', message: '' });
@@ -165,7 +168,8 @@ export function CartPageClient() {
             type="button"
             onClick={() => {
               if (window.confirm('Очистить весь список запроса?')) {
-                clearInquiryCart();
+                trackGoal('form_cart_submit');
+      clearInquiryCart();
                 setItems([]);
               }
             }}
@@ -227,7 +231,7 @@ export function CartPageClient() {
 
             <label className="flex items-start gap-2 text-sm text-slate-700">
               <input type="checkbox" required checked={hasConsent} onChange={(event) => setHasConsent(event.target.checked)} className="mt-1" />
-              <span>Я согласен на обработку персональных данных согласно <Link href="/privacy" className="underline">политике конфиденциальности</Link>.</span>
+              <span>Я согласен с <Link href="/privacy" className="underline">политикой</Link> и <Link href="/consent" className="underline">согласием на обработку ПД</Link>.</span>
             </label>
 
             {status === 'success' ? <p className="text-sm text-emerald-700">Запрос отправлен успешно. Список очищен.</p> : null}

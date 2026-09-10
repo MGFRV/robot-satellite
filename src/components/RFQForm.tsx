@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
+import { trackGoal } from '@/lib/analytics';
 
 type RFQFormProps = {
   productName?: string;
@@ -101,6 +102,7 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
       productSku,
       pageUrl: resolvedUrl,
       website: '',
+      consent: hasConsent,
     };
 
     setIsSubmitting(true);
@@ -126,6 +128,7 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
         throw new Error('Не удалось отправить форму');
       }
 
+      trackGoal(productSku ? 'form_product_submit' : 'form_home_submit');
       setIsSuccess(true);
       setFormState(initialState);
     } catch (error) {
@@ -229,7 +232,8 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
         />
         <span>
           Я согласен на обработку персональных данных согласно{' '}
-          <Link href="/privacy" className="underline">политике конфиденциальности</Link>.
+          <Link href="/privacy" className="underline">политике конфиденциальности</Link> и условиям{' '}
+          <Link href="/consent" className="underline">согласия</Link>.
         </span>
       </label>
 

@@ -41,6 +41,7 @@ function textField(body: ContactPayload, key: string, max: number, required = fa
 }
 
 function parsePayload(body: ContactPayload) {
+  if (body.consent !== true) throw new Error('Поле consent обязательно');
   const name = textField(body, 'name', 100, true);
   const email = textField(body, 'email', 254);
   const phone = textField(body, 'phone', 50);
@@ -74,17 +75,16 @@ export async function POST(request: Request) {
   if (isRateLimited(clientIp(request))) {
     return Response.json({ success: false, error: 'Too many requests' }, { status: 429 });
   }
-  if (!SMTP_PASSWORD) {
-    console.error('Contact form is unavailable: SMTP is not configured');
-    return Response.json({ success: false, error: 'Service temporarily unavailable' }, { status: 503 });
-  }
-
   try {
     const raw = await request.text();
     if (Buffer.byteLength(raw) > MAX_BODY_BYTES) {
       return Response.json({ success: false, error: 'Payload too large' }, { status: 413 });
     }
     const data = parsePayload(JSON.parse(raw) as ContactPayload);
+    if (!SMTP_PASSWORD) {
+      console.error('Contact form is unavailable: SMTP is not configured');
+      return Response.json({ success: false, error: 'Service temporarily unavailable' }, { status: 503 });
+    }
     const subject = data.productSku ? `Запрос цены: ${data.productSku}` : data.cartJson ? 'Запрос цены по списку' : 'Новая заявка с сайта';
     const text = [
       `Имя: ${data.name}`, `Компания: ${data.company || '-'}`, `Email: ${data.email}`,

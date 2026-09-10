@@ -17,6 +17,19 @@ export type Product = {
   metaDescription?: string;
   specs: Record<string, string>;
   images: string[];
+  accuracy?: string;
+  repeatability?: string;
+  signalType?: string;
+  compatibleInterfaces?: string[];
+  shankType?: string;
+  ingressProtection?: string;
+  operatingTemperature?: string;
+  weight?: string;
+  dimensions?: string;
+  packageContents?: string[];
+  compatibleMachines?: string[];
+  alternatives?: string[];
+  relatedProductSlugs?: string[];
 };
 
 export type CatalogProduct = Pick<Product, 'title' | 'slug' | 'article' | 'price' | 'category' | 'specs'> & {

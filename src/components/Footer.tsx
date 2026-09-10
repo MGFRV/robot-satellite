@@ -25,7 +25,10 @@ export function Footer() {
             <li><Link href="/blog" className="hover:text-slate-900">Блог</Link></li>
             <li><Link href="/podbor" className="hover:text-slate-900">Помочь подобрать</Link></li>
             <li><Link href="/contacts" className="hover:text-slate-900">Контакты</Link></li>
+            <li><Link href="/about" className="hover:text-slate-900">О компании</Link></li>
+            <li><Link href="/delivery" className="hover:text-slate-900">Доставка</Link> · <Link href="/payment">Оплата</Link> · <Link href="/warranty">Гарантия</Link></li>
             <li><Link href="/privacy" className="hover:text-slate-900">Политика конфиденциальности</Link></li>
+            <li><Link href="/consent" className="hover:text-slate-900">Согласие на обработку ПД</Link></li>
           </ul>
         </section>
 
@@ -67,7 +70,7 @@ export function Footer() {
 
       <div className="border-t border-slate-200 bg-slate-50 py-5">
         <div className="mx-auto w-full max-w-6xl space-y-2 px-4 text-xs text-slate-600">
-          <p>© 2005–2026 ЩУПЫ.РУ. Москва, Ленинский проспект, д. 15А. Все права защищены.</p>
+          <p>© 2026 ЩУПЫ.РУ. Москва, Ленинский проспект, д. 15А. Все права защищены.</p>
         </div>
       </div>
     </footer>
