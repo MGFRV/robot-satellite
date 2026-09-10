@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 import { BlogPostCard } from '@/components/BlogPostCard';
 import { getAllPosts } from '@/lib/blog';
@@ -18,14 +19,9 @@ export async function generateMetadata({ searchParams }: BlogPageProps): Promise
   return { title: `Блог${page > 1 ? ` — страница ${page}` : ''}`, description: 'Статьи об измерительных щупах, промышленной робототехнике, обслуживании и запчастях.', alternates: { canonical: page > 1 ? `/blog?page=${page}` : '/blog' } };
 }
 
-function getPageNumber(value: string | undefined, totalPages: number): number {
+function getPageNumber(value: string | undefined): number {
   const parsed = Number(value ?? '1');
-
-  if (!Number.isInteger(parsed) || parsed < 1) {
-    return 1;
-  }
-
-  return Math.min(parsed, totalPages);
+  return parsed;
 }
 
 function getPageHref(page: number): string {
@@ -36,7 +32,10 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const params = (await searchParams) ?? {};
   const posts = getAllPosts();
   const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
-  const currentPage = getPageNumber(params.page, totalPages);
+  const currentPage = getPageNumber(params.page);
+  if (!Number.isInteger(currentPage) || currentPage < 1 || currentPage > totalPages) {
+    notFound();
+  }
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
   const visiblePosts = posts.slice(startIndex, startIndex + POSTS_PER_PAGE);
   const fillerCards = (BLOG_GRID_COLUMNS - (visiblePosts.length % BLOG_GRID_COLUMNS)) % BLOG_GRID_COLUMNS;

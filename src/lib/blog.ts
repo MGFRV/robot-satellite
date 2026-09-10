@@ -12,6 +12,9 @@ export interface BlogPost {
   excerpt: string;
   tags: string[];
   coverImage?: string;
+  author?: string;
+  dateModified?: string;
+  seo?: { title?: string; description?: string };
   content: string;
 }
 
@@ -48,6 +51,12 @@ function loadAllPostData(): BlogPost[] {
           ? withS3BaseUrl(data.coverImage, '/blog/placeholder.webp')
           : BLOG_IMAGE_PLACEHOLDER,
       content,
+      author: sanitizeMetaText(data.author) || undefined,
+      dateModified: data.dateModified ? String(data.dateModified) : undefined,
+      seo: data.seo && typeof data.seo === 'object' ? {
+        title: sanitizeMetaText(data.seo.title) || undefined,
+        description: sanitizeMetaText(data.seo.description) || undefined,
+      } : undefined,
     } satisfies BlogPost;
   });
 
@@ -70,6 +79,9 @@ export function getAllPosts(): BlogPostMeta[] {
     excerpt: post.excerpt,
     tags: post.tags,
     coverImage: post.coverImage,
+    author: post.author,
+    dateModified: post.dateModified,
+    seo: post.seo,
   }));
 }
 

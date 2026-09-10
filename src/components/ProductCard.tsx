@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { AddToCartButton } from '@/components/AddToCartButton';
@@ -26,7 +26,6 @@ export function ProductCard({ product }: ProductCardProps) {
   const safeImages = product.images.length > 0 ? product.images : [PRODUCT_IMAGE_PLACEHOLDER];
   const safeImage = safeImages[0] ?? PRODUCT_IMAGE_PLACEHOLDER;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const router = useRouter();
   const topSpecs = Object.entries(product.specs ?? {}).filter(([, value]) => String(value).trim().length > 0).slice(0, 2);
   const hasPrice = typeof product.price === 'number';
 
@@ -41,35 +40,27 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <>
-      <article
-        role="link"
-        tabIndex={0}
-        onClick={() => router.push(`/catalog/${product.slug}`)}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            router.push(`/catalog/${product.slug}`);
-          }
-        }}
-        className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-      >
-        <FallbackImage
-          src={safeImage}
-          fallbackSrc={[...safeImages.slice(1), PRODUCT_IMAGE_PLACEHOLDER]}
-          alt={product.title}
-          width={640}
-          height={420}
-          sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="h-52 w-full object-cover"
-        />
+      <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+        <Link href={`/catalog/${product.slug}`} aria-label={`Открыть товар: ${product.title}`}>
+          <FallbackImage
+            src={safeImage}
+            fallbackSrc={[...safeImages.slice(1), PRODUCT_IMAGE_PLACEHOLDER]}
+            alt={product.title}
+            width={640}
+            height={420}
+            sizes="(min-width: 1280px) 256px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="h-52 w-full object-contain"
+          />
+        </Link>
 
         <div className="flex flex-1 flex-col gap-3 p-4">
           <div>
-            <p className="text-xs uppercase tracking-wide text-slate-500">Артикул: {product.article}</p>
+            {product.article ? <p className="text-xs uppercase tracking-wide text-slate-500">Артикул: {product.article}</p> : null}
             <h2
               className="mt-1 break-words text-lg font-semibold text-slate-900 group-hover:text-slate-700"
               style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
             >
-              {product.title}
+              <Link href={`/catalog/${product.slug}`}>{product.title}</Link>
             </h2>
           </div>
 
@@ -93,11 +84,7 @@ export function ProductCard({ product }: ProductCardProps) {
               <>
                 <button
                   type="button"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    setIsModalOpen(true);
-                  }}
+                  onClick={() => setIsModalOpen(true)}
                   className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md bg-orange-500 px-2 text-sm font-medium text-white hover:bg-orange-600"
                 >
                   Запросить цену

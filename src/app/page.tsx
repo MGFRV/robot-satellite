@@ -10,6 +10,7 @@ import { categoryHref } from '@/lib/categories';
 export const metadata: Metadata = {
   title: 'Щупы Renishaw, стилусы и датчики для ЧПУ с доставкой',
   description: 'Каталог оригинальных щупов, стилусов, датчиков и комплектующих Renishaw для станков с ЧПУ. Подберем позицию по артикулу или фото маркировки.',
+  alternates: { canonical: '/' },
 };
 
 const processSteps = [
@@ -120,7 +121,7 @@ export default function HomePage() {
               Получить КП быстро
             </a>
           </div>
-          <p className="text-sm text-black/60 sm:text-base">КП и сроки поставки в течение 10–30 минут в рабочее время. Поддерживаем поставку по РФ и СНГ.</p>
+          <p className="text-sm text-black/60 sm:text-base">Свяжемся с вами после обработки заявки. Поддерживаем поставку по РФ и СНГ.</p>
         </div>
       </section>
 
@@ -185,7 +186,7 @@ export default function HomePage() {
         <div className="space-y-3">
           <details className="rounded-lg border border-slate-200 p-4" open>
             <summary className="cursor-pointer text-sm font-semibold text-slate-900">Как быстро вы отвечаете на запрос?</summary>
-            <p className="mt-2 text-sm text-slate-700">Обычно отправляем КП и сроки в течение 10–30 минут в рабочее время.</p>
+            <p className="mt-2 text-sm text-slate-700">Свяжемся с вами после обработки заявки.</p>
           </details>
           <details className="rounded-lg border border-slate-200 p-4">
             <summary className="cursor-pointer text-sm font-semibold text-slate-900">Как проверить совместимость детали?</summary>

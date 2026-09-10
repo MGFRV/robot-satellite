@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Политика конфиденциальности',
   description: 'Информация об обработке персональных данных на сайте ЩУПЫ.РУ.',
+  alternates: { canonical: '/privacy' },
 };
 
 export default function PrivacyPage() {

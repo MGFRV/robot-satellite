@@ -45,14 +45,16 @@ export function ContactsPageClient() {
         }),
       });
 
-      if (!response.ok) {
+      const result = await response.json().catch(() => null) as { success?: boolean } | null;
+      if (!response.ok || !result?.success) {
         throw new Error('Ошибка отправки');
       }
 
-      trackGoal('form_contacts_submit');
+      trackGoal('rfq_success');
       setStatus('success');
       setFormState(initialFormState);
     } catch {
+      trackGoal('rfq_error');
       setStatus('error');
     } finally {
       setIsSubmitting(false);

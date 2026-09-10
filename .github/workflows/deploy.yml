@@ -16,7 +16,7 @@ jobs:
     env:
       NEXT_PUBLIC_S3_BASE_URL: https://storage.yandexcloud.net/rbstorage
       NEXT_PUBLIC_SITE_URL: https://schupy.ru
-      WEB3FORMS_ACCESS_KEY: 5e837837-b769-4e1a-bb18-2d3fbe7a3a9b
+      WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
     steps:
       - uses: actions/checkout@v4
 
@@ -26,7 +26,11 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
-      - run: npm run check
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run check:products
+      - run: npm run check:internal-links
+      - run: npm run check:seo
       - run: npm run build
 
       - name: Assemble standalone bundle
@@ -52,6 +56,23 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "mkdir -p $RELEASE_DIR"
           rsync -avz --delete -e "ssh -i ~/.ssh/id_ed25519" .next/standalone/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:$RELEASE_DIR/
           ssh -i ~/.ssh/id_ed25519 ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "
+            set -e
+            cd $RELEASE_DIR
+            set -a && . ./.env && set +a
+            PORT=3100 HOSTNAME=127.0.0.1 node server.js > health-check.log 2>&1 &
+            HEALTH_PID=\$!
+            trap 'kill \$HEALTH_PID 2>/dev/null || true' EXIT
+            for i in \$(seq 1 10); do
+              if curl --fail --silent --show-error --max-time 5 http://127.0.0.1:3100/ >/dev/null &&
+                 curl --fail --silent --show-error --max-time 5 http://127.0.0.1:3100/catalog >/dev/null; then
+                exit 0
+              fi
+              sleep 2
+            done
+            cat health-check.log
+            exit 1
+          "
+          ssh -i ~/.ssh/id_ed25519 ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "
             ln -sfn $RELEASE_DIR /var/www/schupy/current &&
             cd /var/www/schupy/releases && ls -t | tail -n +6 | xargs -r rm -rf &&
             set -a && . $RELEASE_DIR/.env && set +a &&
@@ -59,7 +80,7 @@ jobs:
           "
           for i in {1..10}; do
             if curl --fail --silent --show-error --max-time 5 https://schupy.ru/ >/dev/null &&
-               curl --fail --silent --show-error --max-time 5 https://schupy.ru/api/contact >/dev/null; then
+               curl --fail --silent --show-error --max-time 5 https://schupy.ru/catalog >/dev/null; then
               exit 0
             fi
             sleep 3

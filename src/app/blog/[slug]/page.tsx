@@ -113,11 +113,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: post.title,
-    description: post.excerpt,
+    title: post.seo?.title || post.title,
+    description: post.seo?.description || post.excerpt,
+    alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
-      title: post.title,
-      description: post.excerpt,
+      title: post.seo?.title || post.title,
+      description: post.seo?.description || post.excerpt,
       type: 'article',
       publishedTime: post.date,
       images: [post.coverImage || BLOG_IMAGE_PLACEHOLDER],
@@ -142,9 +143,9 @@ export default async function BlogPostPage({ params }: Props) {
     '@type': 'Article',
     headline: post.title,
     datePublished: post.date,
-    dateModified: post.date,
-    author: { '@type': 'Organization', name: 'ЩУПЫ.РУ' },
-    description: post.excerpt,
+    ...(post.dateModified ? { dateModified: post.dateModified } : {}),
+    author: { '@type': post.author ? 'Person' : 'Organization', name: post.author || 'ЩУПЫ.РУ' },
+    description: post.seo?.description || post.excerpt,
     image: post.coverImage || BLOG_IMAGE_PLACEHOLDER,
   };
   const breadcrumbLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Главная', item: SITE_URL }, { '@type': 'ListItem', position: 2, name: 'Блог', item: `${SITE_URL}/blog` }, { '@type': 'ListItem', position: 3, name: post.title, item: `${SITE_URL}/blog/${post.slug}` }] };
