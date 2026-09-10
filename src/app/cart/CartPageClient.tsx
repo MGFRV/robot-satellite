@@ -90,12 +90,13 @@ export function CartPageClient() {
         throw new Error(result?.error || 'Сервис не вернул подтверждение отправки.');
       }
 
-      trackGoal('form_cart_submit');
+      trackGoal('cart_submit_success');
       clearInquiryCart();
       setItems([]);
       setFormState({ name: '', company: '', email: '', phone: '', message: '' });
       setStatus('success');
     } catch (error) {
+      trackGoal('rfq_error');
       setStatus('error');
       setErrorMessage(error instanceof Error ? error.message : 'Не удалось отправить запрос.');
     } finally {
@@ -170,8 +171,7 @@ export function CartPageClient() {
             type="button"
             onClick={() => {
               if (window.confirm('Очистить весь список запроса?')) {
-                trackGoal('form_cart_submit');
-      clearInquiryCart();
+                clearInquiryCart();
                 setItems([]);
               }
             }}
@@ -181,7 +181,7 @@ export function CartPageClient() {
           </button>
 
           <p className="text-sm text-slate-600">
-            Заполните контакты — мы пришлём цены и сроки в течение 30-60 минут
+            Заполните контакты — свяжемся с вами после обработки заявки.
           </p>
 
           <form onSubmit={submitInquiry} className="space-y-4 rounded-xl border border-slate-200 bg-white p-6">

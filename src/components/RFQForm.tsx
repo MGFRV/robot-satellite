@@ -128,10 +128,11 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
         throw new Error('Не удалось отправить форму');
       }
 
-      trackGoal(productSku ? 'form_product_submit' : 'form_home_submit');
+      trackGoal('rfq_success');
       setIsSuccess(true);
       setFormState(initialState);
     } catch (error) {
+      trackGoal('rfq_error');
       if (error instanceof DOMException && error.name === 'AbortError') {
         setErrorMessage('Медленное соединение: отправка заняла слишком много времени. Попробуйте ещё раз или напишите нам: zakaz@schupy.ru');
       } else {
@@ -148,8 +149,7 @@ export function RFQForm({ productName, productSku, pageUrl, title, subject }: RF
       <div className="space-y-4 rounded-xl border border-emerald-200 bg-emerald-50 p-5">
         <h3 className="text-lg font-semibold text-emerald-900">Заявка отправлена!</h3>
         <p className="text-sm text-emerald-800">
-          Мы свяжемся с вами в течение 2 часов. Для срочных вопросов: WhatsApp +7 961 137-59-74 / Email
-          zakaz@schupy.ru
+          Свяжемся с вами после обработки заявки. Для связи: WhatsApp +7 961 137-59-74 / Email zakaz@schupy.ru
         </p>
         <Link href="/catalog" className="inline-flex rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white">
           Вернуться к каталогу

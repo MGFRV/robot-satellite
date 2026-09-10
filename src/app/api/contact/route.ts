@@ -5,29 +5,7 @@ const SMTP_PASSWORD = process.env.SMTP_PASSWORD;
 const CONTACT_TO = process.env.CONTACT_TO ?? SMTP_USER;
 const WEB3FORMS_ACCESS_KEY = process.env.WEB3FORMS_ACCESS_KEY ?? process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 const MAX_BODY_BYTES = 32_000;
-const WINDOW_MS = 60_000;
-const MAX_REQUESTS_PER_WINDOW = 5;
-
 type ContactPayload = Record<string, unknown>;
-const attempts = new Map<string, { count: number; resetAt: number }>();
-
-function clientIp(request: Request) {
-  return request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
-}
-
-function isRateLimited(ip: string) {
-  const now = Date.now();
-  if (attempts.size > 10_000) {
-    for (const [key, value] of attempts) if (value.resetAt <= now) attempts.delete(key);
-  }
-  const current = attempts.get(ip);
-  if (!current || current.resetAt <= now) {
-    attempts.set(ip, { count: 1, resetAt: now + WINDOW_MS });
-    return false;
-  }
-  current.count += 1;
-  return current.count > MAX_REQUESTS_PER_WINDOW;
-}
 
 function textField(body: ContactPayload, key: string, max: number, required = false) {
   const value = body[key];
@@ -76,9 +54,9 @@ function formatCart(cartJson: string) {
       const record = item as Record<string, unknown>;
       const article = String(record.article ?? '').slice(0, 100);
       const title = String(record.title ?? '').slice(0, 300);
-      const quantity = Math.max(1, Number(record.quantity) || 1);
-      if (!article || !title) throw new Error('invalid cart item');
-      return `- ${article} | ${title} | Кол-во: ${quantity}`;
+      const quantity = Number(record.quantity);
+      if (!title || !Number.isInteger(quantity) || quantity < 1 || quantity > 10_000) throw new Error('invalid cart item');
+      return `- ${article || 'без артикула'} | ${title} | Кол-во: ${quantity}`;
     }).join('\n');
   } catch {
     throw new Error('Некорректное поле cart_json');
@@ -131,19 +109,16 @@ export async function POST(request: Request) {
   if (Number(request.headers.get('content-length') ?? 0) > MAX_BODY_BYTES) {
     return Response.json({ success: false, error: 'Payload too large' }, { status: 413 });
   }
-  if (isRateLimited(clientIp(request))) {
-    return Response.json({ success: false, error: 'Too many requests' }, { status: 429 });
-  }
+  // TODO: enforce distributed rate limiting at the reverse proxy or in a shared
+  // store. An in-memory counter is not reliable across production instances.
   try {
     const raw = await request.text();
     if (Buffer.byteLength(raw) > MAX_BODY_BYTES) {
       return Response.json({ success: false, error: 'Payload too large' }, { status: 413 });
     }
-    const data = parsePayload(JSON.parse(raw) as ContactPayload);
-    if (!SMTP_PASSWORD) {
-      console.error('Contact form is unavailable: SMTP is not configured');
-      return Response.json({ success: false, error: 'Service temporarily unavailable' }, { status: 503 });
-    }
+    const parsed: unknown = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) throw new SyntaxError('Invalid JSON object');
+    const data = parsePayload(parsed as ContactPayload);
     const subject = data.productSku ? `Запрос цены: ${data.productSku}` : data.cartJson ? 'Запрос цены по списку' : 'Новая заявка с сайта';
     const text = [
       `Имя: ${data.name}`, `Компания: ${data.company || '-'}`, `Email: ${data.email}`,

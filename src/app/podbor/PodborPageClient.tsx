@@ -60,14 +60,16 @@ export function PodborPageClient() {
         body: JSON.stringify(payload),
       });
 
-      if (!response.ok) {
+      const result = await response.json().catch(() => null) as { success?: boolean } | null;
+      if (!response.ok || !result?.success) {
         throw new Error('Ошибка запроса');
       }
 
-      trackGoal('form_podbor_submit');
+      trackGoal('rfq_success');
       setIsSuccess(true);
       setFormState(initialState);
     } catch {
+      trackGoal('rfq_error');
       setErrorMessage('Ошибка отправки. Напишите нам напрямую: zakaz@schupy.ru');
     } finally {
       setIsSubmitting(false);
@@ -98,7 +100,7 @@ export function PodborPageClient() {
         {isSuccess ? (
           <div className="space-y-3 rounded-lg bg-emerald-50 p-4">
             <h3 className="text-lg font-semibold text-emerald-900">Заявка отправлена</h3>
-            <p className="text-sm text-emerald-800">Мы свяжемся с вами в течение 2 часов.</p>
+            <p className="text-sm text-emerald-800">Свяжемся с вами после обработки заявки.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">

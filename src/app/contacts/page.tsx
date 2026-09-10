@@ -6,6 +6,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'Контакты ЩУПЫ.РУ — заказать щупы и датчики Renishaw',
   description: 'Телефон, email и мессенджеры ЩУПЫ.РУ для заказа щупов, стилусов, датчиков и комплектующих Renishaw. Отправьте заявку или вопрос специалисту.',
+  alternates: { canonical: '/contacts' },
 };
 
 export default function ContactsPage() {
