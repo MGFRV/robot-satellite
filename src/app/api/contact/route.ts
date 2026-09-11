@@ -2,8 +2,16 @@ import nodemailer from 'nodemailer';
 
 const SMTP_USER = process.env.SMTP_USER ?? 'zakaz@schupy.ru';
 const SMTP_PASSWORD = process.env.SMTP_PASSWORD;
-const CONTACT_TO = process.env.CONTACT_TO ?? SMTP_USER;
+// With a third-party relay (Brevo, etc.) the SMTP auth login is the relay
+// account, not a deliverable mailbox — the visible "From" must be a sender
+// verified with that relay, so it's tracked separately from SMTP_USER.
+const MAIL_FROM = process.env.MAIL_FROM ?? SMTP_USER;
+const CONTACT_TO = process.env.CONTACT_TO ?? MAIL_FROM;
 const WEB3FORMS_ACCESS_KEY = process.env.WEB3FORMS_ACCESS_KEY ?? process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+// Preferred channel: the VPS's outbound SMTP ports (587/465/25) are blocked at
+// the network level (confirmed via ETIMEDOUT on SMTP CONN), but outbound
+// HTTPS (443) works, so Brevo's HTTP API is used instead of raw SMTP.
+const BREVO_API_KEY = process.env.BREVO_API_KEY;
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://schupy.ru';
 const MAX_BODY_BYTES = 32_000;
 type ContactPayload = Record<string, unknown>;
@@ -90,16 +98,52 @@ async function deliverWithWeb3Forms(subject: string, text: string, name: string,
   if (!response.ok || !result?.success) throw new Error(`WEB3FORMS_FAILED:${result?.message ?? response.status}`);
 }
 
+async function deliverWithBrevoApi(subject: string, text: string, email: string) {
+  if (!BREVO_API_KEY) throw new Error('DELIVERY_NOT_CONFIGURED');
+  const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'api-key': BREVO_API_KEY,
+    },
+    body: JSON.stringify({
+      sender: { name: 'Сайт ЩУПЫ.РУ', email: MAIL_FROM },
+      to: [{ email: CONTACT_TO }],
+      ...(email ? { replyTo: { email } } : {}),
+      subject,
+      textContent: text,
+    }),
+    signal: AbortSignal.timeout(15_000),
+    cache: 'no-store',
+  });
+  if (!response.ok) {
+    const body = await response.text().catch(() => '');
+    throw new Error(`BREVO_API_FAILED:${response.status}:${body.slice(0, 200)}`);
+  }
+}
+
 async function deliverInquiry(subject: string, text: string, name: string, email: string) {
+  if (BREVO_API_KEY) {
+    try {
+      await deliverWithBrevoApi(subject, text, email);
+      return;
+    } catch (error) {
+      console.error('Brevo API delivery failed; trying the configured fallback', error);
+    }
+  }
   if (SMTP_PASSWORD) {
     try {
+      const port = Number(process.env.SMTP_PORT ?? 465);
       const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST ?? 'smtp.mail.ru',
-        port: Number(process.env.SMTP_PORT ?? 465), secure: true,
+        port,
+        // 465 uses implicit TLS; 587/25 (e.g. Brevo) use STARTTLS on a plain socket.
+        secure: port === 465,
         connectionTimeout: 10_000, socketTimeout: 15_000,
         auth: { user: SMTP_USER, pass: SMTP_PASSWORD },
       });
-      await transporter.sendMail({ from: SMTP_USER, to: CONTACT_TO, replyTo: email || undefined, subject, text });
+      await transporter.sendMail({ from: MAIL_FROM, to: CONTACT_TO, replyTo: email || undefined, subject, text });
       return;
     } catch (error) {
       console.error('SMTP delivery failed; trying the configured fallback', error);
@@ -109,7 +153,7 @@ async function deliverInquiry(subject: string, text: string, name: string, email
 }
 
 export function GET() {
-  const configured = Boolean(SMTP_PASSWORD || WEB3FORMS_ACCESS_KEY);
+  const configured = Boolean(BREVO_API_KEY || SMTP_PASSWORD || WEB3FORMS_ACCESS_KEY);
   return Response.json(
     { status: configured ? 'ready' : 'unavailable', delivery: configured ? 'configured' : 'missing' },
     { status: configured ? 200 : 503 },
