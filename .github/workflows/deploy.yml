@@ -17,6 +17,7 @@ jobs:
       NEXT_PUBLIC_S3_BASE_URL: https://storage.yandexcloud.net/rbstorage
       NEXT_PUBLIC_SITE_URL: https://schupy.ru
       WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
+      BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
       SMTP_HOST: ${{ secrets.SMTP_HOST }}
       SMTP_PORT: ${{ secrets.SMTP_PORT }}
       SMTP_USER: ${{ secrets.SMTP_USER }}
@@ -33,7 +34,7 @@ jobs:
 
       - name: Verify delivery configuration
         if: github.event_name == 'push'
-        run: test -n "$SMTP_PASSWORD" || test -n "$WEB3FORMS_ACCESS_KEY"
+        run: test -n "$BREVO_API_KEY" || test -n "$SMTP_PASSWORD" || test -n "$WEB3FORMS_ACCESS_KEY"
 
       - run: npm ci
       - run: npm run lint
@@ -49,6 +50,7 @@ jobs:
           cp -r .next/static .next/standalone/.next/static
           {
             printf 'WEB3FORMS_ACCESS_KEY=%s\n' "$WEB3FORMS_ACCESS_KEY"
+            printf 'BREVO_API_KEY=%s\n' "$BREVO_API_KEY"
             printf 'SMTP_HOST=%s\n' "$SMTP_HOST"
             printf 'SMTP_PORT=%s\n' "$SMTP_PORT"
             printf 'SMTP_USER=%s\n' "$SMTP_USER"
