@@ -11,7 +11,8 @@
     "Артикул": "A-5003-6168",
     "Тип": "Запчасть",
     "Состояние": "Новое",
-    "Наличие": "Под заказ"
+    "Наличие": "Под заказ",
+    "Резьба": "M5"
   },
   "images": [
     "https://storage.yandexcloud.net/rbstorage/products/renishaw/komplekt-schupov-s-rezboj-m5-dlya-sp80-a-5003-6168-renishaw/1.jpg",

@@ -11,7 +11,8 @@
     "Артикул": "A-5000-7829",
     "Тип": "Запчасть",
     "Состояние": "Новое",
-    "Наличие": "Под заказ"
+    "Наличие": "Под заказ",
+    "Резьба": "M4"
   },
   "images": [
     "https://storage.yandexcloud.net/rbstorage/products/renishaw/komplekt-schupov-s-rezboj-m4-a-5000-7829-renishaw/1.jpg",

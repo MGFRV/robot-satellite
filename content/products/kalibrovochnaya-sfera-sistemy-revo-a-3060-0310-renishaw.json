@@ -11,7 +11,9 @@
     "Артикул": "A-3060-0310",
     "Тип": "Запчасть",
     "Состояние": "Новое",
-    "Наличие": "Под заказ"
+    "Наличие": "Под заказ",
+    "Диаметр шарика/наконечника": "45 мм",
+    "Материал шарика/наконечника": "керамика"
   },
   "images": [
     "https://storage.yandexcloud.net/rbstorage/products/renishaw/kalibrovochnaya-sfera-sistemy-revo-a-3060-0310-renishaw/1.jpg",
