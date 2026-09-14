@@ -11,7 +11,8 @@
     "Артикул": "A-5472-3000",
     "Тип": "Запчасть",
     "Состояние": "Новое",
-    "Наличие": "Под заказ"
+    "Наличие": "Под заказ",
+    "Резьба": "M4"
   },
   "images": [
     "https://storage.yandexcloud.net/rbstorage/products/renishaw/sistema-naladki-instrumenta-a-5472-3000-renishaw/1.jpg",
